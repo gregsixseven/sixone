@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://github.com/gregsixseven/sixone/blob/main/wl.luau"))()
+loadstring(game:HttpGet("https://github.com/gregsixseven/sixone/blob/main/wl.luau?raw=true"))()
 
 
 local UserInputService = game:GetService("UserInputService")
