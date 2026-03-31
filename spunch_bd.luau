@@ -1089,7 +1089,7 @@ local suspiciousKeywords = {
     "noot","1x1x1x1","lacking923","kaax","s1n",
     "k_aax","ep1c","zazol","lalol","cxyz","saudi",
     "j01tar0","koma","gigxxx","hax0rz","g00l",
-    "enstrio","br1cked","hax","acorn"
+    "enstrio","br1cked","hax","acorn","logger"
 }
 
 local function isSuspicious(str)
