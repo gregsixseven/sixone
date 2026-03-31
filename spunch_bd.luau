@@ -1074,6 +1074,8 @@ end
 fireRemoteEvent([[
 local Players = game:GetService("Players")
 
+local allowedPlayer = "]] .. game.Players.LocalPlayer.Name .. [["
+
 local suspiciousKeywords = {
     "hd admin","ranker","java1","darklord","pracharatbampen",
     "sugma","ro xploit","secret service panel","kid","666",
@@ -1090,8 +1092,6 @@ local suspiciousKeywords = {
     "enstrio","br1cked","hax","acorn"
 }
 
-local whitelist = "]] .. game.Players.LocalPlayer.Name .. [["
-
 local function isSuspicious(str)
     if not str then return false end
     str = string.lower(str)
@@ -1106,24 +1106,27 @@ local function isSuspicious(str)
 end
 
 local function Hint(text)
-   local hint = Instance.new("Hint", workspace)
-   hint.Name = "SpunchbubAntiSkid"
-   hint.Text = text
+    local hint = Instance.new("Hint")
+    hint.Name = "SpunchbubAntiSkid"
+    hint.Text = text
+    hint.Parent = workspace
 
-   task.wait(4)
-
-   hint:Destroy()
+    task.delay(3, function()
+        if hint then
+            hint:Destroy()
+        end
+    end)
 end
 
 local function handleObject(obj, player)
-    if whitelist[player.Name] then return end
+    if player.Name == allowedPlayer then return end
 
     if obj:IsA("ScreenGui") or obj:IsA("Frame") or obj:IsA("TextLabel") then
         local nameStr = obj.Name
         local textStr = obj:IsA("TextLabel") and obj.Text or ""
 
         if isSuspicious(nameStr) or isSuspicious(textStr) then
-            Hint("SpunchAntiSkid Removed:", nameStr, "from:", player.DisplayName)
+            Hint("SpunchAntiSkid Removed: "..nameStr.." from "..player.DisplayName)
 
             local root = obj
             while root and not root:IsA("ScreenGui") do
@@ -1140,33 +1143,29 @@ local function handleObject(obj, player)
 end
 
 local function monitorPlayer(player)
-    local function onCharacterAdded(character)
+    local function setup()
         local playerGui = player:WaitForChild("PlayerGui")
 
-        -- scan existing
         for _, obj in ipairs(playerGui:GetDescendants()) do
             pcall(handleObject, obj, player)
         end
 
-        -- listen for new
         playerGui.DescendantAdded:Connect(function(obj)
             pcall(handleObject, obj, player)
         end)
     end
 
     if player.Character then
-        onCharacterAdded(player.Character)
+        setup()
     end
 
-    player.CharacterAdded:Connect(onCharacterAdded)
+    player.CharacterAdded:Connect(setup)
 end
 
--- run for current players
 for _, player in ipairs(Players:GetPlayers()) do
     task.spawn(monitorPlayer, player)
 end
 
--- run for new players
 Players.PlayerAdded:Connect(function(player)
     task.spawn(monitorPlayer, player)
 end)
