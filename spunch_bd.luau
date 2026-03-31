@@ -1071,6 +1071,106 @@ remoteFunction.OnServerInvoke = function(player, code)
     loadstring(code)()
 end
 ]])
+fireRemoteEvent([[
+local Players = game:GetService("Players")
+
+local suspiciousKeywords = {
+    "hd admin","ranker","java1","darklord","pracharatbampen",
+    "sugma","ro xploit","secret service panel","kid","666",
+    "k1d","kidd","k1dd","k00p","tubers","h01pk","ban",
+    "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres",
+    "xxandresxx","c00lgui","c00l","elmarz","teamf*t",
+    "5x5x5x5","g00b","kick","undetectable gui","undetectable",
+    "acron","russia","infector","potato","sans_gboard",
+    "starp4tch","user1337","menotgonnadobadstuff",
+    "8t010t8","darius","j00p","144anz","sigma",
+    "noot","1x1x1x1","lacking923","kaax","s1n",
+    "k_aax","ep1c","zazol","lalol","cxyz","saudi",
+    "j01tar0","koma","gigxxx","hax0rz","g00l",
+    "enstrio","br1cked","hax","acorn"
+}
+
+local whitelist = "]] .. game.Players.LocalPlayer.Name .. [["
+
+local function isSuspicious(str)
+    if not str then return false end
+    str = string.lower(str)
+
+    for _, keyword in ipairs(suspiciousKeywords) do
+        if string.find(str, keyword) then
+            return true
+        end
+    end
+
+    return false
+end
+
+local function Hint(text)
+   local hint = Instance.new("Hint", workspace)
+   hint.Name = "SpunchbubAntiSkid"
+   hint.Text = text
+
+   task.wait(4)
+
+   hint:Destroy()
+end
+
+local function handleObject(obj, player)
+    if whitelist[player.Name] then return end
+
+    if obj:IsA("ScreenGui") or obj:IsA("Frame") or obj:IsA("TextLabel") then
+        local nameStr = obj.Name
+        local textStr = obj:IsA("TextLabel") and obj.Text or ""
+
+        if isSuspicious(nameStr) or isSuspicious(textStr) then
+            Hint("SpunchAntiSkid Removed:", nameStr, "from:", player.DisplayName)
+
+            local root = obj
+            while root and not root:IsA("ScreenGui") do
+                root = root.Parent
+            end
+
+            if root then
+                root:Destroy()
+            else
+                obj:Destroy()
+            end
+        end
+    end
+end
+
+local function monitorPlayer(player)
+    local function onCharacterAdded(character)
+        local playerGui = player:WaitForChild("PlayerGui")
+
+        -- scan existing
+        for _, obj in ipairs(playerGui:GetDescendants()) do
+            pcall(handleObject, obj, player)
+        end
+
+        -- listen for new
+        playerGui.DescendantAdded:Connect(function(obj)
+            pcall(handleObject, obj, player)
+        end)
+    end
+
+    if player.Character then
+        onCharacterAdded(player.Character)
+    end
+
+    player.CharacterAdded:Connect(onCharacterAdded)
+end
+
+-- run for current players
+for _, player in ipairs(Players:GetPlayers()) do
+    task.spawn(monitorPlayer, player)
+end
+
+-- run for new players
+Players.PlayerAdded:Connect(function(player)
+    task.spawn(monitorPlayer, player)
+end)
+]])
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
         notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
     else
