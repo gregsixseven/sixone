@@ -1077,19 +1077,19 @@ local Players = game:GetService("Players")
 local allowedPlayer = "]] .. game.Players.LocalPlayer.Name .. [["
 
 local suspiciousKeywords = {
-    "hd admin","ranker","java1","darklord","pracharatbampen",
-    "sugma","ro xploit","secret service panel","kid","666",
-    "k1d","kidd","k1dd","k00p","tubers","h01pk","ban",
-    "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres",
-    "xxandresxx","c00lgui","c00l","elmarz","teamf*t",
+    "hd admin","ranker","java1","darklord","pracharatbampen","777ililo",
+    "sugma","ro xploit","secret service panel","kid","666","n00t",
+    "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull",
+    "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz",
+    "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat",
     "5x5x5x5","g00b","kick","undetectable gui","undetectable",
-    "acron","russia","infector","potato","sans_gboard",
-    "starp4tch","user1337","menotgonnadobadstuff",
-    "8t010t8","darius","j00p","144anz","sigma",
-    "noot","1x1x1x1","lacking923","kaax","s1n",
-    "k_aax","ep1c","zazol","lalol","cxyz","saudi",
-    "j01tar0","koma","gigxxx","hax0rz","g00l",
-    "enstrio","br1cked","hax","acorn","logger"
+    "acron","russia","infector","potato","sans_gboard","777lilo",
+    "starp4tch","user1337","menotgonnadobadstuff","team fat",
+    "8t010t8","darius","j00p","144anz","sigma","topkek",
+    "noot","1x1x1x1","lacking923","kaax","s1n","topk3k",
+    "k_aax","ep1c","zazol","lalol","cxyz","saudi","rc7","dimin",
+    "j01tar0","koma","gigxxx","hax0rz","g00l","tr00g","mat3l0rd",
+    "enstrio","br1cked","hax","acorn","logger","blue2spooky"
 }
 
 local function isSuspicious(str)
