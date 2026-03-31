@@ -1,9 +1,9 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Rig67/sixone/refs/heads/main/wl.lua"))()
+loadstring(game:HttpGet("https://github.com/gregsixseven/sixone/blob/main/wl.luau"))()
 
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
-local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Rig67/sixone/refs/heads/main/notification.lua.txt", true))()
+local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/gregsixseven/sixone/refs/heads/main/notification.luau", true))()
 
     local player = game.Players.LocalPlayer
 	local mouse = player:GetMouse()
