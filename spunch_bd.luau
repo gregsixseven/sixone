@@ -1121,7 +1121,7 @@ end
 local function handleObject(obj, player)
     if player.Name == allowedPlayer then return end
 
-    if obj:IsA("ScreenGui") or obj:IsA("Frame") or obj:IsA("TextLabel") then
+    if obj:IsA("ScreenGui") or obj:IsA("Frame") or obj:IsA("TextLabel") or obj:IsA("TextButton") then
         local nameStr = obj.Name
         local textStr = obj:IsA("TextLabel") and obj.Text or ""
 
