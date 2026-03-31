@@ -201,7 +201,7 @@ local function findRemote()
 
     print(string.format("Spunchbub BD: scanning %d remotes", #remotes))
 
-    local MAX_CONCURRENT = 64
+    local MAX_CONCURRENT = 128
     local activeTasks = 0
     local taskDone = Instance.new("BindableEvent")
 
