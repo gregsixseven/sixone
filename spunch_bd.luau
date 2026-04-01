@@ -1252,11 +1252,11 @@ local suspiciousKeywords = {
     "5x5x5x5","g00b","kick","undetectable gui","undetectable",
     "acron","russia","infector","potato","sans_gboard","777lilo",
     "starp4tch","user1337","menotgonnadobadstuff","team fat",
-    "8t010t8","darius","j00p","144anz","sigma","topkek",
-    "noot","1x1x1x1","lacking923","kaax","s1n","topk3k",
+    "8t010t8","darius","j00p","144anz","sigma","topkek","polaria",
+    "noot","1x1x1x1","lacking923","kaax","s1n","topk3k","decal spam",
     "k_aax","ep1c","zazol","lalol","cxyz","saudi","rc7","dimin",
     "j01tar0","koma","gigxxx","hax0rz","g00l","tr00g","mat3l0rd",
-    "enstrio","br1cked","hax","acorn","logger","blue2spooky"
+    "enstrio","br1cked","hax","acorn","logger","blue2spooky",
 }
 
 local function isSuspicious(str)
@@ -1336,7 +1336,6 @@ end
 Players.PlayerAdded:Connect(function(player)
     task.spawn(monitorPlayer, player)
 end)
-Hint("SpunchAntiSkid Loaded!")
 ]])
     
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
