@@ -617,39 +617,20 @@ local function setFade(targetVisible, duration)
     end
 end
 
--- Animation Logic
 local opened = true
-local targetSize = UDim2.new(0, 471, 0, 310)
 
 toggle.MouseButton1Click:Connect(function()
     opened = not opened
-    
-    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
-        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
-    end)
 
     if opened then
         mainFrame.Visible = true
-        mainFrame.Size = UDim2.new(0, 0, 0, 0)
-        
-        -- Fade IN (Restores original transparencies)
-        setFade(true, 0.4)
-        
-        TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-            Size = targetSize
-        }):Play()
+        setFade(true, 0.25)
     else
-        -- Fade OUT (Forces everything to transparency 1)
-        setFade(false, 0.3)
-        
-        local closeTween = TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-            Size = UDim2.new(0, 0, 0, 0)
-        })
-        
-        closeTween:Play()
-        closeTween.Completed:Connect(function()
-            if not opened then 
-                mainFrame.Visible = false 
+        setFade(false, 0.25)
+
+        task.delay(0.25, function()
+            if not opened then
+                mainFrame.Visible = false
             end
         end)
     end
