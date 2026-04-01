@@ -511,78 +511,96 @@ LMG2L["Main_2"]["Size"] = UDim2.new(0, 471, 0, 310);
 LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
 LMG2L["Main_2"]["Name"] = [[Main]];
 
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
 local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
+local mainFrame = LMG2L["Main_2"]
+
 toggle.Size = UDim2.new(0, 45, 0, 45)
 toggle.Position = UDim2.new(0, 20, 0, 200)
 toggle.Text = '<font color="#f7f30a">S</font>'
 toggle.RichText = true
-toggle.FontFace = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+toggle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
 toggle.TextColor3 = Color3.fromRGB(255,255,255)
 toggle.TextSize = 24
+toggle.AutoButtonColor = false -- Disables default click darkening for custom animation
 
 local corner = Instance.new("UICorner", toggle)
-corner.CornerRadius = UDim.new(0,6)
+corner.CornerRadius = UDim.new(0, 6)
 
 local stroke = Instance.new("UIStroke", toggle)
 stroke.Thickness = 1
-stroke.Color = Color3.fromRGB(97,97,97)
+stroke.Color = Color3.fromRGB(97, 97, 97)
 stroke.Transparency = 0.5
 stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-local dragging
-local dragInput
-local dragStart
-local startPos
+-- Anchor point at center makes scaling animations look much better
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+
+-- Draggable Logic variables
+local dragging, dragInput, dragStart, startPos
 
 local function update(input)
     local delta = input.Position - dragStart
-    local pos = UDim2.new(
-        startPos.X.Scale,
-        startPos.X.Offset + delta.X,
-        startPos.Y.Scale,
-        startPos.Y.Offset + delta.Y
-    )
-    game:GetService("TweenService"):Create(
-        toggle,
-        TweenInfo.new(0.15,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
-        {Position = pos}
-    ):Play()
+    local pos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    TweenService:Create(toggle, TweenInfo.new(0.15, Enum.EasingStyle.Quint), {Position = pos}):Play()
 end
 
 toggle.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1
-    or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
         dragStart = input.Position
         startPos = toggle.Position
-
         input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
+            if input.UserInputState == Enum.UserInputState.End then dragging = false end
         end)
     end
 end)
 
 toggle.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement
-    or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
         dragInput = input
     end
 end)
 
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        update(input)
-    end
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then update(input) end
 end)
 
+-- Animation Logic
 local opened = true
 
 toggle.MouseButton1Click:Connect(function()
     opened = not opened
-    LMG2L["Main_2"].Visible = opened
+    
+    -- 1. Button Bounce Animation
+    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
+        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
+    end)
+
+    -- 2. Frame Animation (Scale and Transparency)
+    if opened then
+        mainFrame.Visible = true
+        mainFrame.GroupTransparency = 1 -- Assumes Main_2 has a CanvasGroup or handles transparency
+        mainFrame.Size = UDim2.new(0, 0, 0, 0) -- Adjust to your frame's original size scale
+        
+        TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 500, 0, 300), -- REPLACEME: Put your Frame's normal size here
+            -- GroupTransparency = 0 
+        }):Play()
+    else
+        local closeTween = TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+            Size = UDim2.new(0, 0, 0, 0),
+            -- GroupTransparency = 1
+        })
+        
+        closeTween:Play()
+        closeTween.Completed:Connect(function()
+            if not opened then mainFrame.Visible = false end
+        end)
+    end
 end)
 
 LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
@@ -604,6 +622,7 @@ LMG2L["hide_6"]["BorderSizePixel"] = 0;
 LMG2L["hide_6"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
 LMG2L["hide_6"]["Size"] = UDim2.new(0, 34, 0, 34);
 LMG2L["hide_6"]["Name"] = [[hide]];
+LMG2L["hide_6"]["AutoButtonColor"] = false;
 LMG2L["hide_6"]["Position"] = UDim2.new(0, 309, 0, 271);
 
 LMG2L["ImageLabelbla"] = Instance.new("ImageLabel", LMG2L["hide_6"]);
@@ -631,6 +650,7 @@ LMG2L["ImageButton2_b"]["BorderSizePixel"] = 0;
 LMG2L["ImageButton2_b"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
 LMG2L["ImageButton2_b"]["Size"] = UDim2.new(0, 34, 0, 34);
 LMG2L["ImageButton2_b"]["Name"] = [[ImageButton2]];
+LMG2L["ImageButton2_b"]["AutoButtonColor"] = false;
 LMG2L["ImageButton2_b"]["Position"] = UDim2.new(0, 389, 0, 271);
 
 LMG2L["ImageLabella"] = Instance.new("ImageLabel", LMG2L["ImageButton2_b"]);
@@ -659,6 +679,7 @@ LMG2L["clr_e"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
 LMG2L["clr_e"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
 LMG2L["clr_e"]["Size"] = UDim2.new(0, 100, 0, 33);
 LMG2L["clr_e"]["Text"] = [[Clear]];
+LMG2L["clr_e"]["AutoButtonColor"] = false;
 LMG2L["clr_e"]["Name"] = [[clr]];
 LMG2L["clr_e"]["Position"] = UDim2.new(0, 148, 0, 272);
 
@@ -824,6 +845,7 @@ LMG2L["ImageButton3_1e"]["BorderSizePixel"] = 0;
 LMG2L["ImageButton3_1e"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
 -- LMG2L["ImageButton3_1e"]["Image"] = "rbxassetid://121886242955173";
 LMG2L["ImageButton3_1e"]["Size"] = UDim2.new(0, 34, 0, 34);
+LMG2L["ImageButton3_1e"]["AutoButtonColor"] = false;
 LMG2L["ImageButton3_1e"]["Name"] = [[ImageButton3]];
 LMG2L["ImageButton3_1e"]["Position"] = UDim2.new(0, 349, 0, 271);
 
@@ -854,6 +876,7 @@ LMG2L["exec_21"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.js
 LMG2L["exec_21"]["Text"] = [[Execute]];
 LMG2L["exec_21"]["Size"] = UDim2.new(0, 133, 0, 33);
 LMG2L["exec_21"]["Name"] = [[exec]];
+LMG2L["exec_21"]["AutoButtonColor"] = false;
 LMG2L["exec_21"]["Position"] = UDim2.new(0, 6, 0, 272);
 
 LMG2L["UICorner_22"] = Instance.new("UICorner", LMG2L["exec_21"]);
@@ -1252,3 +1275,4 @@ fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Play
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
     end
 end)
+
