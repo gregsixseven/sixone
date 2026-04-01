@@ -569,31 +569,24 @@ UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then update(input) end
 end)
 
--- Animation Logic
 local opened = true
 
 toggle.MouseButton1Click:Connect(function()
     opened = not opened
     
-    -- 1. Button Bounce Animation
     toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
         toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
     end)
 
-    -- 2. Frame Animation (Scale and Transparency)
     if opened then
         mainFrame.Visible = true
-        mainFrame.GroupTransparency = 1 -- Assumes Main_2 has a CanvasGroup or handles transparency
-        mainFrame.Size = UDim2.new(0, 0, 0, 0) -- Adjust to your frame's original size scale
-        
+        mainFrame.Size = UDim2.new(0, 0, 0, 0) 
         TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-            Size = UDim2.new(0, 500, 0, 300), -- REPLACEME: Put your Frame's normal size here
-            -- GroupTransparency = 0 
+            Size = UDim2.new(0, 471, 0, 310) 
         }):Play()
     else
         local closeTween = TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-            Size = UDim2.new(0, 0, 0, 0),
-            -- GroupTransparency = 1
+            Size = UDim2.new(0, 0, 0, 0)
         })
         
         closeTween:Play()
