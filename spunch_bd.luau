@@ -512,13 +512,14 @@ LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
 LMG2L["Main_2"]["Name"] = [[Main]];
 
 local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
-toggle.Size = UDim2.new(0, 40, 0, 40)
+toggle.Size = UDim2.new(0, 50, 0, 50)
 toggle.Position = UDim2.new(0, 20, 0, 200)
 toggle.Text = '<font color="#f7f30a">S</font>'
 toggle.RichText = true
+toggle.FontFace = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
 toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
 toggle.TextColor3 = Color3.fromRGB(255,255,255)
-toggle.TextSize = 20
+toggle.TextSize = 18
 
 local corner = Instance.new("UICorner", toggle)
 corner.CornerRadius = UDim.new(0,6)
@@ -527,6 +528,7 @@ local stroke = Instance.new("UIStroke", toggle)
 stroke.Thickness = 1
 stroke.Color = Color3.fromRGB(97,97,97)
 stroke.Transparency = 0.5
+stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 local dragging
 local dragInput
