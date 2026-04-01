@@ -569,8 +569,7 @@ UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then update(input) end
 end)
 
-
--- *** UPDATED LOGIC: Store Original Transparencies ***
+local TweenService = game:GetService("TweenService")
 local originalTransparencies = setmetatable({}, {__mode = "k"})
 
 local function saveTransparencies(root)
@@ -614,7 +613,10 @@ local function saveTransparencies(root)
         end
     end
 
+    -- Process root first
     process(root)
+    
+    -- Then process ALL descendants
     for _, descendant in ipairs(root:GetDescendants()) do
         process(descendant)
     end
@@ -624,8 +626,10 @@ end
 saveTransparencies(mainFrame)
 
 local function setFade(targetVisible, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    
     for obj, savedProps in pairs(originalTransparencies) do
-        -- Ensure object still exists
+        -- Ensure object still exists and has a parent
         if obj and obj.Parent then
             local tweenProps = {}
             
@@ -634,15 +638,21 @@ local function setFade(targetVisible, duration)
                 tweenProps[propName] = targetVisible and originalValue or 1
             end
             
-            TweenService:Create(obj, TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), tweenProps):Play()
+            -- Create and play tween for each object
+            local tween = TweenService:Create(obj, tweenInfo, tweenProps)
+            tween:Play()
         end
     end
 end
 
 -- *** Updated Animation Logic (Pure Fade) ***
 local opened = true
+local isAnimating = false
 
 toggle.MouseButton1Click:Connect(function()
+    if isAnimating then return end
+    isAnimating = true
+    
     opened = not opened
     
     -- Small feedback on the toggle button
@@ -653,6 +663,9 @@ toggle.MouseButton1Click:Connect(function()
     if opened then
         mainFrame.Visible = true
         setFade(true, 0.5) -- 0.5 seconds for a smooth, slow fade in
+        task.delay(0.5, function()
+            isAnimating = false
+        end)
     else
         setFade(false, 0.5) -- 0.5 seconds for a smooth, slow fade out
         
@@ -661,10 +674,10 @@ toggle.MouseButton1Click:Connect(function()
             if not opened then
                 mainFrame.Visible = false
             end
+            isAnimating = false
         end)
     end
 end)
-
 
 
 LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
