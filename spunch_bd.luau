@@ -512,14 +512,14 @@ LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
 LMG2L["Main_2"]["Name"] = [[Main]];
 
 local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
-toggle.Size = UDim2.new(0, 50, 0, 50)
+toggle.Size = UDim2.new(0, 45, 0, 45)
 toggle.Position = UDim2.new(0, 20, 0, 200)
 toggle.Text = '<font color="#f7f30a">S</font>'
 toggle.RichText = true
-toggle.FontFace = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
+toggle.FontFace = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
 toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
 toggle.TextColor3 = Color3.fromRGB(255,255,255)
-toggle.TextSize = 18
+toggle.TextSize = 24
 
 local corner = Instance.new("UICorner", toggle)
 corner.CornerRadius = UDim.new(0,6)
