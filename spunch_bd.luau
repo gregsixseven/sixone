@@ -675,7 +675,7 @@ LMG2L["Editor_15"]["Size"] = UDim2.new(1, -45, 0, 210);
 LMG2L["LineNumbers"] = Instance.new("TextLabel", LMG2L["EditorScroll"]);
 LMG2L["LineNumbers"]["Name"] = [[LineNumbers]];
 LMG2L["LineNumbers"]["BackgroundTransparency"] = 1;
-LMG2L["LineNumbers"]["TextColor3"] = Color3.fromRGB(100, 100, 100);
+LMG2L["LineNumbers"]["TextColor3"] = Color3.fromRGB(255,255,255);
 LMG2L["LineNumbers"]["TextSize"] = 15;
 LMG2L["LineNumbers"]["FontFace"] = LMG2L["Editor_15"]["FontFace"];
 LMG2L["LineNumbers"]["TextYAlignment"] = Enum.TextYAlignment.Top;
@@ -685,7 +685,7 @@ LMG2L["LineNumbers"]["ZIndex"] = 1000;
 -- KEY CHANGES FOR INFINITE HEIGHT:
 LMG2L["LineNumbers"]["Size"] = UDim2.new(0, 30, 0, 0); -- Height 0, but...
 LMG2L["LineNumbers"]["AutomaticSize"] = Enum.AutomaticSize.Y; -- ...it grows with text
-LMG2L["LineNumbers"]["Position"] = UDim2.new(0, 4, 0, 4);
+LMG2L["LineNumbers"]["Position"] = UDim2.new(0, 0, 0, 4);
 LMG2L["LineNumbers"]["Text"] = [[1]];
 
 -- 2. Ensure the Editor doesn't wrap (Wrapping breaks line number alignment)
