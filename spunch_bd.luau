@@ -629,74 +629,94 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 
+-- *** UPDATED LOGIC: Store Original Transparencies ***
 local originalTransparencies = setmetatable({}, {__mode = "k"})
 
-local function saveObject(obj)
-    local props = {}
+local function saveTransparencies(root)
+    local function process(obj)
+        local props = {}
+        
+        -- Background Transparency (Most GuiObjects)
+        if obj:IsA("GuiObject") then
+            props.BackgroundTransparency = obj.BackgroundTransparency
+        end
+        
+        -- ScrollingFrame specific
+        if obj:IsA("ScrollingFrame") then
+            props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
+        end
+        
+        -- Text based
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            props.TextTransparency = obj.TextTransparency
+            props.TextStrokeTransparency = obj.TextStrokeTransparency
+        end
+        
+        -- Image based
+        if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+            props.ImageTransparency = obj.ImageTransparency
+        end
+        
+        -- ViewportFrames
+        if obj:IsA("ViewportFrame") then
+            props.ImageTransparency = obj.ImageTransparency
+        end
 
-    if obj:IsA("GuiObject") then
-        props.BackgroundTransparency = obj.BackgroundTransparency
+        -- Strokes
+        if obj:IsA("UIStroke") then
+            props.Transparency = obj.Transparency
+        end
+        
+        -- Only store if we found properties to track
+        if next(props) then
+            originalTransparencies[obj] = props
+        end
     end
 
-    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-        props.TextTransparency = obj.TextTransparency
-    end
-
-    if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
-        props.ImageTransparency = obj.ImageTransparency
-    end
-
-    if obj:IsA("UIStroke") then
-        props.Transparency = obj.Transparency
-    end
-
-    if obj:IsA("ScrollingFrame") then
-        props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
-    end
-
-    if next(props) then
-        originalTransparencies[obj] = props
+    process(root)
+    for _, descendant in ipairs(root:GetDescendants()) do
+        process(descendant)
     end
 end
 
-local function saveTransparencies(frame)
-    saveObject(frame)
+-- Initialize saved state
+saveTransparencies(mainFrame)
 
-    for _, obj in ipairs(frame:GetDescendants()) do
-        saveObject(obj)
-    end
-end
-
-local function setFade(visible, duration)
-    for obj, props in pairs(originalTransparencies) do
+local function setFade(targetVisible, duration)
+    for obj, savedProps in pairs(originalTransparencies) do
+        -- Ensure object still exists
         if obj and obj.Parent then
             local tweenProps = {}
-
-            for prop, value in pairs(props) do
-                tweenProps[prop] = visible and value or 1
+            
+            for propName, originalValue in pairs(savedProps) do
+                -- If targetVisible is true, go to original; if false, go to 1
+                tweenProps[propName] = targetVisible and originalValue or 1
             end
-
-            TweenService:Create(
-                obj,
-                TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                tweenProps
-            ):Play()
+            
+            TweenService:Create(obj, TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), tweenProps):Play()
         end
     end
 end
 
+-- *** Updated Animation Logic (Pure Fade) ***
 local opened = true
 
 toggle.MouseButton1Click:Connect(function()
     opened = not opened
+    
+    -- Small feedback on the toggle button
+    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
+        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
+    end)
 
     if opened then
         mainFrame.Visible = true
-        setFade(true, 0.25)
+        setFade(true, 0.5) -- 0.5 seconds for a smooth, slow fade in
     else
-        setFade(false, 0.25)
-
-        task.delay(0.25, function()
+        setFade(false, 0.5) -- 0.5 seconds for a smooth, slow fade out
+        
+        -- Wait for fade to finish before setting Visible to false
+        task.delay(0.5, function()
             if not opened then
                 mainFrame.Visible = false
             end
@@ -704,24 +724,7 @@ toggle.MouseButton1Click:Connect(function()
     end
 end)
 
-local opened = true
 
-toggle.MouseButton1Click:Connect(function()
-    opened = not opened
-
-    if opened then
-        mainFrame.Visible = true
-        setFade(true, 0.25)
-    else
-        setFade(false, 0.25)
-
-        task.delay(0.25, function()
-            if not opened then
-                mainFrame.Visible = false
-            end
-        end)
-    end
-end)
 
 LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
 LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
