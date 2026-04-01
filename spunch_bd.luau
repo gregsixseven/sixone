@@ -514,9 +514,13 @@ LMG2L["Main_2"]["Name"] = [[Main]];
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
 local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
 local mainFrame = LMG2L["Main_2"]
 
+-- UI Setup
 toggle.Size = UDim2.new(0, 45, 0, 45)
 toggle.Position = UDim2.new(0, 20, 0, 200)
 toggle.Text = '<font color="#f7f30a">S</font>'
@@ -525,7 +529,7 @@ toggle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.Font
 toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
 toggle.TextColor3 = Color3.fromRGB(255,255,255)
 toggle.TextSize = 24
-toggle.AutoButtonColor = false -- Disables default click darkening for custom animation
+toggle.AutoButtonColor = false
 
 local corner = Instance.new("UICorner", toggle)
 corner.CornerRadius = UDim.new(0, 6)
@@ -536,8 +540,9 @@ stroke.Color = Color3.fromRGB(97, 97, 97)
 stroke.Transparency = 0.5
 stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 
--- Draggable Logic variables
+-- Draggable Logic
 local dragging, dragInput, dragStart, startPos
 
 local function update(input)
@@ -567,7 +572,54 @@ UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then update(input) end
 end)
 
+-- *** NEW LOGIC: Store Original Transparencies ***
+-- We use a weak table so if UI elements are destroyed, they are garbage collected properly.
+local originalTransparencies = setmetatable({}, {__mode = "k"})
+
+local function saveTransparencies(frame)
+    local descendants = frame:GetDescendants()
+    table.insert(descendants, frame) -- Include the main frame itself
+
+    for _, obj in ipairs(descendants) do
+        originalTransparencies[obj] = {}
+        
+        -- Save BackgroundTransparency if applicable
+        if obj:IsA("GuiObject") then
+            originalTransparencies[obj].BackgroundTransparency = obj.BackgroundTransparency
+        end
+        
+        -- Save specific transparencies
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            originalTransparencies[obj].TextTransparency = obj.TextTransparency
+        elseif obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+            originalTransparencies[obj].ImageTransparency = obj.ImageTransparency
+        elseif obj:IsA("UIStroke") then
+            originalTransparencies[obj].Transparency = obj.Transparency
+        end
+    end
+end
+
+-- Save them right away when the script starts
+saveTransparencies(mainFrame)
+
+local function setFade(targetVisible, duration)
+    for obj, savedProps in pairs(originalTransparencies) do
+        local tweenProps = {}
+        
+        -- If visible, tween to the saved original value. If closing, tween to 1 (fully invisible).
+        for propName, originalValue in pairs(savedProps) do
+            tweenProps[propName] = targetVisible and originalValue or 1
+        end
+        
+        if next(tweenProps) then
+            TweenService:Create(obj, TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), tweenProps):Play()
+        end
+    end
+end
+
+-- Animation Logic
 local opened = true
+local targetSize = UDim2.new(0, 471, 0, 310)
 
 toggle.MouseButton1Click:Connect(function()
     opened = not opened
@@ -578,18 +630,27 @@ toggle.MouseButton1Click:Connect(function()
 
     if opened then
         mainFrame.Visible = true
-        mainFrame.Size = UDim2.new(0, 0, 0, 0) 
+        mainFrame.Size = UDim2.new(0, 0, 0, 0)
+        
+        -- Fade IN (Restores original transparencies)
+        setFade(true, 0.4)
+        
         TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-            Size = UDim2.new(0, 471, 0, 310) 
+            Size = targetSize
         }):Play()
     else
+        -- Fade OUT (Forces everything to transparency 1)
+        setFade(false, 0.3)
+        
         local closeTween = TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
             Size = UDim2.new(0, 0, 0, 0)
         })
         
         closeTween:Play()
         closeTween.Completed:Connect(function()
-            if not opened then mainFrame.Visible = false end
+            if not opened then 
+                mainFrame.Visible = false 
+            end
         end)
     end
 end)
@@ -1266,4 +1327,3 @@ fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Play
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
     end
 end)
-
