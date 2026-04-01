@@ -569,117 +569,6 @@ UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then update(input) end
 end)
 
-local TweenService = game:GetService("TweenService")
-local originalTransparencies = setmetatable({}, {__mode = "k"})
-
-local function saveTransparencies(root)
-    local function process(obj)
-        local props = {}
-        
-        -- Background Transparency (Most GuiObjects)
-        if obj:IsA("GuiObject") then
-            props.BackgroundTransparency = obj.BackgroundTransparency
-        end
-        
-        -- ScrollingFrame specific
-        if obj:IsA("ScrollingFrame") then
-            props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
-        end
-        
-        -- Text based
-        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-            props.TextTransparency = obj.TextTransparency
-            props.TextStrokeTransparency = obj.TextStrokeTransparency
-        end
-        
-        -- Image based
-        if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
-            props.ImageTransparency = obj.ImageTransparency
-        end
-        
-        -- ViewportFrames
-        if obj:IsA("ViewportFrame") then
-            props.ImageTransparency = obj.ImageTransparency
-        end
-
-        -- Strokes
-        if obj:IsA("UIStroke") then
-            props.Transparency = obj.Transparency
-        end
-        
-        -- Only store if we found properties to track
-        if next(props) then
-            originalTransparencies[obj] = props
-        end
-    end
-
-    -- Process root first
-    process(root)
-    
-    -- Then process ALL descendants
-    for _, descendant in ipairs(root:GetDescendants()) do
-        process(descendant)
-    end
-end
-
--- Initialize saved state
-saveTransparencies(mainFrame)
-
-local function setFade(targetVisible, duration)
-    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    
-    for obj, savedProps in pairs(originalTransparencies) do
-        -- Ensure object still exists and has a parent
-        if obj and obj.Parent then
-            local tweenProps = {}
-            
-            for propName, originalValue in pairs(savedProps) do
-                -- If targetVisible is true, go to original; if false, go to 1
-                tweenProps[propName] = targetVisible and originalValue or 1
-            end
-            
-            -- Create and play tween for each object
-            local tween = TweenService:Create(obj, tweenInfo, tweenProps)
-            tween:Play()
-        end
-    end
-end
-
--- *** Updated Animation Logic (Pure Fade) ***
-local opened = true
-local isAnimating = false
-
-toggle.MouseButton1Click:Connect(function()
-    if isAnimating then return end
-    isAnimating = true
-    
-    opened = not opened
-    
-    -- Small feedback on the toggle button
-    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
-        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
-    end)
-
-    if opened then
-        mainFrame.Visible = true
-        setFade(true, 0.5) -- 0.5 seconds for a smooth, slow fade in
-        task.delay(0.5, function()
-            isAnimating = false
-        end)
-    else
-        setFade(false, 0.5) -- 0.5 seconds for a smooth, slow fade out
-        
-        -- Wait for fade to finish before setting Visible to false
-        task.delay(0.5, function()
-            if not opened then
-                mainFrame.Visible = false
-            end
-            isAnimating = false
-        end)
-    end
-end)
-
-
 LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
 LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
 
@@ -1021,6 +910,174 @@ end
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
+end)
+
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
+local mainFrame = LMG2L["Main_2"]
+
+-- UI Setup
+toggle.Size = UDim2.new(0, 45, 0, 45)
+toggle.Position = UDim2.new(0, 20, 0, 200)
+toggle.Text = '<font color="#f7f30a">S</font>'
+toggle.RichText = true
+toggle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal)
+toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
+toggle.TextColor3 = Color3.fromRGB(255,255,255)
+toggle.TextSize = 24
+toggle.AutoButtonColor = false
+
+local corner = Instance.new("UICorner", toggle)
+corner.CornerRadius = UDim.new(0, 6)
+
+local stroke = Instance.new("UIStroke", toggle)
+stroke.Thickness = 1
+stroke.Color = Color3.fromRGB(97, 97, 97)
+stroke.Transparency = 0.5
+stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+
+-- Draggable Logic
+local dragging, dragInput, dragStart, startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    local pos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    TweenService:Create(toggle, TweenInfo.new(0.15, Enum.EasingStyle.Quint), {Position = pos}):Play()
+end
+
+toggle.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = toggle.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then dragging = false end
+        end)
+    end
+end)
+
+toggle.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then update(input) end
+end)
+
+local TweenService = game:GetService("TweenService")
+local originalTransparencies = setmetatable({}, {__mode = "k"})
+
+local function saveTransparencies(root)
+    local function process(obj)
+        local props = {}
+        
+        -- Background Transparency (Most GuiObjects)
+        if obj:IsA("GuiObject") then
+            props.BackgroundTransparency = obj.BackgroundTransparency
+        end
+        
+        -- ScrollingFrame specific
+        if obj:IsA("ScrollingFrame") then
+            props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
+        end
+        
+        -- Text based
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            props.TextTransparency = obj.TextTransparency
+            props.TextStrokeTransparency = obj.TextStrokeTransparency
+        end
+        
+        -- Image based
+        if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+            props.ImageTransparency = obj.ImageTransparency
+        end
+        
+        -- ViewportFrames
+        if obj:IsA("ViewportFrame") then
+            props.ImageTransparency = obj.ImageTransparency
+        end
+
+        -- Strokes
+        if obj:IsA("UIStroke") then
+            props.Transparency = obj.Transparency
+        end
+        
+        -- Only store if we found properties to track
+        if next(props) then
+            originalTransparencies[obj] = props
+        end
+    end
+
+    -- Process root first
+    process(root)
+    
+    -- Then process ALL descendants
+    for _, descendant in ipairs(root:GetDescendants()) do
+        process(descendant)
+    end
+end
+
+-- Initialize saved state
+saveTransparencies(mainFrame)
+
+local function setFade(targetVisible, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    
+    for obj, savedProps in pairs(originalTransparencies) do
+        -- Ensure object still exists and has a parent
+        if obj and obj.Parent then
+            local tweenProps = {}
+            
+            for propName, originalValue in pairs(savedProps) do
+                -- If targetVisible is true, go to original; if false, go to 1
+                tweenProps[propName] = targetVisible and originalValue or 1
+            end
+            
+            -- Create and play tween for each object
+            local tween = TweenService:Create(obj, tweenInfo, tweenProps)
+            tween:Play()
+        end
+    end
+end
+
+-- *** Updated Animation Logic (Pure Fade) ***
+local opened = true
+local isAnimating = false
+
+toggle.MouseButton1Click:Connect(function()
+    if isAnimating then return end
+    isAnimating = true
+    
+    opened = not opened
+    
+    -- Small feedback on the toggle button
+    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
+        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
+    end)
+
+    if opened then
+        mainFrame.Visible = true
+        setFade(true, 0.5) -- 0.5 seconds for a smooth, slow fade in
+        task.delay(0.5, function()
+            isAnimating = false
+        end)
+    else
+        setFade(false, 0.5) -- 0.5 seconds for a smooth, slow fade out
+        
+        -- Wait for fade to finish before setting Visible to false
+        task.delay(0.5, function()
+            if not opened then
+                mainFrame.Visible = false
+            end
+            isAnimating = false
+        end)
+    end
 end)
 
 -- Scripts
