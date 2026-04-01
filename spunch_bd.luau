@@ -1336,6 +1336,7 @@ end
 Players.PlayerAdded:Connect(function(player)
     task.spawn(monitorPlayer, player)
 end)
+Hint("SpunchAntiSkid Loaded!")
 ]])
     
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
