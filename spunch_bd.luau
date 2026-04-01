@@ -536,8 +536,6 @@ stroke.Color = Color3.fromRGB(97, 97, 97)
 stroke.Transparency = 0.5
 stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
--- Anchor point at center makes scaling animations look much better
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 
 -- Draggable Logic variables
 local dragging, dragInput, dragStart, startPos
