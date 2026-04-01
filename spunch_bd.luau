@@ -511,6 +511,78 @@ LMG2L["Main_2"]["Size"] = UDim2.new(0, 471, 0, 310);
 LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
 LMG2L["Main_2"]["Name"] = [[Main]];
 
+local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
+toggle.Size = UDim2.new(0, 40, 0, 40)
+toggle.Position = UDim2.new(0, 20, 0, 200)
+toggle.Text = '<font color="#f7f30a">S</font>'
+toggle.RichText = true
+toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
+toggle.TextColor3 = Color3.fromRGB(255,255,255)
+toggle.TextSize = 20
+
+local corner = Instance.new("UICorner", toggle)
+corner.CornerRadius = UDim.new(0,6)
+
+local stroke = Instance.new("UIStroke", toggle)
+stroke.Thickness = 1
+stroke.Color = Color3.fromRGB(97,97,97)
+stroke.Transparency = 0.5
+
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    local pos = UDim2.new(
+        startPos.X.Scale,
+        startPos.X.Offset + delta.X,
+        startPos.Y.Scale,
+        startPos.Y.Offset + delta.Y
+    )
+    game:GetService("TweenService"):Create(
+        toggle,
+        TweenInfo.new(0.15,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
+        {Position = pos}
+    ):Play()
+end
+
+toggle.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = toggle.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+toggle.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+local opened = true
+
+toggle.MouseButton1Click:Connect(function()
+    opened = not opened
+    LMG2L["Main_2"].Visible = opened
+end)
+
 LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Main_2"]);
 LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
 
