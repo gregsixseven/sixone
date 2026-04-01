@@ -628,47 +628,59 @@ UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then update(input) end
 end)
 
--- *** NEW LOGIC: Store Original Transparencies ***
--- We use a weak table so if UI elements are destroyed, they are garbage collected properly.
+
 local originalTransparencies = setmetatable({}, {__mode = "k"})
 
-local function saveTransparencies(frame)
-    local descendants = frame:GetDescendants()
-    table.insert(descendants, frame) -- Include the main frame itself
+local function saveObject(obj)
+    local props = {}
 
-    for _, obj in ipairs(descendants) do
-        originalTransparencies[obj] = {}
-        
-        -- Save BackgroundTransparency if applicable
-        if obj:IsA("GuiObject") then
-            originalTransparencies[obj].BackgroundTransparency = obj.BackgroundTransparency
-        end
-        
-        -- Save specific transparencies
-        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-            originalTransparencies[obj].TextTransparency = obj.TextTransparency
-        elseif obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
-            originalTransparencies[obj].ImageTransparency = obj.ImageTransparency
-        elseif obj:IsA("UIStroke") then
-            originalTransparencies[obj].Transparency = obj.Transparency
-        end
+    if obj:IsA("GuiObject") then
+        props.BackgroundTransparency = obj.BackgroundTransparency
+    end
+
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+        props.TextTransparency = obj.TextTransparency
+    end
+
+    if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+        props.ImageTransparency = obj.ImageTransparency
+    end
+
+    if obj:IsA("UIStroke") then
+        props.Transparency = obj.Transparency
+    end
+
+    if obj:IsA("ScrollingFrame") then
+        props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
+    end
+
+    if next(props) then
+        originalTransparencies[obj] = props
     end
 end
 
--- Save them right away when the script starts
-saveTransparencies(mainFrame)
+local function saveTransparencies(frame)
+    saveObject(frame)
 
-local function setFade(targetVisible, duration)
-    for obj, savedProps in pairs(originalTransparencies) do
-        local tweenProps = {}
-        
-        -- If visible, tween to the saved original value. If closing, tween to 1 (fully invisible).
-        for propName, originalValue in pairs(savedProps) do
-            tweenProps[propName] = targetVisible and originalValue or 1
-        end
-        
-        if next(tweenProps) then
-            TweenService:Create(obj, TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), tweenProps):Play()
+    for _, obj in ipairs(frame:GetDescendants()) do
+        saveObject(obj)
+    end
+end
+
+local function setFade(visible, duration)
+    for obj, props in pairs(originalTransparencies) do
+        if obj and obj.Parent then
+            local tweenProps = {}
+
+            for prop, value in pairs(props) do
+                tweenProps[prop] = visible and value or 1
+            end
+
+            TweenService:Create(
+                obj,
+                TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                tweenProps
+            ):Play()
         end
     end
 end
@@ -807,6 +819,7 @@ LMG2L["ImageButton_12"]["BorderSizePixel"] = 0;
 LMG2L["ImageButton_12"]["BackgroundColor3"] = Color3.fromRGB(18, 20, 23);
 LMG2L["ImageButton_12"]["Size"] = UDim2.new(0, 34, 0, 34);
 LMG2L["ImageButton_12"]["Position"] = UDim2.new(0, 429, 0, 271);
+LMG2L["ImageButton_12"]["AutoButtonColor"] = false;
 
 LMG2L["LocalScript_r6"] = Instance.new("LocalScript", LMG2L["ImageButton_12"])
 
