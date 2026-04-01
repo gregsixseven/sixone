@@ -514,65 +514,6 @@ LMG2L["Main_2"]["Name"] = [[Main]];
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
-
-local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
-local mainFrame = LMG2L["Main_2"]
-
--- UI Setup
-toggle.Size = UDim2.new(0, 45, 0, 45)
-toggle.Position = UDim2.new(0, 20, 0, 200)
-toggle.Text = '<font color="#f7f30a">S</font>'
-toggle.RichText = true
-toggle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-toggle.BackgroundColor3 = Color3.fromRGB(26,27,32)
-toggle.TextColor3 = Color3.fromRGB(255,255,255)
-toggle.TextSize = 24
-toggle.AutoButtonColor = false
-
-local corner = Instance.new("UICorner", toggle)
-corner.CornerRadius = UDim.new(0, 6)
-
-local stroke = Instance.new("UIStroke", toggle)
-stroke.Thickness = 1
-stroke.Color = Color3.fromRGB(97, 97, 97)
-stroke.Transparency = 0.5
-stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-
--- Draggable Logic
-local dragging, dragInput, dragStart, startPos
-
-local function update(input)
-    local delta = input.Position - dragStart
-    local pos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    TweenService:Create(toggle, TweenInfo.new(0.15, Enum.EasingStyle.Quint), {Position = pos}):Play()
-end
-
-toggle.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = toggle.Position
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then dragging = false end
-        end)
-    end
-end)
-
-toggle.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then update(input) end
-end)
-
-
 local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
 local mainFrame = LMG2L["Main_2"]
 
