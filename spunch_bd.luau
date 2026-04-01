@@ -511,12 +511,6 @@ LMG2L["Main_2"]["Size"] = UDim2.new(0, 471, 0, 310);
 LMG2L["Main_2"]["Position"] = UDim2.new(0, 166, 0, 156);
 LMG2L["Main_2"]["Name"] = [[Main]];
 
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
-
-local toggle = Instance.new("TextButton", LMG2L["SpunchLOL_1"])
-local mainFrame = LMG2L["Main_2"]
-
 -- UI Setup
 toggle.Size = UDim2.new(0, 45, 0, 45)
 toggle.Position = UDim2.new(0, 20, 0, 200)
@@ -1046,7 +1040,6 @@ local function setFade(targetVisible, duration)
     end
 end
 
--- *** Updated Animation Logic (Pure Fade) ***
 local opened = true
 local isAnimating = false
 
@@ -1056,22 +1049,20 @@ toggle.MouseButton1Click:Connect(function()
     
     opened = not opened
     
-    -- Small feedback on the toggle button
     toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
         toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
     end)
 
     if opened then
         mainFrame.Visible = true
-        setFade(true, 0.5) -- 0.5 seconds for a smooth, slow fade in
+        setFade(true, 0.25) 
         task.delay(0.5, function()
             isAnimating = false
         end)
     else
-        setFade(false, 0.5) -- 0.5 seconds for a smooth, slow fade out
-        
-        -- Wait for fade to finish before setting Visible to false
-        task.delay(0.5, function()
+        setFade(false, 0.25)     
+
+        task.delay(0.25, function()
             if not opened then
                 mainFrame.Visible = false
             end
