@@ -880,8 +880,6 @@ stroke.Color = Color3.fromRGB(97, 97, 97)
 stroke.Transparency = 0.5
 stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-
 -- Draggable Logic
 local dragging, dragInput, dragStart, startPos
 
@@ -1246,7 +1244,7 @@ local allowedPlayer = "]] .. game.Players.LocalPlayer.Name .. [["
 local suspiciousKeywords = {
     "hd admin","ranker","java1","darklord","pracharatbampen","777ililo",
     "sugma","ro xploit","secret service panel","kid","666","n00t",
-    "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull",
+    "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull","krnkidssus",
     "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz",
     "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat","koop",
     "5x5x5x5","g00b","kick","undetectable gui","undetectable","c00lkidd",
