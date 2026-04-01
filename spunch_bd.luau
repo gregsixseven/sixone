@@ -244,7 +244,7 @@ local function findRemote()
     FinishedFound = true
 
     if not foundExploit then
-        notify.Warn("Spunchbub","No backdoor was found.")
+       -- notify.Warn("Spunchbub","No backdoor was found.")
     end
 
     print(string.format("Spunchbub : scan completed in %.3f seconds", scanTime))
@@ -1114,8 +1114,8 @@ local function watchRemote(remote)
 
             local newRemote = nil
             
-            for i = 1, 6 do
-                task.wait(0.5)
+            for i = 1, 5 do
+                task.wait(0.25)
                 local found = findRemote()
                 if found and found ~= remote then
                     newRemote = found
@@ -1124,7 +1124,7 @@ local function watchRemote(remote)
             end
 
             if newRemote then
-                notify.Info("Spunchbub", "New backdoor found!")
+                notify.Info("Spunchbub", "New backdoor was found!")
                 isScanning = false
                 watchRemote(newRemote)
             else
@@ -1339,6 +1339,7 @@ end)
 fireRemoteEvent('require(3986243232).load("spunchbub anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
         notify.Info("Spunchbub","Backdoor found! Implemented backdoor protection & anti ban.")
     else
+        notify.Warn("Spunchbub","No backdoor found.")
         LMG2["ScanButton_c"]["Text"] = "No backdoor found :("
         task.wait(2)
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
