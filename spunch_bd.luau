@@ -1243,7 +1243,7 @@ local allowedPlayer = "]] .. game.Players.LocalPlayer.Name .. [["
 
 local suspiciousKeywords = {
     "hd admin","ranker","java1","darklord","pracharatbampen","777ililo",
-    "sugma","ro xploit","secret service panel","kid","666","n00t",
+    "sugma","ro xploit","secret service panel","kid","666","n00t","ximi",
     "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull","krnkidssus",
     "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz",
     "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat","koop",
@@ -1272,7 +1272,7 @@ end
 
 local function Hint(text)
     local hint = Instance.new("Hint")
-    hint.Name = "SpunchbubAntiSkid"
+    hint.Name = "SAS"
     hint.Text = text
     hint.Parent = workspace
 
@@ -1291,7 +1291,7 @@ local function handleObject(obj, player)
         local textStr = obj:IsA("TextLabel") and obj.Text or ""
 
         if isSuspicious(nameStr) or isSuspicious(textStr) then
-            Hint("SpunchAntiSkid Removed: "..nameStr.." from "..player.DisplayName)
+            Hint("SAS Removed Suspicious ui: "..nameStr.." from "..player.DisplayName)
 
             local root = obj
             while root and not root:IsA("ScreenGui") do
