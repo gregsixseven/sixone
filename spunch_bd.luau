@@ -1049,23 +1049,18 @@ toggle.MouseButton1Click:Connect(function()
     
     opened = not opened
     
-    toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Quad", 0.1, true, function()
-        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Elastic", 0.4, true)
-    end)
-
     if opened then
         mainFrame.Visible = true
-        setFade(true, 0.25) 
-        task.delay(0.5, function()
+        setFade(true, 0.25)
+        toggle:TweenSize(UDim2.new(0, 45, 0, 45), "Out", "Bounce", 0.4, true)
+        task.delay(0.4, function()
             isAnimating = false
         end)
     else
-        setFade(false, 0.25)     
-
-        task.delay(0.25, function()
-            if not opened then
-                mainFrame.Visible = false
-            end
+        setFade(false, 0.25)
+        toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Bounce", 0.4, true)
+        task.delay(0.4, function()
+            mainFrame.Visible = false
             isAnimating = false
         end)
     end
