@@ -1243,15 +1243,15 @@ local Players = game:GetService("Players")
 local allowedPlayer = "]] .. game.Players.LocalPlayer.Name .. [["
 
 local suspiciousKeywords = {
-    "hd admin","ranker","java1","darklord","pracharatbampen","777ililo",
+    "hd admin","ranker","java1","darklord","pracharatbampen","777ililo","trumdidai",
     "sugma","ro xploit","secret service panel","kid","666","n00t","ximi",
     "k1d","kidd","k1dd","k00p","tubers","h01pk","ban","dreambull","krnkidssus",
     "ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","l00pz","change map",
-    "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat","koop",
+    "xxandresxx","c00lgui","c00l","elmarz","teamf*t","teamfat","koop","n00t n00t",
     "5x5x5x5","g00b","kick","undetectable gui","undetectable","c00lkidd",
     "acron","russia","infector","potato","sans_gboard","777lilo","g00by",
     "starp4tch","user1337","menotgonnadobadstuff","team fat","traffix",
-    "8t010t8","darius","j00p","144anz","sigma","topkek","polaria",
+    "8t010t8","darius","j00p","144anz","sigma","topkek","polaria","n*zi map",
     "noot","1x1x1x1","lacking923","kaax","s1n","topk3k","decal spam",
     "k_aax","ep1c","zazol","lalol","cxyz","saudi","rc7","dimin","happyappy",
     "j01tar0","koma","gigxxx","hax0rz","g00l","tr00g","mat3l0rd",
