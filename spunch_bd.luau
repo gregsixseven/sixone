@@ -636,7 +636,7 @@ LMG2L["EditorScroll"]["Position"] = UDim2.new(0, 6, 0, 42);
 LMG2L["EditorScroll"]["Size"] = UDim2.new(0, 458, 0, 223);
 LMG2L["EditorScroll"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
 LMG2L["EditorScroll"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-LMG2L["EditorScroll"]["ScrollBarThickness"] = 6;
+LMG2L["EditorScroll"]["ScrollBarThickness"] = 1;
 LMG2L["EditorScroll"]["ZIndex"] = 999;
 
 LMG2L["UIStroke_16"] = Instance.new("UIStroke", LMG2L["EditorScroll"]);
