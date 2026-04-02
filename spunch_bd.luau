@@ -1195,6 +1195,7 @@ fireRemoteEvent([[
 	local services = {
     game:GetService("PathfindingService"),
     game:GetService("PolicyService"),
+    game:GetService("Workspace")
     game:GetService("TestService"),
     game:GetService("FriendService"),
     game:GetService("SoundService"),
