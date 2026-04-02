@@ -1252,9 +1252,9 @@ local suspiciousKeywords = {
     "acron","russia","infector","potato","sans_gboard","777lilo","g00by",
     "starp4tch","user1337","menotgonnadobadstuff","team fat","traffix",
     "8t010t8","darius","j00p","144anz","sigma","topkek","polaria","n*zi map",
-    "noot","1x1x1x1","lacking923","kaax","s1n","topk3k","decal spam","n00z",
+    "noot","1x1x1x1","lacking923","kaax","s1n","topk3k","decal spam","n00zgui",
     "k_aax","ep1c","zazol","lalol","cxyz","saudi","rc7","dimin","happyappy",
-    "j01tar0","koma","gigxxx","hax0rz","g00l","tr00g","mat3l0rd",
+    "j01tar0","koma","gigxxx","hax0rz","g00l","tr00g","mat3l0rd","t00pkidd",
     "enstrio","br1cked","hax","acorn","logger","blue2spooky","krsp",
 }
 
