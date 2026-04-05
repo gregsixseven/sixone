@@ -2399,6 +2399,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if name == "ChatEvent" then
 		        return false
 		end
+        if name == "spunch.bd_cssr6-O1" then
+                return false
+        end
 		if name == "AntiBackdoorScanner" then 
 			    return false
 		end
