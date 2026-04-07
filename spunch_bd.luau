@@ -613,9 +613,9 @@ LMG2L["LocalScript_r6"] = Instance.new("LocalScript", LMG2L["ImageButton_12"])
 
 LMG2L["ImageLabel2"] = Instance.new("ImageLabel", LMG2L["ImageButton_12"]);
 LMG2L["ImageLabel2"]["Image"] = "rbxassetid://4941166750";
-LMG2L["ImageLabel2"]["Size"] = UDim2.new(0, 22, 0, 22);
+LMG2L["ImageLabel2"]["Size"] = UDim2.new(0, 27, 0, 27);
 LMG2L["ImageLabel2"]["BackgroundTransparency"] = 1;
-LMG2L["ImageLabel2"]["Position"] = UDim2.new(0, 6, 0, 6);
+LMG2L["ImageLabel2"]["Position"] = UDim2.new(0, 3, 0, 3);
 
 LMG2L["UICorner_13"] = Instance.new("UICorner", LMG2L["ImageButton_12"]);
 LMG2L["UICorner_13"]["CornerRadius"] = UDim.new(0, 6);
