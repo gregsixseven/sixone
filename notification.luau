@@ -13,7 +13,7 @@ local CONFIG = {
 	Padding = 10,             -- Space between notifications
 	InternalPadding = 10,     -- Padding inside the notification frame
 	IconSize = 40,
-	DisplayTime = 4,          -- How long notifications stay visible
+	DisplayTime = 3,          -- How long notifications stay visible
 
 	BackgroundColor = Color3.fromRGB(26, 27, 32),
 	BackgroundTransparency = 0.1,
