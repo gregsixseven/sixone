@@ -629,7 +629,7 @@ LMG2L["UIStroke_14"]["Transparency"] = 0.5;
 LMG2L["EditorScroll"] = Instance.new("ScrollingFrame", LMG2L["Frame_5"]);
 LMG2L["EditorScroll"]["Name"] = [[EditorScroll]];
 LMG2L["EditorScroll"]["Active"] = true;
-LMG2L["EditorScroll"]["BackgroundColor3"] = Color3.fromRGB(17, 19, 22);
+LMG2L["EditorScroll"]["BackgroundColor3"] = Color3.fromRGB(6, 6, 6);
 LMG2L["EditorScroll"]["BackgroundTransparency"] = 0.5;
 LMG2L["EditorScroll"]["BorderSizePixel"] = 0;
 LMG2L["EditorScroll"]["Position"] = UDim2.new(0, 6, 0, 42); 
@@ -712,7 +712,7 @@ LMG2L["Editor_15"]:GetPropertyChangedSignal("Text"):Connect(UpdateLineNumbers)
 
 LMG2L["Title_18"] = Instance.new("Frame", LMG2L["Frame_5"]);
 LMG2L["Title_18"]["BorderSizePixel"] = 0;
-LMG2L["Title_18"]["BackgroundColor3"] = Color3.fromRGB(26, 27, 32);
+LMG2L["Title_18"]["BackgroundColor3"] = Color3.fromRGB(25, 26, 31);
 LMG2L["Title_18"]["Size"] = UDim2.new(0, 457, 0, 25);
 LMG2L["Title_18"]["Position"] = UDim2.new(0, 6, 0, 6);
 LMG2L["Title_18"]["Name"] = [[Title]];
