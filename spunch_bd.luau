@@ -1220,7 +1220,7 @@ for _, svc in ipairs(services) do
     r.Parent = svc
   end
 end]])
-fireRemoteEvent('require(7458325257).antiban()')
+
 fireRemoteEvent([[
 local frm = game:GetService("FeatureRestrictionManager")
 
