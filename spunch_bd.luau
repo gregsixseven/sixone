@@ -77,6 +77,9 @@ local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/gregsi
 		if name == "AntiBackdoorScanner" then 
 			    return false
 		end
+        if remote:GetAttribute("__VX_ROLE") == "EVENT" then
+                return false
+        end
 		if parent.Parent.Name=='HDAdminHDClient' and remote.Parent.Name=='Signals' then
 			return false
 		end
