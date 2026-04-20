@@ -380,7 +380,7 @@ LMG2["ImageLabel_b"]["ImageTransparency"] = 0.43;
 LMG2["ImageLabel_b"]["Image"] = [[rbxassetid://80357785814661]];
 LMG2["ImageLabel_b"]["Size"] = UDim2.new(0, 220, 0, 190);
 LMG2["ImageLabel_b"]["BackgroundTransparency"] = 1;
-LMG2["ImageLabel_b"]["Position"] = UDim2.new(0, 124, 0, 50);
+LMG2["ImageLabel_b"]["Position"] = UDim2.new(0, 124, 0, 51);
 
 
 LMG2["ScanButton_c"] = Instance.new("TextButton", LMG2["Frame_2"]);
@@ -745,7 +745,7 @@ LMG2L["TextLabel_1c"]["BackgroundTransparency"] = 1;
 LMG2L["TextLabel_1c"]["RichText"] = true;
 LMG2L["TextLabel_1c"]["Size"] = UDim2.new(0, 138, 0, 11);
 LMG2L["TextLabel_1c"]["Text"] = [[ <font color="#FF5680">patrik</font> - Private Backdoor ]];
-LMG2L["TextLabel_1c"]["Position"] = UDim2.new(0, 60, 0, 6);
+LMG2L["TextLabel_1c"]["Position"] = UDim2.new(0, 45, 0, 6);
 
 LMG2L["UIStroke_1d"] = Instance.new("UIStroke", LMG2L["Title_18"]);
 LMG2L["UIStroke_1d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
@@ -809,7 +809,7 @@ LMG2L["ImageLabel_25"]["Image"] = [[rbxassetid://80357785814661]];
 LMG2L["ImageLabel_25"]["Size"] = UDim2.new(0, 220, 0, 190);
 LMG2L["ImageLabel_25"]["BackgroundTransparency"] = 1;
 LMG2L["ImageLabel_25"]["ImageTransparency"] = 0.35;
-LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0, 124, 0, 50);
+LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0, 124, 0, 51);
 
 function EnableDrag(frame)
 	local dragging
