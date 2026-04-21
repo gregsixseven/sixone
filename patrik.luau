@@ -858,13 +858,8 @@ end
 
 local LMG = {};
 
--- Players.greguiscool.PlayerGui.ScreenGui
-LMG["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
-LMG["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
-
-
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame
-LMG["Frame_2"] = Instance.new("Frame", LMG["ScreenGui_1"]);
+LMG["Frame_2"] = Instance.new("Frame", LMG["Main_2"]);
 LMG["Frame_2"]["BorderSizePixel"] = 0;
 LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
 LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
@@ -1874,11 +1869,6 @@ local originalTransparencies = setmetatable({}, {__mode = "k"})
 local function saveTransparencies(root)
     local function process(obj)
         local props = {}
-        
-        -- Background Transparency (Most GuiObjects)
-        if obj:IsA("GuiObject") then
-            props.BackgroundTransparency = obj.BackgroundTransparency
-        end
         
         -- ScrollingFrame specific
         if obj:IsA("ScrollingFrame") then
