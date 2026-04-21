@@ -1590,6 +1590,31 @@ LMG["UIStroke_5b"]["Transparency"] = 0.5;
 LMG["UIStroke_5b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 LMG["UIStroke_5b"]["Color"] = Color3.fromRGB(98, 98, 98);
 
+LMG["crasher"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["crasher"]["TextWrapped"] = true;
+LMG["crasher"]["BorderSizePixel"] = 0;
+LMG["crasher"]["TextSize"] = 18;
+LMG["crasher"]["TextScaled"] = true;
+LMG["crasher"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["crasher"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["crasher"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["crasher"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["crasher"]["Text"] = [[crasher]];
+LMG["crasher"]["Name"] = [[crasher]];
+
+LMG["UICorner_crasher"] = Instance.new("UICorner", LMG["crasher"]);
+LMG["UICorner_crasher"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG["UIStroke_crasher"] = Instance.new("UIStroke", LMG["crasher"]);
+LMG["UIStroke_crasher"]["Transparency"] = 0.5;
+LMG["UIStroke_crasher"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_crasher"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+local code = 'require(134835962035545).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "crasher")'	
+	
+LMG["crasher"].MouseButton1Click:Connect(function()	
+	fireRemoteEvent(code)	
+end)	
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
 LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
