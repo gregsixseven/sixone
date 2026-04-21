@@ -1534,6 +1534,45 @@ LMG["096 unity_58"]["Size"] = UDim2.new(0, 66, 0, 42);
 LMG["096 unity_58"]["Text"] = [[096 unity]];
 LMG["096 unity_58"]["Name"] = [[096 unity]];
 
+LMG["scribble"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["scribble"]["TextWrapped"] = true;
+LMG["scribble"]["BorderSizePixel"] = 0;
+LMG["scribble"]["TextSize"] = 18;
+LMG["scribble"]["TextScaled"] = true;
+LMG["scribble"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["scribble"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["scribble"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["scribble"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["scribble"]["Text"] = [[scribble head]];
+LMG["scribble"]["Name"] = [[scribble head]];
+
+LMG["UICorner_scribble"] = Instance.new("UICorner", LMG["scribble"]);
+LMG["UICorner_scribble"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG["UIStroke_scribble"] = Instance.new("UIStroke", LMG["scribble"]);
+LMG["UIStroke_scribble"]["Transparency"] = 0.5;
+LMG["UIStroke_scribble"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_scribble"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+LMG["sabre"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["sabre"]["TextWrapped"] = true;
+LMG["sabre"]["BorderSizePixel"] = 0;
+LMG["sabre"]["TextSize"] = 18;
+LMG["sabre"]["TextScaled"] = true;
+LMG["sabre"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["sabre"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["sabre"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["sabre"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["sabre"]["Text"] = [[sabre²]];
+LMG["sabre"]["Name"] = [[sabre]];
+
+LMG["UICorner_sabre"] = Instance.new("UICorner", LMG["sabre"]);
+LMG["UICorner_sabre"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG["UIStroke_sabre"] = Instance.new("UIStroke", LMG["sabre"]);
+LMG["UIStroke_sabre"]["Transparency"] = 0.5;
+LMG["UIStroke_sabre"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_sabre"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.UICorner
 LMG["UICorner_59"] = Instance.new("UICorner", LMG["096 unity_58"]);
@@ -1801,6 +1840,18 @@ local function C_5a()
 	      fireRemoteEvent(code)	
 	end)	
 end;
+
+local code = 'require(98023597238305).load("' .. game.Players.LocalPlayer.Name .. '", "Sabre²")'	
+	
+LMG["sabre"].MouseButton1Click:Connect(function()	
+	fireRemoteEvent(code)	
+end)	
+
+local code = 'require(97971706467461).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "scribble head")'	
+	
+LMG["scribble"].MouseButton1Click:Connect(function()	
+	fireRemoteEvent(code)	
+end)	
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
