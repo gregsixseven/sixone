@@ -1775,7 +1775,7 @@ task.spawn(C_4e);
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.LocalScript
 local function C_52()
 	local script = LMG["LocalScript_52"];
-	local code = 'require(125992639027440) ["Require.EXE by E God"]("' .. game.Players.LocalPlayer.Name .. '")'	
+	local code = 'require(125992639027440)["Require.EXE by E God"]("' .. game.Players.LocalPlayer.Name .. '")'	
 	
 	script.Parent.MouseButton1Click:Connect(function()	
 	      fireRemoteEvent(code)	
@@ -1804,7 +1804,7 @@ end;
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
-    EnableDrag(LMG2L["Frame_2"])
+    EnableDrag(LMG2["Frame_2"])
 end)
 
 local TweenService = game:GetService("TweenService")
@@ -1869,7 +1869,11 @@ local originalTransparencies = setmetatable({}, {__mode = "k"})
 local function saveTransparencies(root)
     local function process(obj)
         local props = {}
-        
+
+        if obj:IsA("GuiObject") then
+            props.BackgroundTransparency = obj.BackgroundTransparency
+        end
+
         -- ScrollingFrame specific
         if obj:IsA("ScrollingFrame") then
             props.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
