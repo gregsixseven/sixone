@@ -537,10 +537,12 @@ LMG2L["hide_6"]["AutoButtonColor"] = false;
 LMG2L["hide_6"]["Position"] = UDim2.new(0, 309, 0, 271);
 
 LMG2L["ImageLabelbla"] = Instance.new("ImageLabel", LMG2L["hide_6"]);
-LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://100033680381365";
+LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";
 LMG2L["ImageLabelbla"]["Size"] = UDim2.new(0, 25, 0, 25);
 LMG2L["ImageLabelbla"]["BackgroundTransparency"] = 1;
 LMG2L["ImageLabelbla"]["Position"] = UDim2.new(0, 4, 0, 4);
+LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
+LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
 
 LMG2L["UICorner_7"] = Instance.new("UICorner", LMG2L["hide_6"]);
 LMG2L["UICorner_7"]["CornerRadius"] = UDim.new(0, 6);
@@ -1022,10 +1024,14 @@ local function C_8()
 	      local editor = script.Parent.Parent.EditorScroll.Editor	
 	      if editor.TextTransparency == 0 then
              editor.TextTransparency = 1
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://135928786788378";
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- show
+             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(564, 44);
+             MG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
           else
              editor.TextTransparency = 0
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://100033680381365";
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- hide
+             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
+             LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
           end
 	end)	
 end;
