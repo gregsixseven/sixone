@@ -863,7 +863,7 @@ LMG["Frame_2"] = Instance.new("Frame", LMG2L["Main_2"]);
 LMG["Frame_2"]["BorderSizePixel"] = 0;
 LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
 LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
-LMG["Frame_2"]["Position"] = UDim2.new(0, 526, 0, 212);
+LMG["Frame_2"]["Position"] = UDim2.new(0, 496, 0, 0);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UICorner
