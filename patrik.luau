@@ -1642,31 +1642,50 @@ LMG["chungus"].MouseButton1Click:Connect(function()
 	fireRemoteEvent(code)	
 end)	
 
-LMG["icegorgon"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
-LMG["icegorgon"]["TextWrapped"] = true;
-LMG["icegorgon"]["BorderSizePixel"] = 0;
-LMG["icegorgon"]["TextSize"] = 18;
-LMG["icegorgon"]["TextScaled"] = true;
-LMG["icegorgon"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG["icegorgon"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG["icegorgon"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG["icegorgon"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG["icegorgon"]["Text"] = [[icegorgon]];
-LMG["icegorgon"]["Name"] = [[icegorgon]];
+local function createButton(name, id, funcName)
+    local btn = Instance.new("TextButton", LMG["ScrollingFrame_4"])
 
-LMG["UICorner_icegorgon"] = Instance.new("UICorner", LMG["icegorgon"]);
-LMG["UICorner_icegorgon"]["CornerRadius"] = UDim.new(0, 6);
+    btn.Name = name
+    btn.Text = name
+    btn.Size = UDim2.new(0, 66, 0, 42)
+    btn.BackgroundColor3 = Color3.fromRGB(19,21,24)
+    btn.TextColor3 = Color3.fromRGB(255,255,255)
+    btn.TextScaled = true
+    btn.BorderSizePixel = 0
+    btn.FontFace = Font.new(
+        "rbxasset://fonts/families/GothamSSm.json",
+        Enum.FontWeight.Medium
+    )
 
-LMG["UIStroke_icegorgon"] = Instance.new("UIStroke", LMG["icegorgon"]);
-LMG["UIStroke_icegorgon"]["Transparency"] = 0.5;
-LMG["UIStroke_icegorgon"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG["UIStroke_icegorgon"]["Color"] = Color3.fromRGB(98, 98, 98);
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
-local code = 'require(84703748461759).load("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-LMG["icegorgon"].MouseButton1Click:Connect(function()	
-	fireRemoteEvent(code)	
-end)	
+    local stroke = Instance.new("UIStroke", btn)
+    stroke.Transparency = 0.5
+    stroke.Color = Color3.fromRGB(98,98,98)
+
+    btn.MouseButton1Click:Connect(function()
+        local code
+
+        if funcName == "load" then
+            code = 'require('..id..').load("'..game.Players.LocalPlayer.Name..'")'
+        else
+            code = 'require('..id..').'..funcName..'("greguiscool","'..name..'")'
+        end
+
+        fireRemoteEvent(code)
+    end)
+end
+
+createButton("icegorgon", 84703748461759, "load")
+
+createButton("Barney", 108796910844970, "MorphMonster")
+createButton("gonarch", 126258252939986, "MorphMonster")
+createButton("strider", 139111114772425, "MorphMonster")
+createButton("hunter", 139111114772425, "MorphMonster")
+createButton("Antlionalyx", 108796910844970, "MorphMonster")
+
+createButton("cremator", 92422644804143, "MorphMonster")
+createButton("gargantua", 121662621348084, "MorphMonster")
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
 LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
