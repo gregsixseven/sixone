@@ -859,7 +859,7 @@ end
 local LMG = {};
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame
-LMG["Frame_2"] = Instance.new("Frame", LMGL["Main_2"]);
+LMG["Frame_2"] = Instance.new("Frame", LMG2L["Main_2"]);
 LMG["Frame_2"]["BorderSizePixel"] = 0;
 LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
 LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
@@ -1804,7 +1804,7 @@ end;
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
-    EnableDrag(LMG2["Frame_2"])
+    EnableDrag(LMG["Frame_2"])
 end)
 
 local TweenService = game:GetService("TweenService")
