@@ -856,956 +856,444 @@ function EnableDrag(frame)
 end
 
 
-local LMG2L = {};
+local LMG = {};
 
 -- Players.greguiscool.PlayerGui.ScreenGui
-LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", LMG2L["Main_2"]);
-LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+LMG["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+LMG["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame
-LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
-LMG2L["Frame_2"]["BorderSizePixel"] = 0;
-LMG2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
-LMG2L["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
-LMG2L["Frame_2"]["Position"] = UDim2.new(0, 526, 0, 212);
+LMG["Frame_2"] = Instance.new("Frame", LMG["ScreenGui_1"]);
+LMG["Frame_2"]["BorderSizePixel"] = 0;
+LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
+LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
+LMG["Frame_2"]["Position"] = UDim2.new(0, 526, 0, 212);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UICorner
-LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Frame_2"]);
-LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_3"] = Instance.new("UICorner", LMG["Frame_2"]);
+LMG["UICorner_3"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame
-LMG2L["ScrollingFrame_4"] = Instance.new("ScrollingFrame", LMG2L["Frame_2"]);
-LMG2L["ScrollingFrame_4"]["BorderSizePixel"] = 0;
-LMG2L["ScrollingFrame_4"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 0);
-LMG2L["ScrollingFrame_4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-LMG2L["ScrollingFrame_4"]["Size"] = UDim2.new(0, 332, 0, 170);
-LMG2L["ScrollingFrame_4"]["Position"] = UDim2.new(0, 6, 0, 36);
-LMG2L["ScrollingFrame_4"]["ScrollBarThickness"] = 1;
+LMG["ScrollingFrame_4"] = Instance.new("ScrollingFrame", LMG["Frame_2"]);
+LMG["ScrollingFrame_4"]["BorderSizePixel"] = 0;
+LMG["ScrollingFrame_4"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 0);
+LMG["ScrollingFrame_4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+LMG["ScrollingFrame_4"]["Size"] = UDim2.new(0, 332, 0, 170);
+LMG["ScrollingFrame_4"]["Position"] = UDim2.new(0, 6, 0, 36);
+LMG["ScrollingFrame_4"]["ScrollBarThickness"] = 1;
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger
-LMG2L["Logger_5"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["Logger_5"]["TextWrapped"] = true;
-LMG2L["Logger_5"]["BorderSizePixel"] = 0;
-LMG2L["Logger_5"]["TextSize"] = 18;
-LMG2L["Logger_5"]["TextScaled"] = true;
-LMG2L["Logger_5"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["Logger_5"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["Logger_5"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["Logger_5"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["Logger_5"]["Text"] = [[sharkgod logger]];
-LMG2L["Logger_5"]["Name"] = [[Logger]];
+LMG["Logger_5"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["Logger_5"]["TextWrapped"] = true;
+LMG["Logger_5"]["BorderSizePixel"] = 0;
+LMG["Logger_5"]["TextSize"] = 18;
+LMG["Logger_5"]["TextScaled"] = true;
+LMG["Logger_5"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["Logger_5"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["Logger_5"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["Logger_5"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["Logger_5"]["Text"] = [[sharkgod logger]];
+LMG["Logger_5"]["Name"] = [[Logger]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger.UICorner
-LMG2L["UICorner_6"] = Instance.new("UICorner", LMG2L["Logger_5"]);
-LMG2L["UICorner_6"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_6"] = Instance.new("UICorner", LMG["Logger_5"]);
+LMG["UICorner_6"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger.LocalScript
-LMG2L["LocalScript_7"] = Instance.new("LocalScript", LMG2L["Logger_5"]);
+LMG["LocalScript_7"] = Instance.new("LocalScript", LMG["Logger_5"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger.UIStroke
-LMG2L["UIStroke_8"] = Instance.new("UIStroke", LMG2L["Logger_5"]);
-LMG2L["UIStroke_8"]["Transparency"] = 0.5;
-LMG2L["UIStroke_8"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_8"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_8"] = Instance.new("UIStroke", LMG["Logger_5"]);
+LMG["UIStroke_8"]["Transparency"] = 0.5;
+LMG["UIStroke_8"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_8"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2
-LMG2L["FSEV2_9"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["FSEV2_9"]["TextWrapped"] = true;
-LMG2L["FSEV2_9"]["BorderSizePixel"] = 0;
-LMG2L["FSEV2_9"]["TextSize"] = 18;
-LMG2L["FSEV2_9"]["TextScaled"] = true;
-LMG2L["FSEV2_9"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["FSEV2_9"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["FSEV2_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["FSEV2_9"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["FSEV2_9"]["Text"] = [[fumo]];
-LMG2L["FSEV2_9"]["Name"] = [[FSEV2]];
+LMG["FSEV2_9"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["FSEV2_9"]["TextWrapped"] = true;
+LMG["FSEV2_9"]["BorderSizePixel"] = 0;
+LMG["FSEV2_9"]["TextSize"] = 18;
+LMG["FSEV2_9"]["TextScaled"] = true;
+LMG["FSEV2_9"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["FSEV2_9"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["FSEV2_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["FSEV2_9"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["FSEV2_9"]["Text"] = [[fumo]];
+LMG["FSEV2_9"]["Name"] = [[FSEV2]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.UICorner
-LMG2L["UICorner_a"] = Instance.new("UICorner", LMG2L["FSEV2_9"]);
-LMG2L["UICorner_a"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_a"] = Instance.new("UICorner", LMG["FSEV2_9"]);
+LMG["UICorner_a"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.LocalScript
-LMG2L["LocalScript_b"] = Instance.new("LocalScript", LMG2L["FSEV2_9"]);
+LMG["LocalScript_b"] = Instance.new("LocalScript", LMG["FSEV2_9"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.UIStroke
-LMG2L["UIStroke_c"] = Instance.new("UIStroke", LMG2L["FSEV2_9"]);
-LMG2L["UIStroke_c"]["Transparency"] = 0.5;
-LMG2L["UIStroke_c"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_c"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_c"] = Instance.new("UIStroke", LMG["FSEV2_9"]);
+LMG["UIStroke_c"]["Transparency"] = 0.5;
+LMG["UIStroke_c"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_c"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.UIStroke
-LMG2L["UIStroke_d"] = Instance.new("UIStroke", LMG2L["ScrollingFrame_4"]);
-LMG2L["UIStroke_d"]["Transparency"] = 0.5;
-LMG2L["UIStroke_d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_d"] = Instance.new("UIStroke", LMG["ScrollingFrame_4"]);
+LMG["UIStroke_d"]["Transparency"] = 0.5;
+LMG["UIStroke_d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_d"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.UICorner
-LMG2L["UICorner_e"] = Instance.new("UICorner", LMG2L["ScrollingFrame_4"]);
-LMG2L["UICorner_e"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_e"] = Instance.new("UICorner", LMG["ScrollingFrame_4"]);
+LMG["UICorner_e"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.UIGridLayout
-LMG2L["UIGridLayout_f"] = Instance.new("UIGridLayout", LMG2L["ScrollingFrame_4"]);
-LMG2L["UIGridLayout_f"]["CellSize"] = UDim2.new(0, 61, 0, 40);
-LMG2L["UIGridLayout_f"]["FillDirectionMaxCells"] = 5;
-LMG2L["UIGridLayout_f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-LMG2L["UIGridLayout_f"]["CellPadding"] = UDim2.new(0, 4, 0, 3);
+LMG["UIGridLayout_f"] = Instance.new("UIGridLayout", LMG["ScrollingFrame_4"]);
+LMG["UIGridLayout_f"]["CellSize"] = UDim2.new(0, 61, 0, 40);
+LMG["UIGridLayout_f"]["FillDirectionMaxCells"] = 5;
+LMG["UIGridLayout_f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+LMG["UIGridLayout_f"]["CellPadding"] = UDim2.new(0, 4, 0, 3);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe
-LMG2L["Abbie fpe_10"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["Abbie fpe_10"]["TextWrapped"] = true;
-LMG2L["Abbie fpe_10"]["BorderSizePixel"] = 0;
-LMG2L["Abbie fpe_10"]["TextSize"] = 18;
-LMG2L["Abbie fpe_10"]["TextScaled"] = true;
-LMG2L["Abbie fpe_10"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["Abbie fpe_10"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["Abbie fpe_10"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["Abbie fpe_10"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["Abbie fpe_10"]["Text"] = [[fpe abbie]];
-LMG2L["Abbie fpe_10"]["Name"] = [[Abbie fpe]];
+LMG["Abbie fpe_10"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["Abbie fpe_10"]["TextWrapped"] = true;
+LMG["Abbie fpe_10"]["BorderSizePixel"] = 0;
+LMG["Abbie fpe_10"]["TextSize"] = 18;
+LMG["Abbie fpe_10"]["TextScaled"] = true;
+LMG["Abbie fpe_10"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["Abbie fpe_10"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["Abbie fpe_10"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["Abbie fpe_10"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["Abbie fpe_10"]["Text"] = [[fpe abbie]];
+LMG["Abbie fpe_10"]["Name"] = [[Abbie fpe]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe.UICorner
-LMG2L["UICorner_11"] = Instance.new("UICorner", LMG2L["Abbie fpe_10"]);
-LMG2L["UICorner_11"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_11"] = Instance.new("UICorner", LMG["Abbie fpe_10"]);
+LMG["UICorner_11"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe.LocalScript
-LMG2L["LocalScript_12"] = Instance.new("LocalScript", LMG2L["Abbie fpe_10"]);
+LMG["LocalScript_12"] = Instance.new("LocalScript", LMG["Abbie fpe_10"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe.UIStroke
-LMG2L["UIStroke_13"] = Instance.new("UIStroke", LMG2L["Abbie fpe_10"]);
-LMG2L["UIStroke_13"]["Transparency"] = 0.5;
-LMG2L["UIStroke_13"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_13"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_13"] = Instance.new("UIStroke", LMG["Abbie fpe_10"]);
+LMG["UIStroke_13"]["Transparency"] = 0.5;
+LMG["UIStroke_13"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_13"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle
-LMG2L["Miss Circle_14"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["Miss Circle_14"]["TextWrapped"] = true;
-LMG2L["Miss Circle_14"]["BorderSizePixel"] = 0;
-LMG2L["Miss Circle_14"]["TextSize"] = 18;
-LMG2L["Miss Circle_14"]["TextScaled"] = true;
-LMG2L["Miss Circle_14"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["Miss Circle_14"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["Miss Circle_14"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["Miss Circle_14"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["Miss Circle_14"]["Text"] = [[miss circle]];
-LMG2L["Miss Circle_14"]["Name"] = [[Miss Circle]];
+LMG["Miss Circle_14"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["Miss Circle_14"]["TextWrapped"] = true;
+LMG["Miss Circle_14"]["BorderSizePixel"] = 0;
+LMG["Miss Circle_14"]["TextSize"] = 18;
+LMG["Miss Circle_14"]["TextScaled"] = true;
+LMG["Miss Circle_14"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["Miss Circle_14"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["Miss Circle_14"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["Miss Circle_14"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["Miss Circle_14"]["Text"] = [[miss circle]];
+LMG["Miss Circle_14"]["Name"] = [[Miss Circle]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle.UICorner
-LMG2L["UICorner_15"] = Instance.new("UICorner", LMG2L["Miss Circle_14"]);
-LMG2L["UICorner_15"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_15"] = Instance.new("UICorner", LMG["Miss Circle_14"]);
+LMG["UICorner_15"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle.LocalScript
-LMG2L["LocalScript_16"] = Instance.new("LocalScript", LMG2L["Miss Circle_14"]);
+LMG["LocalScript_16"] = Instance.new("LocalScript", LMG["Miss Circle_14"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle.UIStroke
-LMG2L["UIStroke_17"] = Instance.new("UIStroke", LMG2L["Miss Circle_14"]);
-LMG2L["UIStroke_17"]["Transparency"] = 0.5;
-LMG2L["UIStroke_17"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_17"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_17"] = Instance.new("UIStroke", LMG["Miss Circle_14"]);
+LMG["UIStroke_17"]["Transparency"] = 0.5;
+LMG["UIStroke_17"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_17"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden
-LMG2L["Aiden_18"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["Aiden_18"]["TextWrapped"] = true;
-LMG2L["Aiden_18"]["BorderSizePixel"] = 0;
-LMG2L["Aiden_18"]["TextSize"] = 18;
-LMG2L["Aiden_18"]["TextScaled"] = true;
-LMG2L["Aiden_18"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["Aiden_18"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["Aiden_18"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["Aiden_18"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["Aiden_18"]["Text"] = [[aiden]];
-LMG2L["Aiden_18"]["Name"] = [[Aiden]];
+LMG["Aiden_18"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["Aiden_18"]["TextWrapped"] = true;
+LMG["Aiden_18"]["BorderSizePixel"] = 0;
+LMG["Aiden_18"]["TextSize"] = 18;
+LMG["Aiden_18"]["TextScaled"] = true;
+LMG["Aiden_18"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["Aiden_18"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["Aiden_18"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["Aiden_18"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["Aiden_18"]["Text"] = [[aiden]];
+LMG["Aiden_18"]["Name"] = [[Aiden]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden.UICorner
-LMG2L["UICorner_19"] = Instance.new("UICorner", LMG2L["Aiden_18"]);
-LMG2L["UICorner_19"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_19"] = Instance.new("UICorner", LMG["Aiden_18"]);
+LMG["UICorner_19"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden.LocalScript
-LMG2L["LocalScript_1a"] = Instance.new("LocalScript", LMG2L["Aiden_18"]);
+LMG["LocalScript_1a"] = Instance.new("LocalScript", LMG["Aiden_18"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden.UIStroke
-LMG2L["UIStroke_1b"] = Instance.new("UIStroke", LMG2L["Aiden_18"]);
-LMG2L["UIStroke_1b"]["Transparency"] = 0.5;
-LMG2L["UIStroke_1b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_1b"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_1b"] = Instance.new("UIStroke", LMG["Aiden_18"]);
+LMG["UIStroke_1b"]["Transparency"] = 0.5;
+LMG["UIStroke_1b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_1b"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe
-LMG2L["boderman exe_1c"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["boderman exe_1c"]["TextWrapped"] = true;
-LMG2L["boderman exe_1c"]["BorderSizePixel"] = 0;
-LMG2L["boderman exe_1c"]["TextSize"] = 18;
-LMG2L["boderman exe_1c"]["TextScaled"] = true;
-LMG2L["boderman exe_1c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["boderman exe_1c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["boderman exe_1c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["boderman exe_1c"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["boderman exe_1c"]["Text"] = [[boderman exe]];
-LMG2L["boderman exe_1c"]["Name"] = [[boderman exe]];
+LMG["boderman exe_1c"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["boderman exe_1c"]["TextWrapped"] = true;
+LMG["boderman exe_1c"]["BorderSizePixel"] = 0;
+LMG["boderman exe_1c"]["TextSize"] = 18;
+LMG["boderman exe_1c"]["TextScaled"] = true;
+LMG["boderman exe_1c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["boderman exe_1c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["boderman exe_1c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["boderman exe_1c"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["boderman exe_1c"]["Text"] = [[boderman exe]];
+LMG["boderman exe_1c"]["Name"] = [[boderman exe]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe.UICorner
-LMG2L["UICorner_1d"] = Instance.new("UICorner", LMG2L["boderman exe_1c"]);
-LMG2L["UICorner_1d"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_1d"] = Instance.new("UICorner", LMG["boderman exe_1c"]);
+LMG["UICorner_1d"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe.LocalScript
-LMG2L["LocalScript_1e"] = Instance.new("LocalScript", LMG2L["boderman exe_1c"]);
+LMG["LocalScript_1e"] = Instance.new("LocalScript", LMG["boderman exe_1c"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe.UIStroke
-LMG2L["UIStroke_1f"] = Instance.new("UIStroke", LMG2L["boderman exe_1c"]);
-LMG2L["UIStroke_1f"]["Transparency"] = 0.5;
-LMG2L["UIStroke_1f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_1f"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_1f"] = Instance.new("UIStroke", LMG["boderman exe_1c"]);
+LMG["UIStroke_1f"]["Transparency"] = 0.5;
+LMG["UIStroke_1f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_1f"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype
-LMG2L["prototype_20"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["prototype_20"]["TextWrapped"] = true;
-LMG2L["prototype_20"]["BorderSizePixel"] = 0;
-LMG2L["prototype_20"]["TextSize"] = 18;
-LMG2L["prototype_20"]["TextScaled"] = true;
-LMG2L["prototype_20"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["prototype_20"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["prototype_20"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["prototype_20"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["prototype_20"]["Text"] = [[prototype]];
-LMG2L["prototype_20"]["Name"] = [[prototype]];
+LMG["prototype_20"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["prototype_20"]["TextWrapped"] = true;
+LMG["prototype_20"]["BorderSizePixel"] = 0;
+LMG["prototype_20"]["TextSize"] = 18;
+LMG["prototype_20"]["TextScaled"] = true;
+LMG["prototype_20"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["prototype_20"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["prototype_20"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["prototype_20"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["prototype_20"]["Text"] = [[prototype]];
+LMG["prototype_20"]["Name"] = [[prototype]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype.UICorner
-LMG2L["UICorner_21"] = Instance.new("UICorner", LMG2L["prototype_20"]);
-LMG2L["UICorner_21"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_21"] = Instance.new("UICorner", LMG["prototype_20"]);
+LMG["UICorner_21"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype.LocalScript
-LMG2L["LocalScript_22"] = Instance.new("LocalScript", LMG2L["prototype_20"]);
+LMG["LocalScript_22"] = Instance.new("LocalScript", LMG["prototype_20"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype.UIStroke
-LMG2L["UIStroke_23"] = Instance.new("UIStroke", LMG2L["prototype_20"]);
-LMG2L["UIStroke_23"]["Transparency"] = 0.5;
-LMG2L["UIStroke_23"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_23"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_23"] = Instance.new("UIStroke", LMG["prototype_20"]);
+LMG["UIStroke_23"]["Transparency"] = 0.5;
+LMG["UIStroke_23"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_23"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n
-LMG2L["f.e.n_24"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["f.e.n_24"]["TextWrapped"] = true;
-LMG2L["f.e.n_24"]["BorderSizePixel"] = 0;
-LMG2L["f.e.n_24"]["TextSize"] = 18;
-LMG2L["f.e.n_24"]["TextScaled"] = true;
-LMG2L["f.e.n_24"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["f.e.n_24"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["f.e.n_24"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["f.e.n_24"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["f.e.n_24"]["Text"] = [[f.e.n]];
-LMG2L["f.e.n_24"]["Name"] = [[f.e.n]];
+LMG["f.e.n_24"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["f.e.n_24"]["TextWrapped"] = true;
+LMG["f.e.n_24"]["BorderSizePixel"] = 0;
+LMG["f.e.n_24"]["TextSize"] = 18;
+LMG["f.e.n_24"]["TextScaled"] = true;
+LMG["f.e.n_24"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["f.e.n_24"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["f.e.n_24"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["f.e.n_24"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["f.e.n_24"]["Text"] = [[f.e.n]];
+LMG["f.e.n_24"]["Name"] = [[f.e.n]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n.UICorner
-LMG2L["UICorner_25"] = Instance.new("UICorner", LMG2L["f.e.n_24"]);
-LMG2L["UICorner_25"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_25"] = Instance.new("UICorner", LMG["f.e.n_24"]);
+LMG["UICorner_25"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n.LocalScript
-LMG2L["LocalScript_26"] = Instance.new("LocalScript", LMG2L["f.e.n_24"]);
+LMG["LocalScript_26"] = Instance.new("LocalScript", LMG["f.e.n_24"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n.UIStroke
-LMG2L["UIStroke_27"] = Instance.new("UIStroke", LMG2L["f.e.n_24"]);
-LMG2L["UIStroke_27"]["Transparency"] = 0.5;
-LMG2L["UIStroke_27"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_27"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_27"] = Instance.new("UIStroke", LMG["f.e.n_24"]);
+LMG["UIStroke_27"]["Transparency"] = 0.5;
+LMG["UIStroke_27"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_27"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz
-LMG2L["ratiz_28"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["ratiz_28"]["TextWrapped"] = true;
-LMG2L["ratiz_28"]["BorderSizePixel"] = 0;
-LMG2L["ratiz_28"]["TextSize"] = 18;
-LMG2L["ratiz_28"]["TextScaled"] = true;
-LMG2L["ratiz_28"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["ratiz_28"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["ratiz_28"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["ratiz_28"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["ratiz_28"]["Text"] = [[ratiz (paid)]];
-LMG2L["ratiz_28"]["Name"] = [[ratiz]];
+LMG["ratiz_28"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["ratiz_28"]["TextWrapped"] = true;
+LMG["ratiz_28"]["BorderSizePixel"] = 0;
+LMG["ratiz_28"]["TextSize"] = 18;
+LMG["ratiz_28"]["TextScaled"] = true;
+LMG["ratiz_28"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["ratiz_28"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["ratiz_28"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["ratiz_28"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["ratiz_28"]["Text"] = [[ratiz (paid)]];
+LMG["ratiz_28"]["Name"] = [[ratiz]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz.UICorner
-LMG2L["UICorner_29"] = Instance.new("UICorner", LMG2L["ratiz_28"]);
-LMG2L["UICorner_29"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_29"] = Instance.new("UICorner", LMG["ratiz_28"]);
+LMG["UICorner_29"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz.LocalScript
-LMG2L["LocalScript_2a"] = Instance.new("LocalScript", LMG2L["ratiz_28"]);
+LMG["LocalScript_2a"] = Instance.new("LocalScript", LMG["ratiz_28"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz.UIStroke
-LMG2L["UIStroke_2b"] = Instance.new("UIStroke", LMG2L["ratiz_28"]);
-LMG2L["UIStroke_2b"]["Transparency"] = 0.5;
-LMG2L["UIStroke_2b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_2b"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_2b"] = Instance.new("UIStroke", LMG["ratiz_28"]);
+LMG["UIStroke_2b"]["Transparency"] = 0.5;
+LMG["UIStroke_2b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_2b"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns
-LMG2L["stummy guns_2c"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["stummy guns_2c"]["TextWrapped"] = true;
-LMG2L["stummy guns_2c"]["BorderSizePixel"] = 0;
-LMG2L["stummy guns_2c"]["TextSize"] = 18;
-LMG2L["stummy guns_2c"]["TextScaled"] = true;
-LMG2L["stummy guns_2c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["stummy guns_2c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["stummy guns_2c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["stummy guns_2c"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["stummy guns_2c"]["Text"] = [[stummy guns]];
-LMG2L["stummy guns_2c"]["Name"] = [[stummy guns]];
+LMG["stummy guns_2c"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["stummy guns_2c"]["TextWrapped"] = true;
+LMG["stummy guns_2c"]["BorderSizePixel"] = 0;
+LMG["stummy guns_2c"]["TextSize"] = 18;
+LMG["stummy guns_2c"]["TextScaled"] = true;
+LMG["stummy guns_2c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["stummy guns_2c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["stummy guns_2c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["stummy guns_2c"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["stummy guns_2c"]["Text"] = [[stummy guns]];
+LMG["stummy guns_2c"]["Name"] = [[stummy guns]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns.UICorner
-LMG2L["UICorner_2d"] = Instance.new("UICorner", LMG2L["stummy guns_2c"]);
-LMG2L["UICorner_2d"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_2d"] = Instance.new("UICorner", LMG["stummy guns_2c"]);
+LMG["UICorner_2d"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns.LocalScript
-LMG2L["LocalScript_2e"] = Instance.new("LocalScript", LMG2L["stummy guns_2c"]);
+LMG["LocalScript_2e"] = Instance.new("LocalScript", LMG["stummy guns_2c"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns.UIStroke
-LMG2L["UIStroke_2f"] = Instance.new("UIStroke", LMG2L["stummy guns_2c"]);
-LMG2L["UIStroke_2f"]["Transparency"] = 0.5;
-LMG2L["UIStroke_2f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_2f"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_2f"] = Instance.new("UIStroke", LMG["stummy guns_2c"]);
+LMG["UIStroke_2f"]["Transparency"] = 0.5;
+LMG["UIStroke_2f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_2f"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter
-LMG2L["the imposter_30"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["the imposter_30"]["TextWrapped"] = true;
-LMG2L["the imposter_30"]["BorderSizePixel"] = 0;
-LMG2L["the imposter_30"]["TextSize"] = 18;
-LMG2L["the imposter_30"]["TextScaled"] = true;
-LMG2L["the imposter_30"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["the imposter_30"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["the imposter_30"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["the imposter_30"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["the imposter_30"]["Text"] = [[the imposter]];
-LMG2L["the imposter_30"]["Name"] = [[the imposter]];
+LMG["the imposter_30"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["the imposter_30"]["TextWrapped"] = true;
+LMG["the imposter_30"]["BorderSizePixel"] = 0;
+LMG["the imposter_30"]["TextSize"] = 18;
+LMG["the imposter_30"]["TextScaled"] = true;
+LMG["the imposter_30"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["the imposter_30"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["the imposter_30"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["the imposter_30"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["the imposter_30"]["Text"] = [[the imposter]];
+LMG["the imposter_30"]["Name"] = [[the imposter]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter.UICorner
-LMG2L["UICorner_31"] = Instance.new("UICorner", LMG2L["the imposter_30"]);
-LMG2L["UICorner_31"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_31"] = Instance.new("UICorner", LMG["the imposter_30"]);
+LMG["UICorner_31"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter.LocalScript
-LMG2L["LocalScript_32"] = Instance.new("LocalScript", LMG2L["the imposter_30"]);
+LMG["LocalScript_32"] = Instance.new("LocalScript", LMG["the imposter_30"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter.UIStroke
-LMG2L["UIStroke_33"] = Instance.new("UIStroke", LMG2L["the imposter_30"]);
-LMG2L["UIStroke_33"]["Transparency"] = 0.5;
-LMG2L["UIStroke_33"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_33"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_33"] = Instance.new("UIStroke", LMG["the imposter_30"]);
+LMG["UIStroke_33"]["Transparency"] = 0.5;
+LMG["UIStroke_33"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_33"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish
-LMG2L["starfish_34"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["starfish_34"]["TextWrapped"] = true;
-LMG2L["starfish_34"]["BorderSizePixel"] = 0;
-LMG2L["starfish_34"]["TextSize"] = 18;
-LMG2L["starfish_34"]["TextScaled"] = true;
-LMG2L["starfish_34"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["starfish_34"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["starfish_34"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["starfish_34"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["starfish_34"]["Text"] = [[starfish]];
-LMG2L["starfish_34"]["Name"] = [[starfish]];
+LMG["starfish_34"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["starfish_34"]["TextWrapped"] = true;
+LMG["starfish_34"]["BorderSizePixel"] = 0;
+LMG["starfish_34"]["TextSize"] = 18;
+LMG["starfish_34"]["TextScaled"] = true;
+LMG["starfish_34"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["starfish_34"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["starfish_34"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["starfish_34"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["starfish_34"]["Text"] = [[starfish]];
+LMG["starfish_34"]["Name"] = [[starfish]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish.UICorner
-LMG2L["UICorner_35"] = Instance.new("UICorner", LMG2L["starfish_34"]);
-LMG2L["UICorner_35"]["CornerRadius"] = UDim.new(0, 6);
+LMG["UICorner_35"] = Instance.new("UICorner", LMG["starfish_34"]);
+LMG["UICorner_35"]["CornerRadius"] = UDim.new(0, 6);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish.LocalScript
-LMG2L["LocalScript_36"] = Instance.new("LocalScript", LMG2L["starfish_34"]);
+LMG["LocalScript_36"] = Instance.new("LocalScript", LMG["starfish_34"]);
 
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish.UIStroke
-LMG2L["UIStroke_37"] = Instance.new("UIStroke", LMG2L["starfish_34"]);
-LMG2L["UIStroke_37"]["Transparency"] = 0.5;
-LMG2L["UIStroke_37"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_37"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG["UIStroke_37"] = Instance.new("UIStroke", LMG["starfish_34"]);
+LMG["UIStroke_37"]["Transparency"] = 0.5;
+LMG["UIStroke_37"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_37"]["Color"] = Color3.fromRGB(98, 98, 98);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2
-LMG2L["sonic eyx v2_38"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["sonic eyx v2_38"]["TextWrapped"] = true;
-LMG2L["sonic eyx v2_38"]["BorderSizePixel"] = 0;
-LMG2L["sonic eyx v2_38"]["TextSize"] = 18;
-LMG2L["sonic eyx v2_38"]["TextScaled"] = true;
-LMG2L["sonic eyx v2_38"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["sonic eyx v2_38"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["sonic eyx v2_38"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["sonic eyx v2_38"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["sonic eyx v2_38"]["Text"] = [[sonic eyx v2]];
-LMG2L["sonic eyx v2_38"]["Name"] = [[sonic eyx v2]];
+LMG["sonic eyx v2_38"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["sonic eyx v2_38"]["TextWrapped"] = true;
+LMG["sonic eyx v2_38"]["BorderSizePixel"] = 0;
+LMG["sonic eyx v2_38"]["TextSize"] = 18;
+LMG["sonic eyx v2_38"]["TextScaled"] = true;
+LMG["sonic eyx v2_38"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["sonic eyx v2_38"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["sonic eyx v2_38"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["sonic eyx v2_38"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["sonic eyx v2_38"]["Text"] = [[sonic eyx v2]];
+LMG["sonic eyx v2_38"]["Name"] = [[sonic eyx v2]];
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.UICorner
-LMG2L["UICorner_39"] = Instance.new("UICorner", LMG2L["sonic eyx v2_38"]);
-LMG2L["UICorner_39"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.LocalScript
-LMG2L["LocalScript_3a"] = Instance.new("LocalScript", LMG2L["sonic eyx v2_38"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.UIStroke
-LMG2L["UIStroke_3b"] = Instance.new("UIStroke", LMG2L["sonic eyx v2_38"]);
-LMG2L["UIStroke_3b"]["Transparency"] = 0.5;
-LMG2L["UIStroke_3b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_3b"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon
-LMG2L["energy gorgon_3c"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["energy gorgon_3c"]["TextWrapped"] = true;
-LMG2L["energy gorgon_3c"]["BorderSizePixel"] = 0;
-LMG2L["energy gorgon_3c"]["TextSize"] = 18;
-LMG2L["energy gorgon_3c"]["TextScaled"] = true;
-LMG2L["energy gorgon_3c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["energy gorgon_3c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["energy gorgon_3c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["energy gorgon_3c"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["energy gorgon_3c"]["Text"] = [[energy gorgon]];
-LMG2L["energy gorgon_3c"]["Name"] = [[energy gorgon]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.UICorner
-LMG2L["UICorner_3d"] = Instance.new("UICorner", LMG2L["energy gorgon_3c"]);
-LMG2L["UICorner_3d"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.LocalScript
-LMG2L["LocalScript_3e"] = Instance.new("LocalScript", LMG2L["energy gorgon_3c"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.UIStroke
-LMG2L["UIStroke_3f"] = Instance.new("UIStroke", LMG2L["energy gorgon_3c"]);
-LMG2L["UIStroke_3f"]["Transparency"] = 0.5;
-LMG2L["UIStroke_3f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_3f"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4
-LMG2L["killbot v4_40"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["killbot v4_40"]["TextWrapped"] = true;
-LMG2L["killbot v4_40"]["BorderSizePixel"] = 0;
-LMG2L["killbot v4_40"]["TextSize"] = 18;
-LMG2L["killbot v4_40"]["TextScaled"] = true;
-LMG2L["killbot v4_40"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["killbot v4_40"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["killbot v4_40"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["killbot v4_40"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["killbot v4_40"]["Text"] = [[killbotv4]];
-LMG2L["killbot v4_40"]["Name"] = [[killbot v4]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.UICorner
-LMG2L["UICorner_41"] = Instance.new("UICorner", LMG2L["killbot v4_40"]);
-LMG2L["UICorner_41"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.LocalScript
-LMG2L["LocalScript_42"] = Instance.new("LocalScript", LMG2L["killbot v4_40"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.UIStroke
-LMG2L["UIStroke_43"] = Instance.new("UIStroke", LMG2L["killbot v4_40"]);
-LMG2L["UIStroke_43"]["Transparency"] = 0.5;
-LMG2L["UIStroke_43"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_43"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin
-LMG2L["kingpin_44"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["kingpin_44"]["TextWrapped"] = true;
-LMG2L["kingpin_44"]["BorderSizePixel"] = 0;
-LMG2L["kingpin_44"]["TextSize"] = 18;
-LMG2L["kingpin_44"]["TextScaled"] = true;
-LMG2L["kingpin_44"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["kingpin_44"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["kingpin_44"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["kingpin_44"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["kingpin_44"]["Text"] = [[kingpin]];
-LMG2L["kingpin_44"]["Name"] = [[kingpin]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.UICorner
-LMG2L["UICorner_45"] = Instance.new("UICorner", LMG2L["kingpin_44"]);
-LMG2L["UICorner_45"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.LocalScript
-LMG2L["LocalScript_46"] = Instance.new("LocalScript", LMG2L["kingpin_44"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.UIStroke
-LMG2L["UIStroke_47"] = Instance.new("UIStroke", LMG2L["kingpin_44"]);
-LMG2L["UIStroke_47"]["Transparency"] = 0.5;
-LMG2L["UIStroke_47"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_47"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver
-LMG2L["oliver_48"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["oliver_48"]["TextWrapped"] = true;
-LMG2L["oliver_48"]["BorderSizePixel"] = 0;
-LMG2L["oliver_48"]["TextSize"] = 18;
-LMG2L["oliver_48"]["TextScaled"] = true;
-LMG2L["oliver_48"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["oliver_48"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["oliver_48"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["oliver_48"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["oliver_48"]["Text"] = [[oliver]];
-LMG2L["oliver_48"]["Name"] = [[oliver]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.UICorner
-LMG2L["UICorner_49"] = Instance.new("UICorner", LMG2L["oliver_48"]);
-LMG2L["UICorner_49"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.LocalScript
-LMG2L["LocalScript_4a"] = Instance.new("LocalScript", LMG2L["oliver_48"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.UIStroke
-LMG2L["UIStroke_4b"] = Instance.new("UIStroke", LMG2L["oliver_48"]);
-LMG2L["UIStroke_4b"]["Transparency"] = 0.5;
-LMG2L["UIStroke_4b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_4b"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2
-LMG2L["para v2_4c"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["para v2_4c"]["TextWrapped"] = true;
-LMG2L["para v2_4c"]["BorderSizePixel"] = 0;
-LMG2L["para v2_4c"]["TextSize"] = 18;
-LMG2L["para v2_4c"]["TextScaled"] = true;
-LMG2L["para v2_4c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["para v2_4c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["para v2_4c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["para v2_4c"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["para v2_4c"]["Text"] = [[paranoy v2]];
-LMG2L["para v2_4c"]["Name"] = [[para v2]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.UICorner
-LMG2L["UICorner_4d"] = Instance.new("UICorner", LMG2L["para v2_4c"]);
-LMG2L["UICorner_4d"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.LocalScript
-LMG2L["LocalScript_4e"] = Instance.new("LocalScript", LMG2L["para v2_4c"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.UIStroke
-LMG2L["UIStroke_4f"] = Instance.new("UIStroke", LMG2L["para v2_4c"]);
-LMG2L["UIStroke_4f"]["Transparency"] = 0.5;
-LMG2L["UIStroke_4f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_4f"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe
-LMG2L["require exe_50"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["require exe_50"]["TextWrapped"] = true;
-LMG2L["require exe_50"]["BorderSizePixel"] = 0;
-LMG2L["require exe_50"]["TextSize"] = 18;
-LMG2L["require exe_50"]["TextScaled"] = true;
-LMG2L["require exe_50"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["require exe_50"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["require exe_50"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["require exe_50"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["require exe_50"]["Text"] = [[require exe]];
-LMG2L["require exe_50"]["Name"] = [[require exe]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.UICorner
-LMG2L["UICorner_51"] = Instance.new("UICorner", LMG2L["require exe_50"]);
-LMG2L["UICorner_51"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.LocalScript
-LMG2L["LocalScript_52"] = Instance.new("LocalScript", LMG2L["require exe_50"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.UIStroke
-LMG2L["UIStroke_53"] = Instance.new("UIStroke", LMG2L["require exe_50"]);
-LMG2L["UIStroke_53"]["Transparency"] = 0.5;
-LMG2L["UIStroke_53"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_53"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia
-LMG2L["schizophrenia_54"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["schizophrenia_54"]["TextWrapped"] = true;
-LMG2L["schizophrenia_54"]["BorderSizePixel"] = 0;
-LMG2L["schizophrenia_54"]["TextSize"] = 18;
-LMG2L["schizophrenia_54"]["TextScaled"] = true;
-LMG2L["schizophrenia_54"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["schizophrenia_54"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["schizophrenia_54"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["schizophrenia_54"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["schizophrenia_54"]["Text"] = [[schizo]];
-LMG2L["schizophrenia_54"]["Name"] = [[schizophrenia]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.UICorner
-LMG2L["UICorner_55"] = Instance.new("UICorner", LMG2L["schizophrenia_54"]);
-LMG2L["UICorner_55"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.LocalScript
-LMG2L["LocalScript_56"] = Instance.new("LocalScript", LMG2L["schizophrenia_54"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.UIStroke
-LMG2L["UIStroke_57"] = Instance.new("UIStroke", LMG2L["schizophrenia_54"]);
-LMG2L["UIStroke_57"]["Transparency"] = 0.5;
-LMG2L["UIStroke_57"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_57"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity
-LMG2L["096 unity_58"] = Instance.new("TextButton", LMG2L["ScrollingFrame_4"]);
-LMG2L["096 unity_58"]["TextWrapped"] = true;
-LMG2L["096 unity_58"]["BorderSizePixel"] = 0;
-LMG2L["096 unity_58"]["TextSize"] = 18;
-LMG2L["096 unity_58"]["TextScaled"] = true;
-LMG2L["096 unity_58"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["096 unity_58"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
-LMG2L["096 unity_58"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
-LMG2L["096 unity_58"]["Size"] = UDim2.new(0, 66, 0, 42);
-LMG2L["096 unity_58"]["Text"] = [[096 unity]];
-LMG2L["096 unity_58"]["Name"] = [[096 unity]];
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.UICorner
-LMG2L["UICorner_59"] = Instance.new("UICorner", LMG2L["096 unity_58"]);
-LMG2L["UICorner_59"]["CornerRadius"] = UDim.new(0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.LocalScript
-LMG2L["LocalScript_5a"] = Instance.new("LocalScript", LMG2L["096 unity_58"]);
-
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.UIStroke
-LMG2L["UIStroke_5b"] = Instance.new("UIStroke", LMG2L["096 unity_58"]);
-LMG2L["UIStroke_5b"]["Transparency"] = 0.5;
-LMG2L["UIStroke_5b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_5b"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
-LMG2L["UIStroke_5c"] = Instance.new("UIStroke", LMG2L["Frame_2"]);
-LMG2L["UIStroke_5c"]["Transparency"] = 0.5;
-LMG2L["UIStroke_5c"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame
-LMG2L["Frame_5d"] = Instance.new("Frame", LMG2L["Frame_2"]);
-LMG2L["Frame_5d"]["BorderSizePixel"] = 0;
-LMG2L["Frame_5d"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
-LMG2L["Frame_5d"]["Size"] = UDim2.new(0, 334, 0, 22);
-LMG2L["Frame_5d"]["Position"] = UDim2.new(0, 6, 0, 6);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.s
-LMG2L["s_5e"] = Instance.new("TextLabel", LMG2L["Frame_5d"]);
-LMG2L["s_5e"]["BorderSizePixel"] = 0;
-LMG2L["s_5e"]["TextSize"] = 16;
-LMG2L["s_5e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["s_5e"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["s_5e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["s_5e"]["BackgroundTransparency"] = 1;
-LMG2L["s_5e"]["RichText"] = true;
-LMG2L["s_5e"]["Size"] = UDim2.new(0, 260, 0, 16);
-LMG2L["s_5e"]["Text"] = [[cool script hub]];
-LMG2L["s_5e"]["Name"] = [[s]];
-LMG2L["s_5e"]["Position"] = UDim2.new(0, 38, 0, 2);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.UICorner
-LMG2L["UICorner_5f"] = Instance.new("UICorner", LMG2L["Frame_5d"]);
-LMG2L["UICorner_5f"]["CornerRadius"] = UDim.new(0, 6)
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.UIStroke
-LMG2L["UIStroke_62"] = Instance.new("UIStroke", LMG2L["Frame_5d"]);
-LMG2L["UIStroke_62"]["Transparency"] = 0.5;
-LMG2L["UIStroke_62"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_62"]["Color"] = Color3.fromRGB(98, 98, 98);
-
-
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger.LocalScript
-local function C_7()
-	local script = LMG2L["LocalScript_7"];
-	local code = 'require(7720644326).SharkGodsLoggerLeak("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_7);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.LocalScript
-local function C_b()
-	local script = LMG2L["LocalScript_b"];
-	local code = '("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_b);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe.LocalScript
-local function C_12()
-	local script = LMG2L["LocalScript_12"];
-	local code = 'require(126250637889071)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_12);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle.LocalScript
-local function C_16()
-	local script = LMG2L["LocalScript_16"];
-	local code = 'require(71359648090331).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Miss Circle")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_16);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden.LocalScript
-local function C_1a()
-	local script = LMG2L["LocalScript_1a"];
-	local code = 'require(79669656266234)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_1a);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe.LocalScript
-local function C_1e()
-	local script = LMG2L["LocalScript_1e"];
-	local code = 'require(105380634773217)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_1e);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype.LocalScript
-local function C_22()
-	local script = LMG2L["LocalScript_22"];
-	local code = 'require(73755486018996).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Prototype")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_22);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n.LocalScript
-local function C_26()
-	local script = LMG2L["LocalScript_26"];
-	local code = 'require(138925696344980)("greguiscool")("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_26);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz.LocalScript
-local function C_2a()
-	local script = LMG2L["LocalScript_2a"];
-	local code = 'require(121358724720737):load("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_2a);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns.LocalScript
-local function C_2e()
-	local script = LMG2L["LocalScript_2e"];
-	local code = 'require(85641071395989)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_2e);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter.LocalScript
-local function C_32()
-	local script = LMG2L["LocalScript_32"];
-	local code = 'require(97212321215045).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "the imposter")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_32);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish.LocalScript
-local function C_36()
-	local script = LMG2L["LocalScript_36"];
-	local code = 'require(100904586046368).load("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_36);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.LocalScript
-local function C_3a()
-	local script = LMG2L["LocalScript_3a"];
-	local code = 'require(119637723627363)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_3a);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.LocalScript
-local function C_3e()
-	local script = LMG2L["LocalScript_3e"];
-	local code = 'require(129543773468626).load("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_3e);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.LocalScript
-local function C_42()
-	local script = LMG2L["LocalScript_42"];
-	local code = 'require(110756170974672).killbot("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_42);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.LocalScript
-local function C_46()
-	local script = LMG2L["LocalScript_46"];
-	local code = 'require(96569403624959).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "kingpin")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_46);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.LocalScript
-local function C_4a()
-	local script = LMG2L["LocalScript_4a"];
-	local code = 'require(121806884124942)("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_4a);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.LocalScript
-local function C_4e()
-	local script = LMG2L["LocalScript_4e"];
-	local code = 'require(115054413998661).Canner_Paranoy("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_4e);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.LocalScript
-local function C_52()
-	local script = LMG2L["LocalScript_52"];
-	local code = 'require(125992639027440) ["Require.EXE by E God"]("' .. game.Players.LocalPlayer.Name .. '")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_52);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.LocalScript
-local function C_56()
-	local script = LMG2L["LocalScript_56"];
-	local code = 'require(71359648090331).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "schizophrenia")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
-task.spawn(C_56);
--- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.LocalScript
-local function C_5a()
-	local script = LMG2L["LocalScript_5a"];
-	local code = 'require(110508056560855).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Unity 096")'	
-	
-	script.Parent.MouseButton1Click:Connect(function()	
-	      fireRemoteEvent(code)	
-	end)	
-end;
+LMG["UICorner_39"] = Instance.new("UICorner", LMG["sonic eyx v2_38"]);
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
