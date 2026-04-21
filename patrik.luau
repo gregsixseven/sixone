@@ -859,7 +859,7 @@ end
 local LMG = {};
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame
-LMG["Frame_2"] = Instance.new("Frame", LMG["Main_2"]);
+LMG["Frame_2"] = Instance.new("Frame", LMGL["Main_2"]);
 LMG["Frame_2"]["BorderSizePixel"] = 0;
 LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
 LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
