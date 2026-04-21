@@ -1294,6 +1294,518 @@ LMG["sonic eyx v2_38"]["Name"] = [[sonic eyx v2]];
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.UICorner
 LMG["UICorner_39"] = Instance.new("UICorner", LMG["sonic eyx v2_38"]);
+LMG["UICorner_39"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.LocalScript
+LMG["LocalScript_3a"] = Instance.new("LocalScript", LMG["sonic eyx v2_38"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.UIStroke
+LMG["UIStroke_3b"] = Instance.new("UIStroke", LMG["sonic eyx v2_38"]);
+LMG["UIStroke_3b"]["Transparency"] = 0.5;
+LMG["UIStroke_3b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_3b"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon
+LMG["energy gorgon_3c"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["energy gorgon_3c"]["TextWrapped"] = true;
+LMG["energy gorgon_3c"]["BorderSizePixel"] = 0;
+LMG["energy gorgon_3c"]["TextSize"] = 18;
+LMG["energy gorgon_3c"]["TextScaled"] = true;
+LMG["energy gorgon_3c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["energy gorgon_3c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["energy gorgon_3c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["energy gorgon_3c"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["energy gorgon_3c"]["Text"] = [[energy gorgon]];
+LMG["energy gorgon_3c"]["Name"] = [[energy gorgon]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.UICorner
+LMG["UICorner_3d"] = Instance.new("UICorner", LMG["energy gorgon_3c"]);
+LMG["UICorner_3d"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.LocalScript
+LMG["LocalScript_3e"] = Instance.new("LocalScript", LMG["energy gorgon_3c"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.UIStroke
+LMG["UIStroke_3f"] = Instance.new("UIStroke", LMG["energy gorgon_3c"]);
+LMG["UIStroke_3f"]["Transparency"] = 0.5;
+LMG["UIStroke_3f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_3f"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4
+LMG["killbot v4_40"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["killbot v4_40"]["TextWrapped"] = true;
+LMG["killbot v4_40"]["BorderSizePixel"] = 0;
+LMG["killbot v4_40"]["TextSize"] = 18;
+LMG["killbot v4_40"]["TextScaled"] = true;
+LMG["killbot v4_40"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["killbot v4_40"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["killbot v4_40"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["killbot v4_40"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["killbot v4_40"]["Text"] = [[killbotv4]];
+LMG["killbot v4_40"]["Name"] = [[killbot v4]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.UICorner
+LMG["UICorner_41"] = Instance.new("UICorner", LMG["killbot v4_40"]);
+LMG["UICorner_41"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.LocalScript
+LMG["LocalScript_42"] = Instance.new("LocalScript", LMG["killbot v4_40"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.UIStroke
+LMG["UIStroke_43"] = Instance.new("UIStroke", LMG["killbot v4_40"]);
+LMG["UIStroke_43"]["Transparency"] = 0.5;
+LMG["UIStroke_43"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_43"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin
+LMG["kingpin_44"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["kingpin_44"]["TextWrapped"] = true;
+LMG["kingpin_44"]["BorderSizePixel"] = 0;
+LMG["kingpin_44"]["TextSize"] = 18;
+LMG["kingpin_44"]["TextScaled"] = true;
+LMG["kingpin_44"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["kingpin_44"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["kingpin_44"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["kingpin_44"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["kingpin_44"]["Text"] = [[kingpin]];
+LMG["kingpin_44"]["Name"] = [[kingpin]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.UICorner
+LMG["UICorner_45"] = Instance.new("UICorner", LMG["kingpin_44"]);
+LMG["UICorner_45"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.LocalScript
+LMG["LocalScript_46"] = Instance.new("LocalScript", LMG["kingpin_44"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.UIStroke
+LMG["UIStroke_47"] = Instance.new("UIStroke", LMG["kingpin_44"]);
+LMG["UIStroke_47"]["Transparency"] = 0.5;
+LMG["UIStroke_47"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_47"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver
+LMG["oliver_48"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["oliver_48"]["TextWrapped"] = true;
+LMG["oliver_48"]["BorderSizePixel"] = 0;
+LMG["oliver_48"]["TextSize"] = 18;
+LMG["oliver_48"]["TextScaled"] = true;
+LMG["oliver_48"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["oliver_48"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["oliver_48"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["oliver_48"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["oliver_48"]["Text"] = [[oliver]];
+LMG["oliver_48"]["Name"] = [[oliver]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.UICorner
+LMG["UICorner_49"] = Instance.new("UICorner", LMG["oliver_48"]);
+LMG["UICorner_49"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.LocalScript
+LMG["LocalScript_4a"] = Instance.new("LocalScript", LMG["oliver_48"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.UIStroke
+LMG["UIStroke_4b"] = Instance.new("UIStroke", LMG["oliver_48"]);
+LMG["UIStroke_4b"]["Transparency"] = 0.5;
+LMG["UIStroke_4b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_4b"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2
+LMG["para v2_4c"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["para v2_4c"]["TextWrapped"] = true;
+LMG["para v2_4c"]["BorderSizePixel"] = 0;
+LMG["para v2_4c"]["TextSize"] = 18;
+LMG["para v2_4c"]["TextScaled"] = true;
+LMG["para v2_4c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["para v2_4c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["para v2_4c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["para v2_4c"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["para v2_4c"]["Text"] = [[paranoy v2]];
+LMG["para v2_4c"]["Name"] = [[para v2]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.UICorner
+LMG["UICorner_4d"] = Instance.new("UICorner", LMG["para v2_4c"]);
+LMG["UICorner_4d"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.LocalScript
+LMG["LocalScript_4e"] = Instance.new("LocalScript", LMG["para v2_4c"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.UIStroke
+LMG["UIStroke_4f"] = Instance.new("UIStroke", LMG["para v2_4c"]);
+LMG["UIStroke_4f"]["Transparency"] = 0.5;
+LMG["UIStroke_4f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_4f"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe
+LMG["require exe_50"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["require exe_50"]["TextWrapped"] = true;
+LMG["require exe_50"]["BorderSizePixel"] = 0;
+LMG["require exe_50"]["TextSize"] = 18;
+LMG["require exe_50"]["TextScaled"] = true;
+LMG["require exe_50"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["require exe_50"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["require exe_50"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["require exe_50"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["require exe_50"]["Text"] = [[require exe]];
+LMG["require exe_50"]["Name"] = [[require exe]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.UICorner
+LMG["UICorner_51"] = Instance.new("UICorner", LMG["require exe_50"]);
+LMG["UICorner_51"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.LocalScript
+LMG["LocalScript_52"] = Instance.new("LocalScript", LMG["require exe_50"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.UIStroke
+LMG["UIStroke_53"] = Instance.new("UIStroke", LMG["require exe_50"]);
+LMG["UIStroke_53"]["Transparency"] = 0.5;
+LMG["UIStroke_53"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_53"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia
+LMG["schizophrenia_54"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["schizophrenia_54"]["TextWrapped"] = true;
+LMG["schizophrenia_54"]["BorderSizePixel"] = 0;
+LMG["schizophrenia_54"]["TextSize"] = 18;
+LMG["schizophrenia_54"]["TextScaled"] = true;
+LMG["schizophrenia_54"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["schizophrenia_54"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["schizophrenia_54"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["schizophrenia_54"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["schizophrenia_54"]["Text"] = [[schizo]];
+LMG["schizophrenia_54"]["Name"] = [[schizophrenia]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.UICorner
+LMG["UICorner_55"] = Instance.new("UICorner", LMG["schizophrenia_54"]);
+LMG["UICorner_55"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.LocalScript
+LMG["LocalScript_56"] = Instance.new("LocalScript", LMG["schizophrenia_54"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.UIStroke
+LMG["UIStroke_57"] = Instance.new("UIStroke", LMG["schizophrenia_54"]);
+LMG["UIStroke_57"]["Transparency"] = 0.5;
+LMG["UIStroke_57"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_57"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity
+LMG["096 unity_58"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["096 unity_58"]["TextWrapped"] = true;
+LMG["096 unity_58"]["BorderSizePixel"] = 0;
+LMG["096 unity_58"]["TextSize"] = 18;
+LMG["096 unity_58"]["TextScaled"] = true;
+LMG["096 unity_58"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["096 unity_58"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["096 unity_58"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["096 unity_58"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["096 unity_58"]["Text"] = [[096 unity]];
+LMG["096 unity_58"]["Name"] = [[096 unity]];
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.UICorner
+LMG["UICorner_59"] = Instance.new("UICorner", LMG["096 unity_58"]);
+LMG["UICorner_59"]["CornerRadius"] = UDim.new(0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.LocalScript
+LMG["LocalScript_5a"] = Instance.new("LocalScript", LMG["096 unity_58"]);
+
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.UIStroke
+LMG["UIStroke_5b"] = Instance.new("UIStroke", LMG["096 unity_58"]);
+LMG["UIStroke_5b"]["Transparency"] = 0.5;
+LMG["UIStroke_5b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_5b"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
+LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
+LMG["UIStroke_5c"]["Transparency"] = 0.5;
+LMG["UIStroke_5c"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame
+LMG["Frame_5d"] = Instance.new("Frame", LMG["Frame_2"]);
+LMG["Frame_5d"]["BorderSizePixel"] = 0;
+LMG["Frame_5d"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
+LMG["Frame_5d"]["Size"] = UDim2.new(0, 334, 0, 22);
+LMG["Frame_5d"]["Position"] = UDim2.new(0, 6, 0, 6);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.s
+LMG["s_5e"] = Instance.new("TextLabel", LMG["Frame_5d"]);
+LMG["s_5e"]["BorderSizePixel"] = 0;
+LMG["s_5e"]["TextSize"] = 16;
+LMG["s_5e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["s_5e"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG["s_5e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["s_5e"]["BackgroundTransparency"] = 1;
+LMG["s_5e"]["RichText"] = true;
+LMG["s_5e"]["Size"] = UDim2.new(0, 260, 0, 16);
+LMG["s_5e"]["Text"] = [[cool script hub]];
+LMG["s_5e"]["Name"] = [[s]];
+LMG["s_5e"]["Position"] = UDim2.new(0, 38, 0, 2);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.UICorner
+LMG["UICorner_5f"] = Instance.new("UICorner", LMG["Frame_5d"]);
+LMG["UICorner_5f"]["CornerRadius"] = UDim.new(0, 6)
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.Frame.UIStroke
+LMG["UIStroke_62"] = Instance.new("UIStroke", LMG["Frame_5d"]);
+LMG["UIStroke_62"]["Transparency"] = 0.5;
+LMG["UIStroke_62"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_62"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Logger.LocalScript
+local function C_7()
+	local script = LMG["LocalScript_7"];
+	local code = 'require(7720644326).SharkGodsLoggerLeak("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_7);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.LocalScript
+local function C_b()
+	local script = LMG["LocalScript_b"];
+	local code = '("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_b);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe.LocalScript
+local function C_12()
+	local script = LMG["LocalScript_12"];
+	local code = 'require(126250637889071)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_12);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Miss Circle.LocalScript
+local function C_16()
+	local script = LMG["LocalScript_16"];
+	local code = 'require(71359648090331).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Miss Circle")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_16);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Aiden.LocalScript
+local function C_1a()
+	local script = LMG["LocalScript_1a"];
+	local code = 'require(79669656266234)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_1a);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.boderman exe.LocalScript
+local function C_1e()
+	local script = LMG["LocalScript_1e"];
+	local code = 'require(105380634773217)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_1e);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.prototype.LocalScript
+local function C_22()
+	local script = LMG["LocalScript_22"];
+	local code = 'require(73755486018996).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Prototype")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_22);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.f.e.n.LocalScript
+local function C_26()
+	local script = LMG["LocalScript_26"];
+	local code = 'require(138925696344980)("greguiscool")("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_26);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.ratiz.LocalScript
+local function C_2a()
+	local script = LMG["LocalScript_2a"];
+	local code = 'require(121358724720737):load("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_2a);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.stummy guns.LocalScript
+local function C_2e()
+	local script = LMG["LocalScript_2e"];
+	local code = 'require(85641071395989)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_2e);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.the imposter.LocalScript
+local function C_32()
+	local script = LMG["LocalScript_32"];
+	local code = 'require(97212321215045).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "the imposter")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_32);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.starfish.LocalScript
+local function C_36()
+	local script = LMG["LocalScript_36"];
+	local code = 'require(100904586046368).load("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_36);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.sonic eyx v2.LocalScript
+local function C_3a()
+	local script = LMG["LocalScript_3a"];
+	local code = 'require(119637723627363)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_3a);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.LocalScript
+local function C_3e()
+	local script = LMG["LocalScript_3e"];
+	local code = 'require(129543773468626).load("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_3e);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.killbot v4.LocalScript
+local function C_42()
+	local script = LMG["LocalScript_42"];
+	local code = 'require(110756170974672).killbot("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_42);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.kingpin.LocalScript
+local function C_46()
+	local script = LMG["LocalScript_46"];
+	local code = 'require(96569403624959).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "kingpin")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_46);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.oliver.LocalScript
+local function C_4a()
+	local script = LMG["LocalScript_4a"];
+	local code = 'require(121806884124942)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_4a);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.para v2.LocalScript
+local function C_4e()
+	local script = LMG["LocalScript_4e"];
+	local code = 'require(115054413998661).Canner_Paranoy("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_4e);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.require exe.LocalScript
+local function C_52()
+	local script = LMG["LocalScript_52"];
+	local code = 'require(125992639027440) ["Require.EXE by E God"]("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_52);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.schizophrenia.LocalScript
+local function C_56()
+	local script = LMG["LocalScript_56"];
+	local code = 'require(71359648090331).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "schizophrenia")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
+task.spawn(C_56);
+-- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.096 unity.LocalScript
+local function C_5a()
+	local script = LMG["LocalScript_5a"];
+	local code = 'require(110508056560855).MorphMonster("' .. game.Players.LocalPlayer.Name .. '", "Unity 096")'	
+	
+	script.Parent.MouseButton1Click:Connect(function()	
+	      fireRemoteEvent(code)	
+	end)	
+end;
 
 task.spawn(function()
     EnableDrag(LMG2L["Main_2"])
