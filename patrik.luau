@@ -1616,6 +1616,58 @@ LMG["crasher"].MouseButton1Click:Connect(function()
 	fireRemoteEvent(code)	
 end)	
 
+LMG["chungus"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["chungus"]["TextWrapped"] = true;
+LMG["chungus"]["BorderSizePixel"] = 0;
+LMG["chungus"]["TextSize"] = 18;
+LMG["chungus"]["TextScaled"] = true;
+LMG["chungus"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["chungus"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["chungus"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["chungus"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["chungus"]["Text"] = [[chungus]];
+LMG["chungus"]["Name"] = [[chungus]];
+
+LMG["UICorner_chungus"] = Instance.new("UICorner", LMG["chungus"]);
+LMG["UICorner_chungus"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG["UIStroke_chungus"] = Instance.new("UIStroke", LMG["chungus"]);
+LMG["UIStroke_chungus"]["Transparency"] = 0.5;
+LMG["UIStroke_chungus"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_chungus"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+local code = 'require(98659223446383)("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+LMG["chungus"].MouseButton1Click:Connect(function()	
+	fireRemoteEvent(code)	
+end)	
+
+LMG["icegorgon"] = Instance.new("TextButton", LMG["ScrollingFrame_4"]);
+LMG["icegorgon"]["TextWrapped"] = true;
+LMG["icegorgon"]["BorderSizePixel"] = 0;
+LMG["icegorgon"]["TextSize"] = 18;
+LMG["icegorgon"]["TextScaled"] = true;
+LMG["icegorgon"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG["icegorgon"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
+LMG["icegorgon"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Normal);
+LMG["icegorgon"]["Size"] = UDim2.new(0, 66, 0, 42);
+LMG["icegorgon"]["Text"] = [[icegorgon]];
+LMG["icegorgon"]["Name"] = [[icegorgon]];
+
+LMG["UICorner_icegorgon"] = Instance.new("UICorner", LMG["icegorgon"]);
+LMG["UICorner_icegorgon"]["CornerRadius"] = UDim.new(0, 6);
+
+LMG["UIStroke_icegorgon"] = Instance.new("UIStroke", LMG["icegorgon"]);
+LMG["UIStroke_icegorgon"]["Transparency"] = 0.5;
+LMG["UIStroke_icegorgon"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG["UIStroke_icegorgon"]["Color"] = Color3.fromRGB(98, 98, 98);
+
+local code = 'require(84703748461759).load("' .. game.Players.LocalPlayer.Name .. '")'	
+	
+LMG["icegorgon"].MouseButton1Click:Connect(function()	
+	fireRemoteEvent(code)	
+end)	
+
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
 LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
 LMG["UIStroke_5c"]["Transparency"] = 0.5;
