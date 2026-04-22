@@ -1660,6 +1660,7 @@ local function createButton(name, id, funcName, args)
     Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
     local stroke = Instance.new("UIStroke", btn)
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Transparency = 0.5
     stroke.Color = Color3.fromRGB(98,98,98)
 
@@ -1686,7 +1687,43 @@ local function createButton(name, id, funcName, args)
 end
 local lp = game.Players.LocalPlayer.Name
 
-createButton("Barney", 108796910844970, "MorphMonster", {lp, "Barney"})
+createButton("barney", 108796910844970, "MorphMonster", {lp, "Barney"})
+createButton("antlionalyx", 97331759261813, "MorphMonster", {lp, "antlionalyx"})
+createButton("antlionguard", 97331759261813, "MorphMonster", {lp, "antlionguard"})
+createButton("fastzombie", 97331759261813, "MorphMonster", {lp, "fastzombie"})
+createButton("gargantua", 97331759261813, "MorphMonster", {lp, "gargantua"})
+createButton("grunt", 97331759261813, "MorphMonster", {lp, "grunt"})
+createButton("hl2 barnacle, 97331759261813, "MorphMonster", {lp, "hl2barnacle"})
+createButton("hl2 hunter", 97331759261813, "MorphMonster", {lp, "hl2hunter"})
+createButton("poison zombie", 97331759261813, "MorphMonster", {lp, "poison zombie"})
+createButton("strider", 97331759261813, "MorphMonster", {lp, "strider"})
+createButton("vortigaunt", 97331759261813, "MorphMonster", {lp, "vortigaunt"})
+createButton("fast zombie", 108796910844970, "MorphMonster", {lp, "FastZombie"})
+createButton("headcrab zombie", 108796910844970, "MorphMonster", {lp, "HeadcrabZombie"})
+createButton("fast headcrab", 108796910844970, "MorphMonster", {lp, "FastHeadcrab"})
+createButton("poison headcrab", 108796910844970, "MorphMonster", {lp, "PoisonHeadcrab"})
+createButton("headcrab", 108796910844970, "MorphMonster", {lp, "Headcrab"})
+createButton("hl1 headcrab", 108796910844970, "MorphMonster", {lp, "HL1Headcrab"})
+createButton("cremator", 92422644804143, "MorphMonster", {lp, "cremator"})
+createButton("gonome", 92422644804143, "MorphMonster", {lp, "gonome"})
+createButton("tentaclev2", 92422644804143, "MorphMonster", {lp, "tentacle v2"})
+createButton("shocktrooper", 92422644804143, "MorphMonster", {lp, "shocktrooper"})
+createButton("sergeant", 92422644804143, "MorphMonster", {lp, "sergeant"})
+createButton("mr friendly", 92422644804143, "MorphMonster", {lp, "mr friendly"})
+createButton("bullsquid", 92422644804143, "MorphMonster", {lp, "bullsquid"})
+createButton("floater", 92422644804143, "MorphMonster", {lp, "floater"})
+createButton("gonarch", 102798848281487, "MorphMonster", {lp, "gonarch"})
+createButton("stukabat", 118010581213399, "MorphMonster", {lp, "stukabat"})
+
+
+
+createButton("twist bobette", 91204966217453, "MorphMonster", {lp, "Twisted Bobette"})
+createButton("vee", 91204966217453, "MorphMonster", {lp, "Vee"})
+createButton("twist connie", 91204966217453, "MorphMonster", {lp, "Twisted Connie"})
+
+createButton("", , "MorphMonster", {lp, ""})
+createButton("", , "MorphMonster", {lp, ""})
+createButton("", , "MorphMonster", {lp, ""})
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
