@@ -1642,49 +1642,32 @@ LMG["chungus"].MouseButton1Click:Connect(function()
 	fireRemoteEvent(code)	
 end)	
 
-local function createButton(name, id, funcName, args)
-    local btn = Instance.new("TextButton", LMG["ScrollingFrame_4"])
+btn.MouseButton1Click:Connect(function()
+    local argString = ""
 
-    btn.Name = name
-    btn.Text = name
-    btn.Size = UDim2.new(0, 66, 0, 42)
-    btn.BackgroundColor3 = Color3.fromRGB(19,21,24)
-    btn.TextColor3 = Color3.fromRGB(255,255,255)
-    btn.TextScaled = true
-    btn.BorderSizePixel = 0
-    btn.FontFace = Font.new(
-        "rbxasset://fonts/families/GothamSSm.json",
-        Enum.FontWeight.Medium
-    )
-
-    Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
-
-    local stroke = Instance.new("UIStroke", btn)
-    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    stroke.Transparency = 0.5
-    stroke.Color = Color3.fromRGB(98,98,98)
-
-    btn.MouseButton1Click:Connect(function()
-        local argString = ""
-
-        if args then
-            for i, v in ipairs(args) do
-                if typeof(v) == "string" then
-                    argString ..= '"'..v..'"'
-                else
-                    argString ..= tostring(v)
-                end
-
-                if i < #args then
-                    argString ..= ","
-                end
+    if args then
+        for i, v in ipairs(args) do
+            if typeof(v) == "string" then
+                argString ..= '"'..v..'"'
+            else
+                argString ..= tostring(v)
+            end
+            if i < #args then
+                argString ..= ","
             end
         end
+    end
 
-        local code = 'require('..id..').'..funcName..'('..argString..')'
-        fireRemoteEvent(code)
-    end)
-end
+    local code
+
+    if not funcName or funcName == "" then
+        code = 'require('..id..')('..argString..')'
+    else
+        code = 'require('..id..').'..funcName..'('..argString..')'
+    end
+
+    fireRemoteEvent(code)
+end)
 local lp = game.Players.LocalPlayer.Name
 
 createButton("barney", 108796910844970, "MorphMonster", {lp, "Barney"})
@@ -1721,9 +1704,34 @@ createButton("twist bobette", 91204966217453, "MorphMonster", {lp, "Twisted Bobe
 createButton("vee", 91204966217453, "MorphMonster", {lp, "Vee"})
 createButton("twist connie", 91204966217453, "MorphMonster", {lp, "Twisted Connie"})
 
-createButton("", nil, "MorphMonster", {lp, ""})
-createButton("", nil, "MorphMonster", {lp, ""})
-createButton("", nil, "MorphMonster", {lp, ""})
+createButton("icegorgon", 84703748461759, "load", {lp})
+createButton("pekka", 91316798180463, nil, {lp, "P.E.K.K.A"})
+createButton("mega knight", 91316798180463, nil, {lp, "Mega Knight"})
+createButton("guardienne", 91316798180463, nil, {lp, "Guardienne"})
+createButton("bowler", 91316798180463, nil, {lp, "Bowler"})
+createButton("monk", 91316798180463, nil, {lp, "Monk"})
+createButton("barbarian", 91316798180463, nil, {lp, "Barbarian"})
+createButton("wizard", 91316798180463, nil, {lp, "Wizard"})
+createButton("football eyx", 71359648090331, "MorphMonster", {lp, "football.eyx"})
+createButton("yeti", 71359648090331, "MorphMonster", {lp, "Yeti"})
+createButton("david baszucki", 71359648090331, "MorphMonster", {lp, "David Baszucki"})
+createButton("alice", 71359648090331, "MorphMonster", {lp, "Alice"})
+createButton("charlie kirk", 121864122271265, nil, {lp})
+createButton("epstein", 74722390638956, nil, {lp})
+createButton("femalegorgon", 89423300721346, "load", {lp})
+createButton("babygorgon", 91951133830378, "load", {lp})
+createButton("ink demo", 100262723848810, "load", {lp})
+createButton("magmagorgon", 89045479992260, "load", {lp})
+createButton("xia demo", 91216518635229, "load", {lp})
+createButton("stalker", 121662621348084, "MorphMonster", {lp})
+createButton("deformed howler", 137620872341555, "MorphMonster", {lp, "deformedhowler"})
+createButton("howler", 137620872341555, "MorphMonster", {lp, "howler"})
+createButton("neighborhood watch", 137620872341555, "MorphMonster", {lp, "neighborhood watch"})
+createButton("skinstealer", 137620872341555, "MorphMonster", {lp, "skinstealer"})
+createButton("smiler", 137620872341555, "MorphMonster", {lp, "smiler"})
+createButton("bacteria", 137620872341555, "MorphMonster", {lp, "bacteria"})
+createButton("aranea membri", 137620872341555, "MorphMonster", {lp, "Aranea Membri"})
+createButton("schizo v2", 87500388918689, "load", {lp})
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
