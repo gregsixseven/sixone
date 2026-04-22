@@ -1718,7 +1718,7 @@ createButton("mr friendly", 92422644804143, "MorphMonster", {lp, "mr friendly"})
 createButton("bullsquid", 92422644804143, "MorphMonster", {lp, "bullsquid"})
 createButton("floater", 92422644804143, "MorphMonster", {lp, "floater"})
 createButton("gonarch", 102798848281487, "MorphMonster", {lp, "gonarch"})
-createButton("stukabat", 118010581213399, "MorphMonster", {lp, "stukabat"})
+createButton("stukabat", 98581501499756, "MorphMonster", {lp, "stukabat"})
 
 
 
