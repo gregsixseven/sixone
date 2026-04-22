@@ -1830,7 +1830,7 @@ LMG["s_5e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 LMG["s_5e"]["BackgroundTransparency"] = 1;
 LMG["s_5e"]["RichText"] = true;
 LMG["s_5e"]["Size"] = UDim2.new(0, 260, 0, 16);
-LMG["s_5e"]["Text"] = [[cool script hub]];
+LMG["s_5e"]["Text"] = [[cool <font color="#FF5680">script hub</font>]];
 LMG["s_5e"]["Name"] = [[s]];
 LMG["s_5e"]["Position"] = UDim2.new(0, 38, 0, 2);
 
