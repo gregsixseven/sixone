@@ -1981,7 +1981,7 @@ task.spawn(C_3a);
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.energy gorgon.LocalScript
 local function C_3e()
 	local script = LMG["LocalScript_3e"];
-	local code = 'require(129543773468626).load("' .. game.Players.LocalPlayer.Name .. '")'	
+	local code = 'require(98338281789182).load("' .. game.Players.LocalPlayer.Name .. '")'	
 	
 	script.Parent.MouseButton1Click:Connect(function()	
 	      fireRemoteEvent(code)	
