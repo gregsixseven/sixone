@@ -1642,7 +1642,7 @@ LMG["chungus"].MouseButton1Click:Connect(function()
 	fireRemoteEvent(code)	
 end)	
 
-local function createButton(name, id, funcName)
+local function createButton(name, id, funcName, args)
     local btn = Instance.new("TextButton", LMG["ScrollingFrame_4"])
 
     btn.Name = name
@@ -1664,28 +1664,30 @@ local function createButton(name, id, funcName)
     stroke.Color = Color3.fromRGB(98,98,98)
 
     btn.MouseButton1Click:Connect(function()
-        local code
+        local argString = ""
 
-        if funcName == "load" then
-            code = 'require('..id..').load("'..game.Players.LocalPlayer.Name..'")'
-        else
-            code = 'require('..id..').'..funcName..'("greguiscool","'..name..'")'
+        if args then
+            for i, v in ipairs(args) do
+                if typeof(v) == "string" then
+                    argString ..= '"'..v..'"'
+                else
+                    argString ..= tostring(v)
+                end
+
+                if i < #args then
+                    argString ..= ","
+                end
+            end
         end
 
+        local code = 'require('..id..').'..funcName..'('..argString..')'
         fireRemoteEvent(code)
     end)
 end
+local lp = game.Players.LocalPlayer.Name
 
-createButton("icegorgon", 84703748461759, "load")
+createButton("Barney", 108796910844970, "MorphMonster", {lp, "Barney"})
 
-createButton("Barney", 108796910844970, "MorphMonster")
-createButton("gonarch", 126258252939986, "MorphMonster")
-createButton("strider", 139111114772425, "MorphMonster")
-createButton("hunter", 139111114772425, "MorphMonster")
-createButton("Antlionalyx", 108796910844970, "MorphMonster")
-
-createButton("cremator", 92422644804143, "MorphMonster")
-createButton("gargantua", 121662621348084, "MorphMonster")
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
 LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
