@@ -1810,7 +1810,7 @@ task.spawn(C_7);
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.FSEV2.LocalScript
 local function C_b()
 	local script = LMG["LocalScript_b"];
-	local code = '("' .. game.Players.LocalPlayer.Name .. '")'	
+	local code = 'require(130860510447760)("' .. game.Players.LocalPlayer.Name .. '")'	
 	
 	script.Parent.MouseButton1Click:Connect(function()	
 	      fireRemoteEvent(code)	
