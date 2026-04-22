@@ -1641,8 +1641,29 @@ local code = 'require(98659223446383)("' .. game.Players.LocalPlayer.Name .. '")
 LMG["chungus"].MouseButton1Click:Connect(function()	
 	fireRemoteEvent(code)	
 end)	
+local function createButton(name, id, funcName, args)
+    local btn = Instance.new("TextButton", LMG["ScrollingFrame_4"])
 
-btn.MouseButton1Click:Connect(function()
+    btn.Name = name
+    btn.Text = name
+    btn.Size = UDim2.new(0, 66, 0, 42)
+    btn.BackgroundColor3 = Color3.fromRGB(19,21,24)
+    btn.TextColor3 = Color3.fromRGB(255,255,255)
+    btn.TextScaled = true
+    btn.BorderSizePixel = 0
+    btn.FontFace = Font.new(
+        "rbxasset://fonts/families/GothamSSm.json",
+        Enum.FontWeight.Medium
+    )
+
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
+
+    local stroke = Instance.new("UIStroke", btn)
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Transparency = 0.5
+    stroke.Color = Color3.fromRGB(98,98,98)
+
+    btn.MouseButton1Click:Connect(function()
     local argString = ""
 
     if args then
@@ -1667,7 +1688,8 @@ btn.MouseButton1Click:Connect(function()
     end
 
     fireRemoteEvent(code)
-end)
+   end)
+end
 local lp = game.Players.LocalPlayer.Name
 
 createButton("barney", 108796910844970, "MorphMonster", {lp, "Barney"})
