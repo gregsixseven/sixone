@@ -1693,7 +1693,7 @@ createButton("antlionguard", 97331759261813, "MorphMonster", {lp, "antlionguard"
 createButton("fastzombie", 97331759261813, "MorphMonster", {lp, "fastzombie"})
 createButton("gargantua", 97331759261813, "MorphMonster", {lp, "gargantua"})
 createButton("grunt", 97331759261813, "MorphMonster", {lp, "grunt"})
-createButton("hl2 barnacle, 97331759261813, "MorphMonster", {lp, "hl2barnacle"})
+createButton("hl2 barnacle", 97331759261813, "MorphMonster", {lp, "hl2barnacle"})
 createButton("hl2 hunter", 97331759261813, "MorphMonster", {lp, "hl2hunter"})
 createButton("poison zombie", 97331759261813, "MorphMonster", {lp, "poison zombie"})
 createButton("strider", 97331759261813, "MorphMonster", {lp, "strider"})
