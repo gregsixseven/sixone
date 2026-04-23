@@ -12,7 +12,7 @@ end
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
-local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/gregsixseven/sixone/refs/heads/main/notification.luau", true))()
+local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true))()
 
     local player = game.Players.LocalPlayer
 	local mouse = player:GetMouse()
