@@ -2872,6 +2872,14 @@ fireRemoteEvent([[
         fireRemoteEvent('require(88808180999972)("' .. game.Players.LocalPlayer.Name .. '")')
         fireRemoteEvent('require(3986243232).load("Patruck anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 
+       local function buildPath(inst)
+          local path = {}
+          while inst and inst ~= game do
+              table.insert(path, 1, inst.Name)
+              inst = inst.Parent
+           end
+           return path
+        end
         local target = remoteEvent or remoteFunction
 		
 		if target and target.Name ~= "spunch.bd_cssr6-01" then
