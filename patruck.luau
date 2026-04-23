@@ -1729,7 +1729,7 @@ createButton("floater", 92422644804143, "MorphMonster", {lp, "floater"})
 createButton("gonarch", 102798848281487, "MorphMonster", {lp, "gonarch"})
 createButton("stukabat", 98581501499756, "MorphMonster", {lp, "stukabat"})
 createButton("alien controller", 97734999889251, "MorphMonster", {lp, "alien controller"})
-
+createButton("femaleassasin", 128489460765273, "MorphMonster", {lp, "femaleassasin"})
 
 createButton("twist bobette", 91204966217453, "MorphMonster", {lp, "Twisted Bobette"})
 createButton("vee", 91204966217453, "MorphMonster", {lp, "Vee"})
