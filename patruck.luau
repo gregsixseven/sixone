@@ -2478,7 +2478,7 @@ fireRemoteEvent([[
 	remoteFunction.Name = "spunch.bd_cssr6-01"
 	remoteFunction.Parent = frm
 	
-	local loadstring = require(13684410229)
+	local loadstring = require(5612987995)
 	
 	remoteFunction.OnServerInvoke = function(player, code)
 	    if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
