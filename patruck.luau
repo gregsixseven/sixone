@@ -1,5 +1,14 @@
-loadstring(game:HttpGet("https://cypher-protector.vercel.app/api/load/kurkurkurkurkur"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
+local whitelisted = {
+ "greguiscool", 
+ "Soggyrigrig",
+}
+
+if not table.find(whitelisted, LocalPlayer.Name) then
+   LocalPlayer:Kick("Patruck says: not whitelisted S-K-I-D")
+end
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
