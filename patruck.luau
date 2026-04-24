@@ -1,3 +1,5 @@
+_G.Version = 1.2
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -2909,3 +2911,4 @@ fireRemoteEvent([[
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
     end
 end)
+notify.Info("Patruck","Loaded! Version:", _G.Version)
