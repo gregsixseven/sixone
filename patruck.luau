@@ -2367,7 +2367,7 @@ local function watchRemote(remote)
 
             local newRemote = nil
             
-            for i = 1, 5 do
+            for i = 1, 3 do
                 task.wait(0.25)
                 local found = findRemote()
                 if found and found ~= remote then
