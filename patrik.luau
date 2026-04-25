@@ -1,4 +1,14 @@
-loadstring(game:HttpGet("https://cypher-protector.vercel.app/api/load/kurkurkurkurkur"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local whitelisted = {
+ "greguiscool", 
+ "Soggyrigrig",
+}
+
+if not table.find(whitelisted, LocalPlayer.Name) then
+   LocalPlayer:Kick("patrik says: not whitelisted S-K-I-D")
+end
 
 
 local UserInputService = game:GetService("UserInputService")
@@ -1720,7 +1730,7 @@ createButton("floater", 92422644804143, "MorphMonster", {lp, "floater"})
 createButton("gonarch", 102798848281487, "MorphMonster", {lp, "gonarch"})
 createButton("stukabat", 98581501499756, "MorphMonster", {lp, "stukabat"})
 createButton("alien controller", 97734999889251, "MorphMonster", {lp, "alien controller"})
-
+createButton("femaleassassin", 128489460765273, "MorphMonster", {lp, "femaleassassin"})
 
 createButton("twist bobette", 91204966217453, "MorphMonster", {lp, "Twisted Bobette"})
 createButton("vee", 91204966217453, "MorphMonster", {lp, "Vee"})
@@ -1794,6 +1804,22 @@ createButton("doctor", 99855670692779, "MorphMonster", {lp, "Doctor"})
 createButton("springtrap", 126283456484261, "load", {lp})
 createButton("red imposter", 91433191924061, "MorphMonster", {lp, "red imposter"})
 createButton("yurei", 109346969733255, "MorphMonster", {lp, "Yurei"})
+createButton("inkfell", 140659312060143, "load", {lp})
+createButton("666 fuwatti", 117341665341160, "load", {lp})
+createButton("mahito", 106681436189773, "Mahito", {lp})
+createButton("ennard", 140190341324697, "MorphMonster", {lp, "Ennard"})
+createButton("horror gorgon", 134687546359448, "horrordemo", {lp})
+createButton("mimic", 130365411576237, "MorphMonster", {lp, "Mimic"})
+createButton("ruin mimic", 84043293309274, "MorphMonster", {lp, "Ruin Mimic"})
+createButton("shinigami", 114671346929931, "MorphMonster", {lp})
+createButton("enzukai", 103892366944637, "MorphMonster", {lp})
+createButton("foxy", 134749539058427, "MorphMonster", {lp, "foxy"})
+createButton("green", 87506855385233, "MorphMonster", {lp, "Green"})
+createButton("mx", 126059778738629, "load", {lp})
+createButton("samsonite", 133082072511615, "load", {lp})
+createButton("fuwatti", 132316983668446, "load", {lp})
+createButton("fish chat", 77886688623397, nil, nil)
+createButton("neco arc", 134825709410639, "Burenyuu", {lp})
 createButton("squid bomb", 101117549444812, nil, {lp})
 createButton("topk3k v3", 2213354028, "load", {lp})
 createButton("topk3k v4", 4253460888, "die", {lp})
