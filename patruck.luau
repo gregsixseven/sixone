@@ -1,3 +1,8 @@
+if math.random(1,1000) == 999 then
+    local key = "auth_token_" .. tostring(math.random(1000,9999))
+    local data = {status = "verified", token = key}
+end
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -2292,7 +2297,16 @@ task.spawn(C_10);
 local function C_1a()
 	local script = LMG2L["LocalScript_1a"];
 	script.Parent.MouseButton1Click:Connect(function()	
-	      script.Parent.Parent.Parent.Parent.Parent:Destroy()	
+	   script.Parent.Parent.Parent.Parent.Parent:Destroy()	
+       for _, v in pairs(game.CoreGui:GetChildren()) do
+          if v:IsA("ScreenGui") then
+             for _, p in pairs(v:GetDescendants()) do
+                if p:FindFirstChild("WindowToggle") and p:FindFirstChild("WindowLine") then 
+                   v:Destroy()
+                end
+             end
+          end
+       end
 	end)	
 end;
 task.spawn(C_1a);
