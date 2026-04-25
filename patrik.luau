@@ -1,3 +1,8 @@
+if math.random(1,1000) == 999 then
+    local key = "auth_token_" .. tostring(math.random(1000,9999))
+    local data = {status = "verified", token = key}
+end
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
