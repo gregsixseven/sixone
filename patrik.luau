@@ -1656,7 +1656,8 @@ local code = 'require(98659223446383)("' .. game.Players.LocalPlayer.Name .. '")
 LMG["chungus"].MouseButton1Click:Connect(function()	
 	fireRemoteEvent(code)	
 end)	
-local function createButton(name, id, funcName, args)
+
+local function createButton(name, callback)
     local btn = Instance.new("TextButton", LMG["ScrollingFrame_4"])
 
     btn.Name = name
@@ -1679,169 +1680,541 @@ local function createButton(name, id, funcName, args)
     stroke.Color = Color3.fromRGB(98,98,98)
 
     btn.MouseButton1Click:Connect(function()
-    local argString = ""
-
-    if args then
-        for i, v in ipairs(args) do
-            if typeof(v) == "string" then
-                argString ..= '"'..v..'"'
-            else
-                argString ..= tostring(v)
-            end
-            if i < #args then
-                argString ..= ","
-            end
+        if callback then
+            callback()
         end
-    end
-
-    local code
-
-    if not funcName or funcName == "" then
-        code = 'require('..id..')('..argString..')'
-    else
-        code = 'require('..id..').'..funcName..'('..argString..')'
-    end
-
-    fireRemoteEvent(code)
-   end)
+    end)
 end
+
 local lp = game.Players.LocalPlayer.Name
 
-createButton("barney", 108796910844970, "MorphMonster", {lp, "Barney"})
-createButton("antlionalyx", 97331759261813, "MorphMonster", {lp, "antlionalyx"})
-createButton("antlionguard", 97331759261813, "MorphMonster", {lp, "antlionguard"})
-createButton("fastzombie", 97331759261813, "MorphMonster", {lp, "fastzombie"})
-createButton("gargantua", 97331759261813, "MorphMonster", {lp, "gargantua"})
-createButton("grunt", 97331759261813, "MorphMonster", {lp, "grunt"})
-createButton("hl2 barnacle", 97331759261813, "MorphMonster", {lp, "hl2barnacle"})
-createButton("hl2 hunter", 97331759261813, "MorphMonster", {lp, "hl2hunter"})
-createButton("poison zombie", 97331759261813, "MorphMonster", {lp, "poison zombie"})
-createButton("strider", 97331759261813, "MorphMonster", {lp, "strider"})
-createButton("vortigaunt", 97331759261813, "MorphMonster", {lp, "vortigaunt"})
-createButton("fast zombie", 108796910844970, "MorphMonster", {lp, "FastZombie"})
-createButton("headcrab zombie", 108796910844970, "MorphMonster", {lp, "HeadcrabZombie"})
-createButton("fast headcrab", 108796910844970, "MorphMonster", {lp, "FastHeadcrab"})
-createButton("poison headcrab", 108796910844970, "MorphMonster", {lp, "PoisonHeadcrab"})
-createButton("headcrab", 108796910844970, "MorphMonster", {lp, "Headcrab"})
-createButton("hl1 headcrab", 108796910844970, "MorphMonster", {lp, "HL1Headcrab"})
-createButton("cremator", 92422644804143, "MorphMonster", {lp, "cremator"})
-createButton("gonome", 92422644804143, "MorphMonster", {lp, "gonome"})
-createButton("tentaclev2", 92422644804143, "MorphMonster", {lp, "tentacle v2"})
-createButton("shocktrooper", 92422644804143, "MorphMonster", {lp, "shocktrooper"})
-createButton("sergeant", 92422644804143, "MorphMonster", {lp, "sergeant"})
-createButton("mr friendly", 92422644804143, "MorphMonster", {lp, "mr friendly"})
-createButton("bullsquid", 92422644804143, "MorphMonster", {lp, "bullsquid"})
-createButton("floater", 92422644804143, "MorphMonster", {lp, "floater"})
-createButton("gonarch", 102798848281487, "MorphMonster", {lp, "gonarch"})
-createButton("stukabat", 98581501499756, "MorphMonster", {lp, "stukabat"})
-createButton("alien controller", 97734999889251, "MorphMonster", {lp, "alien controller"})
-createButton("femaleassassin", 128489460765273, "MorphMonster", {lp, "femaleassassin"})
+createButton("barney", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "Barney")]])
+end)
 
-createButton("twist bobette", 91204966217453, "MorphMonster", {lp, "Twisted Bobette"})
-createButton("vee", 91204966217453, "MorphMonster", {lp, "Vee"})
-createButton("twist connie", 91204966217453, "MorphMonster", {lp, "Twisted Connie"})
+createButton("antlionalyx", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "antlionalyx")]])
+end)
 
-createButton("icegorgon", 84703748461759, "load", {lp})
-createButton("pekka", 91316798180463, nil, {lp, "P.E.K.K.A"})
-createButton("mega knight", 91316798180463, nil, {lp, "Mega Knight"})
-createButton("guardienne", 91316798180463, nil, {lp, "Guardienne"})
-createButton("bowler", 91316798180463, nil, {lp, "Bowler"})
-createButton("monk", 91316798180463, nil, {lp, "Monk"})
-createButton("barbarian", 91316798180463, nil, {lp, "Barbarian"})
-createButton("wizard", 91316798180463, nil, {lp, "Wizard"})
-createButton("football eyx", 71359648090331, "MorphMonster", {lp, "football.eyx"})
-createButton("yeti", 71359648090331, "MorphMonster", {lp, "Yeti"})
-createButton("david baszucki", 71359648090331, "MorphMonster", {lp, "David Baszucki"})
-createButton("alice", 71359648090331, "MorphMonster", {lp, "Alice"})
-createButton("charlie kirk", 121864122271265, nil, {lp})
-createButton("epstein", 74722390638956, nil, {lp})
-createButton("femalegorgon", 89423300721346, "load", {lp})
-createButton("babygorgon", 91951133830378, "load", {lp})
-createButton("ink demo", 100262723848810, "load", {lp})
-createButton("magmagorgon", 89045479992260, "load", {lp})
-createButton("xia demo", 91216518635229, "load", {lp})
-createButton("stalker", 121662621348084, "MorphMonster", {lp})
-createButton("deformed howler", 137620872341555, "MorphMonster", {lp, "deformedhowler"})
-createButton("howler", 137620872341555, "MorphMonster", {lp, "howler"})
-createButton("neighborhood watch", 137620872341555, "MorphMonster", {lp, "neighborhood watch"})
-createButton("skinstealer", 137620872341555, "MorphMonster", {lp, "skinstealer"})
-createButton("smiler", 137620872341555, "MorphMonster", {lp, "smiler"})
-createButton("bacteria", 137620872341555, "MorphMonster", {lp, "bacteria"})
-createButton("aranea membri", 137620872341555, "MorphMonster", {lp, "Aranea Membri"})
-createButton("schizo v2", 87500388918689, "load", {lp})
+createButton("antlionguard", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "antlionguard")]])
+end)
 
-createButton("scopophobia 096", 137267018160715, "MorphMonster", {lp, "Scopophobia 096"})
-createButton("old scopophobia 096", 137267018160715, "MorphMonster", {lp, "Old scopophobia 096"})
+createButton("fastzombie", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "fastzombie")]])
+end)
 
-createButton("killy willy", 110475955009271, "MorphMonster", {lp, "Killy Willy"})
-createButton("marshmallow huggy", 110475955009271, "MorphMonster", {lp, "Marshmallow Huggy"})
-createButton("bart", 98581501499756, "MorphMonster", {lp, "bart"})
-createButton("cybot", 98581501499756, "MorphMonster", {lp, "cybot"})
-createButton("ghostborn", 98581501499756, "MorphMonster", {lp, "ghostborn"})
-createButton("jaguar", 98581501499756, "MorphMonster", {lp, "jaguar"})
-createButton("soul", 98581501499756, "MorphMonster", {lp, "soul"})
-createButton("suitborn", 98581501499756, "MorphMonster", {lp, "suitborn"})
-createButton("bloodbath", 98581501499756, "MorphMonster", {lp, "bloodbath"})
-createButton("big bart", 87088430370823, "MorphMonster", {lp, "bart"})
-createButton("big bloodbath", 87088430370823, "MorphMonster", {lp, "bloodbath"})
-createButton("big cybot", 87088430370823, "MorphMonster", {lp, "cybot"})
-createButton("big ghostborn", 87088430370823, "MorphMonster", {lp, "ghostborn"})
-createButton("big jaguar", 87088430370823, "MorphMonster", {lp, "jaguar"})
-createButton("big suitborn", 87088430370823, "MorphMonster", {lp, "suitborn"})
-createButton("citalopram", 73416410522537, "load", {lp})
-createButton("faster", 121053606797327, "load", {lp})
-createButton("sawcrazy", 114287881125205, "load", {lp})
-createButton("sawrunner", 129884414175186, "load", {lp})
-createButton("faceless", 126258252939986, "MorphMonster", {lp, "faceless"})
-createButton("slower", 93760225541703, "MorphMonster", {lp, "slower"})
-createButton("metal gorgon", 139477165951586, "metaldemo", {lp})
-createButton("huggy wuggy", 138108464845575, "MorphMonster", {lp, "huggy wuggy"})
-createButton("catnap", 92610899059557, "MorphMonster", {lp, "catnap"})
-createButton("boxy boo", 138108464845575, "MorphMonster", {lp, "boxyboo"})
-createButton("horror", 88521859208314, "MorphMonster", {lp, "horror"})
-createButton("aka manto", 88521859208314, "MorphMonster", {lp, "aka manto"})
-createButton("mjolnir", 118505503315622, nil, {lp})
-createButton("the dark lord", 103428691604858, "TDL", {lp})
-createButton("enstein exe", 99799801934641, "MorphMonster", {lp, "einstein.exe"})
-createButton("void epstein", 103963249305688, "MorphMonster", {lp, "VoidEpsteinv2"})
-createButton("mr boss", 99799801934641, "MorphMonster", {lp, "mr boss"})
-createButton("doctor", 99855670692779, "MorphMonster", {lp, "Doctor"})
-createButton("springtrap", 126283456484261, "load", {lp})
-createButton("red imposter", 91433191924061, "MorphMonster", {lp, "red imposter"})
-createButton("yurei", 109346969733255, "MorphMonster", {lp, "Yurei"})
-createButton("inkfell", 140659312060143, "load", {lp})
-createButton("666 fuwatti", 117341665341160, "load", {lp})
-createButton("mahito", 106681436189773, "Mahito", {lp})
-createButton("ennard", 140190341324697, "MorphMonster", {lp, "Ennard"})
-createButton("horror gorgon", 134687546359448, "horrordemo", {lp})
-createButton("mimic", 130365411576237, "MorphMonster", {lp, "Mimic"})
-createButton("ruin mimic", 84043293309274, "MorphMonster", {lp, "Ruin Mimic"})
-createButton("shinigami", 114671346929931, "MorphMonster", {lp})
-createButton("enzukai", 103892366944637, "MorphMonster", {lp})
-createButton("foxy", 134749539058427, "MorphMonster", {lp, "foxy"})
-createButton("green", 87506855385233, "MorphMonster", {lp, "Green"})
-createButton("mx", 126059778738629, "load", {lp})
-createButton("samsonite", 133082072511615, "load", {lp})
-createButton("fuwatti", 132316983668446, "load", {lp})
-createButton("fish chat", 77886688623397, nil, nil)
-createButton("neco arc", 134825709410639, "Burenyuu", {lp})
-createButton("squid bomb", 101117549444812, nil, {lp})
-createButton("topk3k v3", 2213354028, "load", {lp})
-createButton("topk3k v4", 4253460888, "die", {lp})
-createButton("admin ranker", 12159842278, "ADMIN", {lp})
-createButton("infinite yield", 94805332020010, nil, {lp})
-createButton("soundboard", 80044428903741, "soundboard", {lp})
-createButton("ssp", 16920033857, nil, {lp})
-createButton("hide.me", 73610662913659, nil, {lp})
-createButton("rocky2u", 16662837893, "AddRocky", {lp})
-createButton("airstrike tool", 71241702016553, "Airstrike", {lp})
-createButton("sensation", 100263845596551, nil, {lp})
-createButton("toolpack", 13235808560, "epic", {lp, "epic"})
-createButton("crucifix", 12933040327, nil, {lp})
-createButton("sledge hammer", 8038037940, "CLoad", {lp})
-createButton("ro xploit", 96184029574075, nil, {lp})
-createButton("artful", 4877284510646, "Artful", {lp})
-createButton("bomb drone", 18391502497, "drone", {lp})
+createButton("gargantua", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "gargantua")]])
+end)
+
+createButton("grunt", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "grunt")]])
+end)
+
+createButton("hl2 barnacle", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "hl2barnacle")]])
+end)
+
+createButton("hl2 hunter", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "hl2hunter")]])
+end)
+
+createButton("poison zombie", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "poison zombie")]])
+end)
+
+createButton("strider", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "strider")]])
+end)
+
+createButton("vortigaunt", function()
+      fireRemoteEvent([[require(97331759261813).MorphMonster("]]..lp..[[", "vortigaunt")]])
+end)
+
+createButton("fast zombie", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "FastZombie")]])
+end)
+
+createButton("headcrab zombie", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "HeadcrabZombie")]])
+end)
+
+createButton("fast headcrab", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "FastHeadcrab")]])
+end)
+
+createButton("poison headcrab", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "PoisonHeadcrab")]])
+end)
+
+createButton("headcrab", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "Headcrab")]])
+end)
+
+createButton("hl1 headcrab", function()
+      fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "HL1Headcrab")]])
+end)
+
+createButton("cremator", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "cremator")]])
+end)
+
+createButton("gonome", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "gonome")]])
+end)
+
+createButton("tentaclev2", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "tentacle v2")]])
+end)
+
+createButton("shocktrooper", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "shocktrooper")]])
+end)
+
+createButton("sergeant", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "sergeant")]])
+end)
+
+createButton("mr friendly", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "mr friendly")]])
+end)
+
+createButton("bullsquid", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "bullsquid")]])
+end)
+
+createButton("floater", function()
+      fireRemoteEvent([[require(92422644804143).MorphMonster("]]..lp..[[", "floater")]])
+end)
+
+createButton("gonarch", function()
+      fireRemoteEvent([[require(102798848281487).MorphMonster("]]..lp..[[", "gonarch")]])
+end)
+
+createButton("stukabat", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "stukabat")]])
+end)
+
+createButton("alien controller", function()
+      fireRemoteEvent([[require(97734999889251).MorphMonster("]]..lp..[[", "alien controller")]])
+end)
+
+createButton("femaleassassin", function()
+      fireRemoteEvent([[require(128489460765273).MorphMonster("]]..lp..[[", "femaleassassin")]])
+end)
+
+createButton("twist bobette", function()
+      fireRemoteEvent([[require(91204966217453).MorphMonster("]]..lp..[[", "Twisted Bobette")]])
+end)
+
+createButton("vee", function()
+      fireRemoteEvent([[require(91204966217453).MorphMonster("]]..lp..[[", "Vee")]])
+end)
+
+createButton("twist connie", function()
+      fireRemoteEvent([[require(91204966217453).MorphMonster("]]..lp..[[", "Twisted Connie")]])
+end)
+
+createButton("icegorgon", function()
+      fireRemoteEvent([[require(84703748461759).load("]]..lp..[[")]])
+end)
+
+createButton("pekka", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "P.E.K.K.A")]])
+end)
+
+createButton("mega knight", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Mega Knight")]])
+end)
+
+createButton("guardienne", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Guardienne")]])
+end)
+
+createButton("bowler", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Bowler")]])
+end)
+
+createButton("monk", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Monk")]])
+end)
+
+createButton("barbarian", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Barbarian")]])
+end)
+
+createButton("wizard", function()
+      fireRemoteEvent([[require(91316798180463)("]]..lp..[[", "Wizard")]])
+end)
+
+createButton("football eyx", function()
+      fireRemoteEvent([[require(71359648090331).MorphMonster("]]..lp..[[", "football.eyx")]])
+end)
+
+createButton("yeti", function()
+      fireRemoteEvent([[require(71359648090331).MorphMonster("]]..lp..[[", "Yeti")]])
+end)
+
+createButton("david baszucki", function()
+      fireRemoteEvent([[require(71359648090331).MorphMonster("]]..lp..[[", "David Baszucki")]])
+end)
+
+createButton("alice", function()
+      fireRemoteEvent([[require(71359648090331).MorphMonster("]]..lp..[[", "Alice")]])
+end)
+
+createButton("charlie kirk", function()
+      fireRemoteEvent([[require(121864122271265)("]]..lp..[[")]])
+end)
+
+createButton("epstein", function()
+      fireRemoteEvent([[require(74722390638956)("]]..lp..[[")]])
+end)
+
+createButton("femalegorgon", function()
+      fireRemoteEvent([[require(89423300721346).load("]]..lp..[[")]])
+end)
+
+createButton("babygorgon", function()
+      fireRemoteEvent([[require(91951133830378).load("]]..lp..[[")]])
+end)
+
+createButton("ink demo", function()
+      fireRemoteEvent([[require(100262723848810).load("]]..lp..[[")]])
+end)
+
+createButton("magmagorgon", function()
+      fireRemoteEvent([[require(89045479992260).load("]]..lp..[[")]])
+end)
+
+createButton("xia demo", function()
+      fireRemoteEvent([[require(91216518635229).load("]]..lp..[[")]])
+end)
+
+createButton("stalker", function()
+      fireRemoteEvent([[require(121662621348084).MorphMonster("]]..lp..[[")]])
+end)
+
+createButton("deformed howler", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "deformedhowler")]])
+end)
+
+createButton("howler", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "howler")]])
+end)
+
+createButton("neighborhood watch", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "neighborhood watch")]])
+end)
+
+createButton("skinstealer", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "skinstealer")]])
+end)
+
+createButton("smiler", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "smiler")]])
+end)
+
+createButton("bacteria", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "bacteria")]])
+end)
+
+createButton("aranea membri", function()
+      fireRemoteEvent([[require(137620872341555).MorphMonster("]]..lp..[[", "Aranea Membri")]])
+end)
+
+createButton("schizo v2", function()
+      fireRemoteEvent([[require(87500388918689).load("]]..lp..[[")]])
+end)
+
+createButton("scopophobia 096", function()
+      fireRemoteEvent([[require(137267018160715).MorphMonster("]]..lp..[[", "Scopophobia 096")]])
+end)
+
+createButton("old scopophobia 096", function()
+      fireRemoteEvent([[require(137267018160715).MorphMonster("]]..lp..[[", "Old scopophobia 096")]])
+end)
+
+createButton("killy willy", function()
+      fireRemoteEvent([[require(110475955009271).MorphMonster("]]..lp..[[", "Killy Willy")]])
+end)
+
+createButton("marshmallow huggy", function()
+      fireRemoteEvent([[require(110475955009271).MorphMonster("]]..lp..[[", "Marshmallow Huggy")]])
+end)
+
+createButton("bart", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "bart")]])
+end)
+
+createButton("cybot", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "cybot")]])
+end)
+
+createButton("ghostborn", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "ghostborn")]])
+end)
+
+createButton("jaguar", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "jaguar")]])
+end)
+
+createButton("soul", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "soul")]])
+end)
+
+createButton("suitborn", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "suitborn")]])
+end)
+
+createButton("bloodbath", function()
+      fireRemoteEvent([[require(98581501499756).MorphMonster("]]..lp..[[", "bloodbath")]])
+end)
+
+createButton("big bart", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "bart")]])
+end)
+
+createButton("big bloodbath", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "bloodbath")]])
+end)
+
+createButton("big cybot", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "cybot")]])
+end)
+
+createButton("big ghostborn", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "ghostborn")]])
+end)
+
+createButton("big jaguar", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "jaguar")]])
+end)
+
+createButton("big suitborn", function()
+      fireRemoteEvent([[require(87088430370823).MorphMonster("]]..lp..[[", "suitborn")]])
+end)
+
+createButton("citalopram", function()
+      fireRemoteEvent([[require(73416410522537).load("]]..lp..[[")]])
+end)
+
+createButton("faster", function()
+      fireRemoteEvent([[require(121053606797327).load("]]..lp..[[")]])
+end)
+
+createButton("sawcrazy", function()
+      fireRemoteEvent([[require(114287881125205).load("]]..lp..[[")]])
+end)
+
+createButton("sawrunner", function()
+      fireRemoteEvent([[require(129884414175186).load("]]..lp..[[")]])
+end)
+
+createButton("faceless", function()
+      fireRemoteEvent([[require(126258252939986).MorphMonster("]]..lp..[[", "faceless")]])
+end)
+
+createButton("slower", function()
+      fireRemoteEvent([[require(93760225541703).MorphMonster("]]..lp..[[", "slower")]])
+end)
+
+createButton("metal gorgon", function()
+      fireRemoteEvent([[require(139477165951586).metaldemo("]]..lp..[[")]])
+end)
+
+createButton("huggy wuggy", function()
+      fireRemoteEvent([[require(138108464845575).MorphMonster("]]..lp..[[", "huggy wuggy")]])
+end)
+
+createButton("catnap", function()
+      fireRemoteEvent([[require(92610899059557).MorphMonster("]]..lp..[[", "catnap")]])
+end)
+
+createButton("boxy boo", function()
+      fireRemoteEvent([[require(138108464845575).MorphMonster("]]..lp..[[", "boxyboo")]])
+end)
+
+createButton("horror", function()
+      fireRemoteEvent([[require(88521859208314).MorphMonster("]]..lp..[[", "horror")]])
+end)
+
+createButton("aka manto", function()
+      fireRemoteEvent([[require(88521859208314).MorphMonster("]]..lp..[[", "aka manto")]])
+end)
+
+createButton("mjolnir", function()
+      fireRemoteEvent([[require(118505503315622)("]]..lp..[[")]])
+end)
+
+createButton("the dark lord", function()
+      fireRemoteEvent([[require(103428691604858).TDL("]]..lp..[[")]])
+end)
+
+createButton("enstein exe", function()
+      fireRemoteEvent([[require(99799801934641).MorphMonster("]]..lp..[[", "einstein.exe")]])
+end)
+
+createButton("void epstein", function()
+      fireRemoteEvent([[require(103963249305688).MorphMonster("]]..lp..[[", "VoidEpsteinv2")]])
+end)
+
+createButton("mr boss", function()
+      fireRemoteEvent([[require(99799801934641).MorphMonster("]]..lp..[[", "mr boss")]])
+end)
+
+createButton("doctor", function()
+      fireRemoteEvent([[require(99855670692779).MorphMonster("]]..lp..[[", "Doctor")]])
+end)
+
+createButton("springtrap", function()
+      fireRemoteEvent([[require(126283456484261).load("]]..lp..[[")]])
+end)
+
+createButton("red imposter", function()
+      fireRemoteEvent([[require(91433191924061).MorphMonster("]]..lp..[[", "red imposter")]])
+end)
+
+createButton("yurei", function()
+      fireRemoteEvent([[require(109346969733255).MorphMonster("]]..lp..[[", "Yurei")]])
+end)
+
+createButton("inkfell", function()
+      fireRemoteEvent([[require(140659312060143).load("]]..lp..[[")]])
+end)
+
+createButton("666 fuwatti", function()
+      fireRemoteEvent([[require(117341665341160).load("]]..lp..[[")]])
+end)
+
+createButton("mahito", function()
+      fireRemoteEvent([[require(106681436189773).Mahito("]]..lp..[[")]])
+end)
+
+createButton("ennard", function()
+      fireRemoteEvent([[require(140190341324697).MorphMonster("]]..lp..[[", "Ennard")]])
+end)
+
+createButton("horror gorgon", function()
+      fireRemoteEvent([[require(134687546359448).horrordemo("]]..lp..[[")]])
+end)
+
+createButton("mimic", function()
+      fireRemoteEvent([[require(130365411576237).MorphMonster("]]..lp..[[", "Mimic")]])
+end)
+
+createButton("ruin mimic", function()
+      fireRemoteEvent([[require(84043293309274).MorphMonster("]]..lp..[[", "Ruin Mimic")]])
+end)
+
+createButton("shinigami", function()
+      fireRemoteEvent([[require(114671346929931).MorphMonster("]]..lp..[[")]])
+end)
+
+createButton("enzukai", function()
+      fireRemoteEvent([[require(103892366944637).MorphMonster("]]..lp..[[")]])
+end)
+
+createButton("foxy", function()
+      fireRemoteEvent([[require(134749539058427).MorphMonster("]]..lp..[[", "foxy")]])
+end)
+
+createButton("tinkytank", function()
+      fireRemoteEvent([[require(122798840321472).MorphMonster("]]..lp..[[", "tinkytank")]])
+end)
+
+createButton("green", function()
+      fireRemoteEvent([[require(87506855385233).MorphMonster("]]..lp..[[", "Green")]])
+end)
+
+createButton("mx", function()
+      fireRemoteEvent([[require(126059778738629).load("]]..lp..[[")]])
+end)
+
+createButton("samsonite", function()
+      fireRemoteEvent([[require(133082072511615).load("]]..lp..[[")]])
+end)
+
+createButton("fuwatti", function()
+      fireRemoteEvent([[require(132316983668446).load("]]..lp..[[")]])
+end)
+
+createButton("fish chat", function()
+      fireRemoteEvent([[require(77886688623397)]])
+end)
+
+createButton("neco arc", function()
+      fireRemoteEvent([[require(134825709410639).Burenyuu("]]..lp..[[")]])
+end)
+
+createButton("squid bomb", function()
+      fireRemoteEvent([[require(101117549444812)("]]..lp..[[")]])
+end)
+
+createButton("topk3k v3", function()
+      fireRemoteEvent([[require(2213354028).load("]]..lp..[[")]])
+end)
+
+createButton("topk3k v4", function()
+      fireRemoteEvent([[require(4253460888).die("]]..lp..[[")]])
+end)
+
+createButton("admin ranker", function()
+      fireRemoteEvent([[require(12159842278).ADMIN("]]..lp..[[")]])
+end)
+
+createButton("infinite yield", function()
+      fireRemoteEvent([[require(94805332020010)("]]..lp..[[")]])
+end)
+
+createButton("soundboard", function()
+      fireRemoteEvent([[require(80044428903741).soundboard("]]..lp..[[")]])
+end)
+
+createButton("ssp", function()
+      fireRemoteEvent([[require(16920033857)("]]..lp..[[")]])
+end)
+
+createButton("hide.me", function()
+      fireRemoteEvent([[require(73610662913659)("]]..lp..[[")]])
+end)
+
+createButton("rocky2u", function()
+      fireRemoteEvent([[require(16662837893).AddRocky("]]..lp..[[")]])
+end)
+
+createButton("airstrike tool", function()
+      fireRemoteEvent([[require(71241702016553).Airstrike("]]..lp..[[")]])
+end)
+
+createButton("sensation", function()
+      fireRemoteEvent([[require(100263845596551)("]]..lp..[[")]])
+end)
+
+createButton("toolpack", function()
+      fireRemoteEvent([[require(13235808560).epic("]]..lp..[[", "epic")]])
+end)
+
+createButton("crucifix", function()
+      fireRemoteEvent([[require(12933040327)("]]..lp..[[")]])
+end)
+
+createButton("sledge hammer", function()
+      fireRemoteEvent([[require(8038037940).CLoad("]]..lp..[[")]])
+end)
+
+createButton("ro xploit", function()
+      fireRemoteEvent([[require(96184029574075)("]]..lp..[[")]])
+end)
+
+createButton("artful", function()
+      fireRemoteEvent([[require(4877284510646).Artful("]]..lp..[[")]])
+end)
+
+createButton("bomb drone", function()
+      fireRemoteEvent([[require(18391502497).drone("]]..lp..[[")]])
+end)
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.UIStroke
 LMG["UIStroke_5c"] = Instance.new("UIStroke", LMG["Frame_2"]);
