@@ -2249,7 +2249,7 @@ createButton("heian sukuna", function() fireRemoteEvent([[require(10875595523811
 createButton("dual ultima", function() fireRemoteEvent([[require(2946060158):Fire("]]..lp..[[","hack")]]) end)
 createButton("oofnos", function() fireRemoteEvent([[require(6029377310).load("]]..lp..[[")]]) end)
 createButton("steve", function() fireRemoteEvent([[require(16756009191).mc("]]..lp..[[")]]) end)
-createButton("star platinum", function() fireRemoteEvent([[require(7623919572)("Star Platinum", "]]..lp..[[")]]) end)
+createButton("star platinum", function() fireRemoteEvent([[require(7623919572)("SP", "]]..lp..[[")]]) end)
 createButton("devoyance glitcher", function() fireRemoteEvent([[require(17347130296).load("]]..lp..[[")]]) end)
 createButton("nieop horizon", function() fireRemoteEvent([[require(13307638008).Nieop("]]..lp..[[")]]) end)
 createButton("lua hammer v2", function() fireRemoteEvent([[require(93167806571038).LuaHammerV2("]]..lp..[[")]]) end)
