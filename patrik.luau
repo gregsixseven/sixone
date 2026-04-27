@@ -875,6 +875,7 @@ local LMG = {};
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame
 LMG["Frame_2"] = Instance.new("Frame", LMG2L["Main_2"]);
+LMG["Frame_2"]["Name"] = "ScriptFrame";
 LMG["Frame_2"]["BorderSizePixel"] = 0;
 LMG["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(27, 28, 33);
 LMG["Frame_2"]["Size"] = UDim2.new(0, 346, 0, 224);
@@ -2746,6 +2747,21 @@ toggle.MouseButton1Click:Connect(function()
         task.delay(0.4, function()
             isAnimating = false
         end)
+        local path = LMG["Frame_2"]
+		if path.Frame.BackgroundTransparency ~= 0 and path.ScrollingFrame.BackgroundTransparency ~= 0 then
+				for _, obj in path:GetDescendants() do
+				   if obj:IsA("Frame") or obj:IsA("ScrollingFrame") then
+				      obj.BackgroundTransparency = 0
+				   elseif obj:IsA("TextButton") then
+				      obj.Transparency = 0
+				      obj.TextTransparency = 0
+				   elseif obj:IsA("UIStroke") then
+				      obj.Transparency = 0.5
+				   elseif obj:IsA("TextLabel") then
+				      obj.TextTransparency = 0
+				   end
+				end
+		end
     else
         setFade(false, 0.25)
         toggle:TweenSize(UDim2.new(0, 38, 0, 38), "Out", "Bounce", 0.4, true)
