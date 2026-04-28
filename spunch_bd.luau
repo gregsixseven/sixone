@@ -1151,8 +1151,10 @@ saveTransparencies(mainFrame)
 local function setFade(targetVisible, duration)
     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     
-    -- Check if the editor is manually hidden by the user right now
-    local editorManuallyHidden = (MyHighlightLabel.TextTransparency == 1)
+    -- Check the Eye Icon's current position to see if it's "Hidden"
+    -- 564 is the X offset you used for the "Hidden" eye
+    local icon = LMG2L["ImageLabelbla"]
+    local isEyeClosed = (icon.ImageRectOffset.X == 564)
 
     for obj, savedProps in pairs(originalTransparencies) do
         if obj and obj.Parent then
@@ -1160,16 +1162,16 @@ local function setFade(targetVisible, duration)
             
             for propName, originalValue in pairs(savedProps) do
                 if targetVisible then
-                    -- UI IS SHOWING:
-                    -- If this object is the HighlightLabel or Editor, and the user
-                    -- manually hid them, keep them at 1. Otherwise, use original.
-                    if (obj == MyHighlightLabel or obj == MyTextBox) and editorManuallyHidden then
+                    -- If we are fading the UI IN:
+                    if (obj == MyHighlightLabel or obj == MyTextBox) and isEyeClosed then
+                        -- Eye is closed: Keep editor at 1 (Invisible)
                         tweenProps[propName] = 1
                     else
+                        -- Eye is open: Return to original (0 or 0.99)
                         tweenProps[propName] = originalValue
                     end
                 else
-                    -- UI IS HIDING: Everything goes to 1
+                    -- If we are fading the UI OUT:
                     tweenProps[propName] = 1
                 end
             end
@@ -1179,6 +1181,7 @@ local function setFade(targetVisible, duration)
         end
     end
 end
+
 
 local opened = true
 local isAnimating = false
