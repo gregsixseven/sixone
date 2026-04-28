@@ -2452,11 +2452,13 @@ local function C_8()
 	      local editor = script.Parent.Parent.EditorScroll.Editor	
 	      if editor.TextTransparency == 0 then
              editor.TextTransparency = 1
+             MyHighlightLabel.TextTransparency = 1
              LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- show
              LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(564, 44);
              LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
           else
-             editor.TextTransparency = 0
+             editor.TextTransparency = 0.99
+             MyHighlightLabel.TextTransparency = 0
              LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- hide
              LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
              LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
