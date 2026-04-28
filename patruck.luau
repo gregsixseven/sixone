@@ -827,6 +827,169 @@ LMG2L["ImageLabel_25"]["BackgroundTransparency"] = 1;
 LMG2L["ImageLabel_25"]["ImageTransparency"] = 0.35;
 LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0, 105, 0, 23);
 
+local MyTextBox = LMG2L["Editor_15"]
+
+-- =========================================================================
+-- 2. AUTOMATIC LABEL CREATION
+-- =========================================================================
+local MyHighlightLabel = Instance.new("TextLabel")
+MyHighlightLabel.Name = "SyntaxHighlightOverlay"
+MyHighlightLabel.Parent = MyTextBox
+MyHighlightLabel.ZIndex = MyTextBox.ZIndex - 1 
+
+local CodeFontFace = Font.new(
+	"rbxasset://fonts/families/Inconsolata.json", 
+	Enum.FontWeight.Regular, 
+	Enum.FontStyle.Normal
+)
+
+MyHighlightLabel.FontFace = CodeFontFace
+MyHighlightLabel.Size = UDim2.new(1.1, -45, 0, 220)
+MyHighlightLabel.Position = UDim2.new(0, 0, 0, 0)
+MyHighlightLabel.AutomaticSize = Enum.AutomaticSize.Y 
+MyHighlightLabel.TextSize = MyTextBox.TextSize
+MyHighlightLabel.RichText = true
+MyHighlightLabel.TextXAlignment = MyTextBox.TextXAlignment
+MyHighlightLabel.TextYAlignment = MyTextBox.TextYAlignment
+MyHighlightLabel.BackgroundTransparency = 1
+MyHighlightLabel.TextColor3 = Color3.fromRGB(204, 204, 204)
+MyHighlightLabel.Text = ""
+
+MyTextBox.TextTransparency = 0.99 
+
+-- =========================================================================
+-- 3. KEYWORDS, BUILTINS, AND THEME
+-- =========================================================================
+local THEME = {
+	Text = "#cccccc",
+	Keyword = "#f86d7b",   -- Pinkish-Red
+	Builtin = "#84d6f7",   -- Sky Blue
+	Library = "#f1fa8c",   -- Light Yellow (For math.sin, table.insert, etc.)
+	String = "#aef195",    -- Light Green
+	Comment = "#6272a4",   -- Muted Blue-Grey
+	Number = "#ffc800",    -- Orange-Gold
+	Operator = "#ffffff"   -- White
+}
+
+local Keywords = {
+	["and"]=true,["break"]=true,["do"]=true,["else"]=true,["elseif"]=true,
+	["end"]=true,["false"]=true,["for"]=true,["function"]=true,["if"]=true,
+	["in"]=true,["local"]=true,["nil"]=true,["not"]=true,["or"]=true,
+	["repeat"]=true,["return"]=true,["then"]=true,["true"]=true,["until"]=true,
+	["while"]=true,["continue"]=true,["self"]=true,["export"]=true,["type"]=true,
+	["typeof"]=true
+}
+
+local Builtins = {
+	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
+	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
+	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
+	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,
+	["collectgarbage"]=true,["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,
+	["time"]=true,["elapsedTime"]=true,["task"]=true,["game"]=true,["workspace"]=true,
+	["script"]=true,["shared"]=true,["_G"]=true,["_VERSION"]=true,["Enum"]=true,
+	["Instance"]=true,["CFrame"]=true,["Vector3"]=true,["Vector2"]=true,["Vector2int16"]=true,
+	["Vector3int16"]=true,["Color3"]=true,["UDim2"]=true,["UDim"]=true,["Ray"]=true,
+	["Rect"]=true,["Region3"]=true,["Region3int16"]=true,["PhysicalProperties"]=true,
+	["Faces"]=true,["Axes"]=true,["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,
+	["NumberSequence"]=true,["ColorSequence"]=true,["DateTime"]=true,
+	["math"]=true,["table"]=true,["string"]=true,["debug"]=true,["os"]=true,
+	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true
+}
+
+local function Sanitize(str)
+	return str:gsub("&","&amp;"):gsub("<","&lt;"):gsub(">","&gt;"):gsub('"','&quot;'):gsub("'","&apos;")
+end
+
+local function Highlight(code)
+	local patterns = {
+		{p = "0x%x+", t = "Number"},
+		{p = "%-%-%[%=*%[.-%]%=*%]", t = "Comment"},
+		{p = "%-%-[^\n]*", t = "Comment"},
+		{p = "%[%=*%[.-%]%=*%]", t = "String"},
+		{p = "\"[^\"]*\"", t = "String"},
+		{p = "'[^']*'", t = "String"},
+		{p = "[%a_][%w_]*%.[%a_][%w_]*", t = "LibCall"}, -- Detects Library.Method (e.g. math.sin)
+		{p = "%d+%.?%d*", t = "Number"},
+		{p = "[%a_][%w_]*", t = "Iden"},
+		{p = "[%+%-%.%*%/%%%^%#%=%~%<%>%:%(%)%{%}%[%]%;%,]", t = "Operator"}
+	}
+	
+	local result = ""
+	local i = 1
+	while i <= #code do
+		local char = code:sub(i,i)
+		local found = false
+		if char:match("%s") then
+			result ..= char
+			i += 1
+			found = true
+		else
+			for _, p in ipairs(patterns) do
+				local s, e = code:find(p.p, i)
+				if s == i then
+					local word = code:sub(s, e)
+					local color = nil
+					
+					if p.t == "LibCall" then
+						-- Split word into 'math' and '.sin'
+						local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
+						if Builtins[lib] then
+							-- Highlight the library as a builtin, the dot as white, and the method as Library color
+							word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
+								THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
+							color = "ALREADY_FORMATTED"
+						else
+							-- If it's not a known library, treat it as a standard identifier for later
+							p.t = "Iden" 
+						end
+					end
+
+					if p.t == "Iden" then
+						if Keywords[word] then color = THEME.Keyword
+						elseif Builtins[word] then color = THEME.Builtin end
+					elseif p.t == "Comment" then color = THEME.Comment
+					elseif p.t == "String" then color = THEME.String
+					elseif p.t == "Number" then color = THEME.Number
+					elseif p.t == "Operator" then color = THEME.Operator
+					end
+					
+					if color == "ALREADY_FORMATTED" then
+						result ..= word
+					elseif color then
+						result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
+					else
+						result ..= Sanitize(word)
+					end
+					
+					i = e + 1
+					found = true
+					break
+				end
+			end
+		end
+		if not found then result ..= Sanitize(char); i += 1 end
+	end
+	return result
+end
+
+-- =========================================================================
+-- 4. SYNC LOGIC
+-- =========================================================================
+local function Sync()
+	local code = MyTextBox.Text
+	if code == "" then
+		MyTextBox.TextTransparency = 0
+		MyHighlightLabel.Text = ""
+	else
+		MyTextBox.TextTransparency = 0.99
+		MyHighlightLabel.Text = Highlight(code)
+	end
+end
+
+MyTextBox:GetPropertyChangedSignal("Text"):Connect(Sync)
+Sync()
+
 function EnableDrag(frame)
 	local dragging
 	local dragInput
