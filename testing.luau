@@ -853,8 +853,8 @@ local CodeFontFace = Font.new(
 MyHighlightLabel.FontFace = CodeFontFace
 
 -- Layout Specs
-MyHighlightLabel.Size = UDim2.new(1, -45, 0, 210)
-MyHighlightLabel.Position = MyTextBox.Position 
+MyHighlightLabel.Size = UDim2.new(1.1, -45, 0, 220)
+MyHighlightLabel.Position = UDim2.new(0, 0, 0, 0)
 MyHighlightLabel.AutomaticSize = Enum.AutomaticSize.Y 
 MyHighlightLabel.TextSize = MyTextBox.TextSize
 MyHighlightLabel.RichText = true
