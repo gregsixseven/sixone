@@ -1178,8 +1178,7 @@ local function setFade(targetVisible, duration)
             tween:Play()
         end
     end
-en
-d
+end
 
 local opened = true
 local isAnimating = false
