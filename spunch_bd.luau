@@ -1151,22 +1151,35 @@ saveTransparencies(mainFrame)
 local function setFade(targetVisible, duration)
     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     
+    -- Check if the editor is manually hidden by the user right now
+    local editorManuallyHidden = (MyHighlightLabel.TextTransparency == 1)
+
     for obj, savedProps in pairs(originalTransparencies) do
-        -- Ensure object still exists and has a parent
         if obj and obj.Parent then
             local tweenProps = {}
             
             for propName, originalValue in pairs(savedProps) do
-                -- If targetVisible is true, go to original; if false, go to 1
-                tweenProps[propName] = targetVisible and originalValue or 1
+                if targetVisible then
+                    -- UI IS SHOWING:
+                    -- If this object is the HighlightLabel or Editor, and the user
+                    -- manually hid them, keep them at 1. Otherwise, use original.
+                    if (obj == MyHighlightLabel or obj == MyTextBox) and editorManuallyHidden then
+                        tweenProps[propName] = 1
+                    else
+                        tweenProps[propName] = originalValue
+                    end
+                else
+                    -- UI IS HIDING: Everything goes to 1
+                    tweenProps[propName] = 1
+                end
             end
             
-            -- Create and play tween for each object
             local tween = TweenService:Create(obj, tweenInfo, tweenProps)
             tween:Play()
         end
     end
-end
+en
+d
 
 local opened = true
 local isAnimating = false
