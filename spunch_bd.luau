@@ -827,12 +827,12 @@ LMG2L["ImageLabel_25"]["BackgroundTransparency"] = 1;
 LMG2L["ImageLabel_25"]["ImageTransparency"] = 0.35;
 LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0.204, 0, 0.035, 0);
 
-local MyTextBox = LMG2L["Editor_15"]
+MyTextBox = LMG2L["Editor_15"]
 
 -- =========================================================================
 -- 2. AUTOMATIC LABEL CREATION
 -- =========================================================================
-local MyHighlightLabel = Instance.new("TextLabel")
+MyHighlightLabel = Instance.new("TextLabel")
 MyHighlightLabel.Name = "SyntaxHighlightOverlay"
 MyHighlightLabel.Parent = MyTextBox
 MyHighlightLabel.ZIndex = MyTextBox.ZIndex - 1 
