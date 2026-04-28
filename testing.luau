@@ -2894,3 +2894,124 @@ end)
         LMG2["ScanButton_c"]["Text"] = "Scan Backdoor"
     end
 end)
+
+-- =========================================================================
+-- 1. POINT THIS TO YOUR TEXTBOX
+-- =========================================================================
+local MyTextBox = LMG2L["Editor_15"]
+
+-- =========================================================================
+-- 2. AUTOMATIC LABEL CREATION WITH CUSTOM FONTFACE
+-- =========================================================================
+local MyHighlightLabel = Instance.new("TextLabel")
+MyHighlightLabel.Name = "SyntaxHighlightOverlay"
+MyHighlightLabel.Parent = MyTextBox.Parent
+MyHighlightLabel.ZIndex = MyTextBox.ZIndex - 1 
+
+-- Specifying the FontFace as requested
+local CodeFontFace = Font.new(
+	"rbxasset://fonts/families/Inconsolata.json", 
+	Enum.FontWeight.Regular, 
+	Enum.FontStyle.Normal
+)
+
+-- Apply to both to ensure perfect character alignment
+MyHighlightLabel.FontFace = CodeFontFace
+MyTextBox.FontFace = CodeFontFace
+
+-- Layout Specs
+MyHighlightLabel.Size = UDim2.new(1, -45, 0, 210)
+MyHighlightLabel.Position = MyTextBox.Position 
+MyHighlightLabel.AutomaticSize = Enum.AutomaticSize.Y 
+MyHighlightLabel.TextSize = MyTextBox.TextSize
+MyHighlightLabel.RichText = true
+MyHighlightLabel.TextXAlignment = MyTextBox.TextXAlignment
+MyHighlightLabel.TextYAlignment = MyTextBox.TextYAlignment
+MyHighlightLabel.BackgroundTransparency = 1
+MyHighlightLabel.TextColor3 = Color3.fromRGB(230, 230, 230)
+MyHighlightLabel.Text = ""
+
+-- Setup the Input Box
+MyTextBox.TextTransparency = 0.99 
+MyTextBox.ClearTextOnFocus = false
+
+-- =========================================================================
+-- 3. HIGHLIGHTER ENGINE
+-- =========================================================================
+local THEME = {
+	Text = Color3.fromRGB(230, 230, 230),
+	Keyword = "#f86d7b", 
+	Builtin = "#84d6f7", 
+	String = "#aef195",  
+	Comment = "#6272a4", 
+	Number = "#ffc800",  
+	Operator = "#ffffff"
+}
+
+local Keywords = {["and"]=true,["break"]=true,["do"]=true,["else"]=true,["elseif"]=true,["end"]=true,["false"]=true,["for"]=true,["function"]=true,["if"]=true,["in"]=true,["local"]=true,["nil"]=true,["not"]=true,["or"]=true,["repeat"]=true,["return"]=true,["then"]=true,["true"]=true,["until"]=true,["while"]=true,["continue"]=true,["self"]=true}
+local Builtins = {["print"]=true,["warn"]=true,["error"]=true,["game"]=true,["workspace"]=true,["require"]=true,["script"]=true,["task"]=true,["wait"]=true,["spawn"]=true,["delay"]=true,["Instance"]=true,["Vector3"]=true,["CFrame"]=true,["Color3"]=true,["UDim2"]=true,["typeof"]=true,["type"]=true}
+
+local function Sanitize(str)
+	return str:gsub("&","&amp;"):gsub("<","&lt;"):gsub(">","&gt;"):gsub('"','&quot;'):gsub("'","&apos;")
+end
+
+local function Highlight(code)
+	local patterns = {
+		{p = "0x%x+", t = "Number"},
+		{p = "%-%-%[%=*%[.-%]%=*%]", t = "Comment"},
+		{p = "%-%-[^\n]*", t = "Comment"},
+		{p = "%[%=*%[.-%]%=*%]", t = "String"},
+		{p = "\"[^\"]*\"", t = "String"},
+		{p = "'[^']*'", t = "String"},
+		{p = "%d+%.?%d*", t = "Number"},
+		{p = "[%a_][%w_]*", t = "Iden"},
+		{p = "[%+%-%.%*%/%%%^%#%=%~%<%>%:%(%)%{%}%[%]%;%,]", t = "Operator"}
+	}
+	local result = ""
+	local i = 1
+	while i <= #code do
+		local char = code:sub(i,i)
+		local found = false
+		if char:match("%s") then
+			result ..= char
+			i += 1
+			found = true
+		else
+			for _, p in ipairs(patterns) do
+				local s, e = code:find(p.p, i)
+				if s == i then
+					local word = code:sub(s, e)
+					local color = nil
+					if p.t == "Iden" then
+						if Keywords[word] then color = THEME.Keyword
+						elseif Builtins[word] then color = THEME.Builtin end
+					elseif p.t == "Comment" then color = THEME.Comment
+					elseif p.t == "String" then color = THEME.String
+					elseif p.t == "Number" then color = THEME.Number
+					elseif p.t == "Operator" then color = THEME.Operator
+					end
+					if color then
+						result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
+					else
+						result ..= Sanitize(word)
+					end
+					i = e + 1
+					found = true
+					break
+				end
+			end
+		end
+		if not found then result ..= Sanitize(char); i += 1 end
+	end
+	return result
+end
+
+-- =========================================================================
+-- 4. SYNC LOGIC
+-- =========================================================================
+local function Sync()
+	MyHighlightLabel.Text = Highlight(MyTextBox.Text)
+end
+
+MyTextBox:GetPropertyChangedSignal("Text"):Connect(Sync)
+Sync() 
