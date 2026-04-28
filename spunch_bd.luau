@@ -1199,16 +1199,16 @@ local function C_8()
 	local script = LMG2L["LocalScript_8"];
 	script.Parent.MouseButton1Click:Connect(function()	
 	      local editor = script.Parent.Parent.EditorScroll.Editor	
-	      if editor.TextTransparency == 0.99 then
+	      if MyHighlightLabel.TextTransparency == 0 then
              MyHighlightLabel.TextTransparency = 1
              editor.TextTransparency = 1
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- show
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- hide
              LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(564, 44);
              LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
           else
              editor.TextTransparency = 0.99
              MyHighlightLabel.TextTransparency = 0
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- hide
+             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- show
              LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
              LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
           end
