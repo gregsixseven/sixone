@@ -939,13 +939,26 @@ local function Highlight(code)
 end
 
 -- =========================================================================
--- 4. SYNC LOGIC
+-- 4. SYNC LOGIC (Modified for Placeholder Support)
 -- =========================================================================
 local function Sync()
-	MyHighlightLabel.Text = Highlight(MyTextBox.Text)
+	local code = MyTextBox.Text
+	
+	if code == "" then
+		-- No text: Show the real TextBox (so PlaceholderText is visible)
+		MyTextBox.TextTransparency = 0
+		MyHighlightLabel.Text = ""
+	else
+		-- Has text: Hide real text and show the Highlighted version
+		MyTextBox.TextTransparency = 0.99
+		MyHighlightLabel.Text = Highlight(code)
+	end
 end
 
+-- Re-run sync whenever text changes
 MyTextBox:GetPropertyChangedSignal("Text"):Connect(Sync)
+
+-- Run once at start to check initial state
 Sync() 
 function EnableDrag(frame)
 	local dragging
