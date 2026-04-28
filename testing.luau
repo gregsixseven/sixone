@@ -861,7 +861,7 @@ MyHighlightLabel.RichText = true
 MyHighlightLabel.TextXAlignment = MyTextBox.TextXAlignment
 MyHighlightLabel.TextYAlignment = MyTextBox.TextYAlignment
 MyHighlightLabel.BackgroundTransparency = 1
-MyHighlightLabel.TextColor3 = Color3.fromRGB(230, 230, 230)
+MyHighlightLabel.TextColor3 = Color3.fromRGB(204, 204, 204)
 MyHighlightLabel.Text = ""
 
 -- Setup the Input Box
