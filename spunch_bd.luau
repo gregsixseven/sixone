@@ -992,6 +992,7 @@ while i <= #code do
 end -- end of while loop
 
 return result
+end
 
 -- =========================================================================
 -- 4. SYNC LOGIC
