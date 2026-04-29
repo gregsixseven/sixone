@@ -880,8 +880,7 @@ local Keywords = {
 	["typeof"]=true
 }
 
-local Builtins = {
-	-- Original Core Globals
+local Globals = {
 	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
 	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
 	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
@@ -894,27 +893,18 @@ local Builtins = {
 	["Rect"]=true,["Region3"]=true,["Region3int16"]=true,["PhysicalProperties"]=true,
 	["Faces"]=true,["Axes"]=true,["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,
 	["NumberSequence"]=true,["ColorSequence"]=true,["DateTime"]=true,
-
-	-- Missing Core Functions & Globals
 	["newproxy"]=true,["getmetatable"]=true,["setmetatable"]=true,["gcinfo"]=true,
-	["rawlen"]=true,["plugin"]=true,["shared"]=true,
-
-	-- Modern Luau Data Types
-	["OverlapParams"]=true,["RaycastParams"]=true,["RaycastResult"]=true,
-	["TweenService"]=true,["Path2DControlPoint"]=true,["FloatCurveKey"]=true,
-	["RotationCurveKey"]=true,["Font"]=true,["CatalogSearchParams"]=true,
-	["DockWidgetPluginGuiInfo"]=true,
-
-	-- Common Service Providers (Globals in many environments)
-	["Players"]=true,["RunService"]=true,["UserInputService"]=true,["HttpService"]=true,
-	["ReplicatedStorage"]=true,["ServerStorage"]=true,["StarterGui"]=true,
-	["StarterPack"]=true,["Lighting"]=true,["SoundService"]=true,
-	["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
+	["rawlen"]=true,["plugin"]=true,["Players"]=true,["RunService"]=true,
+	["UserInputService"]=true,["HttpService"]=true,["ReplicatedStorage"]=true,
+	["ServerStorage"]=true,["StarterGui"]=true,["StarterPack"]=true,["Lighting"]=true,
+	["SoundService"]=true,["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
 	["MarketplaceService"]=true,["MessagingService"]=true,["DataStoreService"]=true,
+	["TweenService"]=true,
+}
 
-	-- Standard Libraries
+local Libraries = {
 	["math"]=true,["table"]=true,["string"]=true,["debug"]=true,["os"]=true,
-	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true
+	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true,["task"]=true
 }
 
 local function Sanitize(str)
@@ -949,43 +939,37 @@ local function Highlight(code)
 				local s, e = code:find(p.p, i)
 				if s == i then
 					local word = code:sub(s, e)
-					local color = nil
-					
-					if p.t == "LibCall" then
-						-- Split word into 'math' and '.sin'
-						local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
-						if Builtins[lib] then
-							-- Highlight the library as a builtin, the dot as white, and the method as Library color
-							word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
-								THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
-							color = "ALREADY_FORMATTED"
-						else
-							-- If it's not a known library, treat it as a standard identifier for later
-							p.t = "Iden" 
-						end
-					end
+local color = nil
 
-					if p.t == "Iden" then
-						if Keywords[word] then color = THEME.Keyword
-						elseif Builtins[word] then color = THEME.Builtin end
-					elseif p.t == "Comment" then color = THEME.Comment
-					elseif p.t == "String" then color = THEME.String
-					elseif p.t == "Number" then color = THEME.Number
-					elseif p.t == "Operator" then color = THEME.Operator
-					end
-					
-					if color == "ALREADY_FORMATTED" then
-						result ..= word
-					elseif color then
-						result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
-					else
-						result ..= Sanitize(word)
-					end
-					
-					i = e + 1
-					found = true
-					break
-				end
+if p.t == "LibCall" then
+    local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
+    -- ONLY format as a library call if the prefix is in our Libraries table
+    if Libraries[lib] then
+        word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
+            THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
+        color = "ALREADY_FORMATTED"
+    else
+        -- If it's not a library (e.g., MyObject.Part), treat it as normal text
+        p.t = "Iden" 
+        -- We only want to highlight the first part if it's a global/keyword
+        local firstPart = word:match("^([%a_][%w_]*)")
+        word = firstPart
+        e = s + #firstPart - 1
+    end
+end
+
+if p.t == "Iden" then
+    if Keywords[word] then 
+        color = THEME.Keyword
+    elseif Globals[word] or Libraries[word] then 
+        -- Highlight as Builtin if it's a standalone global or library name
+        color = THEME.Builtin 
+    end
+elseif p.t == "Comment" then color = THEME.Comment
+elseif p.t == "String" then color = THEME.String
+elseif p.t == "Number" then color = THEME.Number
+elseif p.t == "Operator" then color = THEME.Operator
+end
 			end
 		end
 		if not found then result ..= Sanitize(char); i += 1 end
