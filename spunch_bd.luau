@@ -977,16 +977,29 @@ end
 -- 4. SYNC LOGIC
 -- =========================================================================
 local function Sync()
+	if not MyTextBox or not MyHighlightLabel then return end
+	
+	-- If the eye is currently hidden (check icon offset), keep everything invisible
+	local isEyeClosed = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 564)
+	if isEyeClosed then
+		MyTextBox.TextTransparency = 1
+		MyHighlightLabel.TextTransparency = 1
+		return
+	end
+
 	local code = MyTextBox.Text
 	if code == "" then
+		-- AUTOMATIC PLACEHOLDER: Show real textbox, hide highlighter
 		MyTextBox.TextTransparency = 0
 		MyHighlightLabel.Text = ""
+		MyHighlightLabel.TextTransparency = 1
 	else
+		-- AUTOMATIC HIGHLIGHTER: Hide real text (0.99), show highlighter
 		MyTextBox.TextTransparency = 0.99
 		MyHighlightLabel.Text = Highlight(code)
+		MyHighlightLabel.TextTransparency = 0
 	end
 end
-
 MyTextBox:GetPropertyChangedSignal("Text"):Connect(Sync)
 Sync()
 
@@ -1214,20 +1227,19 @@ end)
 local function C_8()
 	local script = LMG2L["LocalScript_8"];
 	script.Parent.MouseButton1Click:Connect(function()	
-	      local editor = script.Parent.Parent.EditorScroll.Editor	
-	      if MyHighlightLabel.TextTransparency == 0 then
-             MyHighlightLabel.TextTransparency = 1
-             editor.TextTransparency = 1
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- hide
-             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(564, 44);
-             LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
-          else
-             editor.TextTransparency = 0.99
-             MyHighlightLabel.TextTransparency = 0
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- show
-             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
-             LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
-          end
+		local isVisible = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 84)
+		
+		if isVisible then
+			-- HIDE EVERYTHING
+			MyHighlightLabel.TextTransparency = 1
+			MyTextBox.TextTransparency = 1
+			LMG2L["ImageLabelbla"].ImageRectOffset = Vector2.new(564, 44)
+		else
+			-- SHOW EVERYTHING
+			LMG2L["ImageLabelbla"].ImageRectOffset = Vector2.new(84, 44)
+			-- Let Sync decide if it should show placeholder or highlighter!
+			Sync() 
+		end
 	end)	
 end;
 task.spawn(C_8);
