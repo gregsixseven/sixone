@@ -884,7 +884,7 @@ local Builtins = {
 	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
 	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
 	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
-	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,
+	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,["require"]=true,
 	["collectgarbage"]=true,["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,
 	["time"]=true,["elapsedTime"]=true,["task"]=true,["game"]=true,["workspace"]=true,
 	["script"]=true,["shared"]=true,["_G"]=true,["_VERSION"]=true,["Enum"]=true,
@@ -1151,10 +1151,8 @@ saveTransparencies(mainFrame)
 local function setFade(targetVisible, duration)
     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     
-    -- Check the Eye Icon's current position to see if it's "Hidden"
-    -- 564 is the X offset you used for the "Hidden" eye
-    local icon = LMG2L["ImageLabelbla"]
-    local isEyeClosed = (icon.ImageRectOffset.X == 564)
+    -- Check if the eye is closed using the icon offset
+    local isEyeClosed = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 564)
 
     for obj, savedProps in pairs(originalTransparencies) do
         if obj and obj.Parent then
@@ -1162,16 +1160,14 @@ local function setFade(targetVisible, duration)
             
             for propName, originalValue in pairs(savedProps) do
                 if targetVisible then
-                    -- If we are fading the UI IN:
+                    -- FADING IN
                     if (obj == MyHighlightLabel or obj == MyTextBox) and isEyeClosed then
-                        -- Eye is closed: Keep editor at 1 (Invisible)
                         tweenProps[propName] = 1
                     else
-                        -- Eye is open: Return to original (0 or 0.99)
                         tweenProps[propName] = originalValue
                     end
                 else
-                    -- If we are fading the UI OUT:
+                    -- FADING OUT
                     tweenProps[propName] = 1
                 end
             end
@@ -1180,8 +1176,13 @@ local function setFade(targetVisible, duration)
             tween:Play()
         end
     end
-end
 
+    -- NEW: If we are showing the UI and the eye is NOT closed, 
+    -- run Sync to fix placeholder vs code transparency.
+    if targetVisible and not isEyeClosed then
+        task.delay(duration, Sync) 
+    end
+end
 
 local opened = true
 local isAnimating = false
