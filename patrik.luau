@@ -2912,23 +2912,38 @@ saveTransparencies(mainFrame)
 local function setFade(targetVisible, duration)
     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     
+    -- Check if the eye is closed using the icon offset
+    local isEyeClosed = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 564)
+
     for obj, savedProps in pairs(originalTransparencies) do
-        -- Ensure object still exists and has a parent
         if obj and obj.Parent then
             local tweenProps = {}
             
             for propName, originalValue in pairs(savedProps) do
-                -- If targetVisible is true, go to original; if false, go to 1
-                tweenProps[propName] = targetVisible and originalValue or 1
+                if targetVisible then
+                    -- FADING IN
+                    if (obj == MyHighlightLabel or obj == MyTextBox) and isEyeClosed then
+                        tweenProps[propName] = 1
+                    else
+                        tweenProps[propName] = originalValue
+                    end
+                else
+                    -- FADING OUT
+                    tweenProps[propName] = 1
+                end
             end
             
-            -- Create and play tween for each object
             local tween = TweenService:Create(obj, tweenInfo, tweenProps)
             tween:Play()
         end
     end
-end
 
+    -- NEW: If we are showing the UI and the eye is NOT closed, 
+    -- run Sync to fix placeholder vs code transparency.
+    if targetVisible and not isEyeClosed then
+        task.delay(duration, Sync) 
+    end
+end
 local opened = true
 local isAnimating = false
 
@@ -2974,20 +2989,19 @@ end)
 local function C_8()
 	local script = LMG2L["LocalScript_8"];
 	script.Parent.MouseButton1Click:Connect(function()	
-	      local editor = script.Parent.Parent.EditorScroll.Editor	
-	      if editor.TextTransparency == 0.99 then
-             MyHighlightLabel.TextTransparency = 1
-             editor.TextTransparency = 1
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971";-- show
-             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(564, 44);
-             LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
-          else
-             editor.TextTransparency = 0.99
-             MyHighlightLabel.TextTransparency = 0
-             LMG2L["ImageLabelbla"]["Image"] = "rbxassetid://3926307971"; -- hide
-             LMG2L["ImageLabelbla"]["ImageRectOffset"] = Vector2.new(84, 44);
-             LMG2L["ImageLabelbla"]["ImageRectSize"] = Vector2.new(36, 36);
-          end
+		local isVisible = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 84)
+		
+		if isVisible then
+			-- HIDE EVERYTHING
+			MyHighlightLabel.TextTransparency = 1
+			MyTextBox.TextTransparency = 1
+			LMG2L["ImageLabelbla"].ImageRectOffset = Vector2.new(564, 44)
+		else
+			-- SHOW EVERYTHING
+			LMG2L["ImageLabelbla"].ImageRectOffset = Vector2.new(84, 44)
+			-- Let Sync decide if it should show placeholder or highlighter!
+			Sync() 
+		end
 	end)	
 end;
 task.spawn(C_8);
