@@ -828,12 +828,12 @@ LMG2L["ImageLabel_25"]["BackgroundTransparency"] = 1;
 LMG2L["ImageLabel_25"]["ImageTransparency"] = 0.35;
 LMG2L["ImageLabel_25"]["Position"] = UDim2.new(0, 124, 0, 51);
 
-local MyTextBox = LMG2L["Editor_15"]
+MyTextBox = LMG2L["Editor_15"]
 
 -- =========================================================================
 -- 2. AUTOMATIC LABEL CREATION
 -- =========================================================================
-local MyHighlightLabel = Instance.new("TextLabel")
+MyHighlightLabel = Instance.new("TextLabel")
 MyHighlightLabel.Name = "SyntaxHighlightOverlay"
 MyHighlightLabel.Parent = MyTextBox
 MyHighlightLabel.ZIndex = MyTextBox.ZIndex - 1 
@@ -881,11 +881,11 @@ local Keywords = {
 	["typeof"]=true
 }
 
-local Builtins = {
+local Globals = {
 	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
 	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
 	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
-	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,
+	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,["require"]=true,
 	["collectgarbage"]=true,["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,
 	["time"]=true,["elapsedTime"]=true,["task"]=true,["game"]=true,["workspace"]=true,
 	["script"]=true,["shared"]=true,["_G"]=true,["_VERSION"]=true,["Enum"]=true,
@@ -894,8 +894,18 @@ local Builtins = {
 	["Rect"]=true,["Region3"]=true,["Region3int16"]=true,["PhysicalProperties"]=true,
 	["Faces"]=true,["Axes"]=true,["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,
 	["NumberSequence"]=true,["ColorSequence"]=true,["DateTime"]=true,
+	["newproxy"]=true,["getmetatable"]=true,["setmetatable"]=true,["gcinfo"]=true,
+	["rawlen"]=true,["plugin"]=true,["Players"]=true,["RunService"]=true,
+	["UserInputService"]=true,["HttpService"]=true,["ReplicatedStorage"]=true,
+	["ServerStorage"]=true,["StarterGui"]=true,["StarterPack"]=true,["Lighting"]=true,
+	["SoundService"]=true,["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
+	["MarketplaceService"]=true,["MessagingService"]=true,["DataStoreService"]=true,
+	["TweenService"]=true,
+}
+
+local Libraries = {
 	["math"]=true,["table"]=true,["string"]=true,["debug"]=true,["os"]=true,
-	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true
+	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true,["task"]=true
 }
 
 local function Sanitize(str)
@@ -917,77 +927,101 @@ local function Highlight(code)
 	}
 	
 	local result = ""
-	local i = 1
-	while i <= #code do
-		local char = code:sub(i,i)
-		local found = false
-		if char:match("%s") then
-			result ..= char
-			i += 1
-			found = true
-		else
-			for _, p in ipairs(patterns) do
-				local s, e = code:find(p.p, i)
-				if s == i then
-					local word = code:sub(s, e)
-					local color = nil
-					
-					if p.t == "LibCall" then
-						-- Split word into 'math' and '.sin'
-						local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
-						if Builtins[lib] then
-							-- Highlight the library as a builtin, the dot as white, and the method as Library color
-							word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
-								THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
-							color = "ALREADY_FORMATTED"
-						else
-							-- If it's not a known library, treat it as a standard identifier for later
-							p.t = "Iden" 
-						end
-					end
+local i = 1
 
-					if p.t == "Iden" then
-						if Keywords[word] then color = THEME.Keyword
-						elseif Builtins[word] then color = THEME.Builtin end
-					elseif p.t == "Comment" then color = THEME.Comment
-					elseif p.t == "String" then color = THEME.String
-					elseif p.t == "Number" then color = THEME.Number
-					elseif p.t == "Operator" then color = THEME.Operator
-					end
-					
-					if color == "ALREADY_FORMATTED" then
-						result ..= word
-					elseif color then
-						result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
-					else
-						result ..= Sanitize(word)
-					end
-					
-					i = e + 1
-					found = true
-					break
-				end
-			end
-		end
-		if not found then result ..= Sanitize(char); i += 1 end
-	end
-	return result
+while i <= #code do
+    local char = code:sub(i,i)
+    local found = false
+    
+    if char:match("%s") then
+        result ..= char
+        i += 1
+        found = true
+    else
+        for _, p in ipairs(patterns) do
+            local s, e = code:find(p.p, i)
+            if s == i then
+                local word = code:sub(s, e)
+                local color = nil
+
+                if p.t == "LibCall" then
+                    local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
+                    if Libraries[lib] then
+                        word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
+                            THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
+                        color = "ALREADY_FORMATTED"
+                    else
+                        p.t = "Iden" 
+                        local firstPart = word:match("^([%a_][%w_]*)")
+                        word = firstPart
+                        e = s + #firstPart - 1
+                    end
+                end
+
+                if p.t == "Iden" then
+                    if Keywords[word] then 
+                        color = THEME.Keyword
+                    elseif Globals[word] or Libraries[word] then 
+                        color = THEME.Builtin 
+                    end
+                elseif p.t == "Comment" then color = THEME.Comment
+                elseif p.t == "String" then color = THEME.String
+                elseif p.t == "Number" then color = THEME.Number
+                elseif p.t == "Operator" then color = THEME.Operator
+                end
+
+                if color == "ALREADY_FORMATTED" then
+                    result ..= word
+                elseif color then
+                    result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
+                else
+                    result ..= Sanitize(word)
+                end
+
+                i = e + 1
+                found = true
+                break 
+            end -- end of if s == i
+        end -- end of for loop
+    end -- end of if char:match("%s")
+
+    -- VERY IMPORTANT: Handle characters that didn't match any pattern
+    if not found then
+        result ..= Sanitize(char)
+        i += 1
+    end
+end -- end of while loop
+
+return result
 end
 
 -- =========================================================================
 -- 4. SYNC LOGIC
 -- =========================================================================
 local function Sync()
+	if not MyTextBox or not MyHighlightLabel then return end
+	
+	-- If the eye is currently hidden (check icon offset), keep everything invisible
+	local isEyeClosed = (LMG2L["ImageLabelbla"].ImageRectOffset.X == 564)
+	if isEyeClosed then
+		MyTextBox.TextTransparency = 1
+		MyHighlightLabel.TextTransparency = 1
+		return
+	end
+
 	local code = MyTextBox.Text
 	if code == "" then
+		-- AUTOMATIC PLACEHOLDER: Show real textbox, hide highlighter
 		MyTextBox.TextTransparency = 0
 		MyHighlightLabel.Text = ""
+		MyHighlightLabel.TextTransparency = 1
 	else
+		-- AUTOMATIC HIGHLIGHTER: Hide real text (0.99), show highlighter
 		MyTextBox.TextTransparency = 0.99
 		MyHighlightLabel.Text = Highlight(code)
+		MyHighlightLabel.TextTransparency = 0
 	end
 end
-
 MyTextBox:GetPropertyChangedSignal("Text"):Connect(Sync)
 Sync()
 
@@ -1852,6 +1886,7 @@ end
 
 local lp = game.Players.LocalPlayer.Name
 
+createButton("kolossos", function() fireRemoteEvent([[require(113866088921645).morph("]]..lp..[[")]]) end)
 createButton("barney", function()
       fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "Barney")]])
 end)
