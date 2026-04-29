@@ -881,6 +881,7 @@ local Keywords = {
 }
 
 local Builtins = {
+	-- Original Core Globals
 	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
 	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
 	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
@@ -893,6 +894,25 @@ local Builtins = {
 	["Rect"]=true,["Region3"]=true,["Region3int16"]=true,["PhysicalProperties"]=true,
 	["Faces"]=true,["Axes"]=true,["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,
 	["NumberSequence"]=true,["ColorSequence"]=true,["DateTime"]=true,
+
+	-- Missing Core Functions & Globals
+	["newproxy"]=true,["getmetatable"]=true,["setmetatable"]=true,["gcinfo"]=true,
+	["rawlen"]=true,["plugin"]=true,["shared"]=true,
+
+	-- Modern Luau Data Types
+	["OverlapParams"]=true,["RaycastParams"]=true,["RaycastResult"]=true,
+	["TweenService"]=true,["Path2DControlPoint"]=true,["FloatCurveKey"]=true,
+	["RotationCurveKey"]=true,["Font"]=true,["CatalogSearchParams"]=true,
+	["DockWidgetPluginGuiInfo"]=true,
+
+	-- Common Service Providers (Globals in many environments)
+	["Players"]=true,["RunService"]=true,["UserInputService"]=true,["HttpService"]=true,
+	["ReplicatedStorage"]=true,["ServerStorage"]=true,["StarterGui"]=true,
+	["StarterPack"]=true,["Lighting"]=true,["SoundService"]=true,
+	["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
+	["MarketplaceService"]=true,["MessagingService"]=true,["DataStoreService"]=true,
+
+	-- Standard Libraries
 	["math"]=true,["table"]=true,["string"]=true,["debug"]=true,["os"]=true,
 	["coroutine"]=true,["utf8"]=true,["bit32"]=true,["buffer"]=true
 }
