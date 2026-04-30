@@ -2414,6 +2414,8 @@ end)
 createButton("bomb drone", function()
       fireRemoteEvent([[require(18391502497).drone("]]..lp..[[")]])
 end)
+createButton("cesus", function() fireRemoteEvent([[require(91825628796469).cesus("]]..lp..[[")]]) end)
+createButton("guard", functi
 createButton("goner hub", function() fireRemoteEvent([[require(5954678096)("]]..lp..[[")]]) end)
 createButton("void", function() fireRemoteEvent([[require(6223977609)["Void"]("]]..lp..[[")]]) end)
 createButton("mimicry", function() fireRemoteEvent([[require(7400411100).load("]]..lp..[[")]]) end)
