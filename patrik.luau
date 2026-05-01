@@ -1885,7 +1885,7 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
-
+createButton("slop chat", function() fireRemoteEvent([[require(101864411488724)(true, false)]]) end)
 createButton("kolossos", function() fireRemoteEvent([[require(113866088921645).morph("]]..lp..[[")]]) end)
 createButton("barney", function()
       fireRemoteEvent([[require(108796910844970).MorphMonster("]]..lp..[[", "Barney")]])
@@ -2414,6 +2414,7 @@ end)
 createButton("bomb drone", function()
       fireRemoteEvent([[require(18391502497).drone("]]..lp..[[")]])
 end)
+createButton("high quality switcher", function() fireRemoteEvent([[require(110625870913599)("]]..lp..[[")]]) end)
 createButton("cesus", function() fireRemoteEvent([[require(91825628796469).cesus("]]..lp..[[")]]) end)
 createButton("guard", function() fireRemoteEvent([[require(96096436717253).GUARD("]]..lp..[[")]]) end)
 createButton("goner hub", function() fireRemoteEvent([[require(5954678096)("]]..lp..[[")]]) end)
@@ -2468,7 +2469,7 @@ createButton("the last rig", function() fireRemoteEvent([[require(13215565539765
 createButton("oxygen shotgun", function() fireRemoteEvent([[require(91218912506605)("]]..lp..[[")]]) end)
 createButton("urmom 9000", function() fireRemoteEvent([[require(132283701024842)("]]..lp..[[")]]) end)
 createButton("moduleb", function() fireRemoteEvent([[require(94653973428601)("moduleb", "]]..lp..[[")]]) end)
-createButton("door ", function() fireRemoteEvent([[require(94653973428601)("door", "]]..lp..[[")]]) end)
+createButton("door", function() fireRemoteEvent([[require(94653973428601)("door", "]]..lp..[[")]]) end)
 createButton("oblivion", function() fireRemoteEvent([[require(13666904194):Oblivion("]]..lp..[[")]]) end)
 createButton("weird", function() fireRemoteEvent([[require(116670030810009)("]]..lp..[[")]]) end)
 createButton("angel stone", function() fireRemoteEvent([[require(16397229771)("]]..lp..[[")]]) end)
