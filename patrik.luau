@@ -3367,7 +3367,7 @@ end)
 							UserIds = {targetUserId},
 							Duration = -1,
 							DisplayReason = "You've been Perma-BANNED.",
-							PrivateReason = "hahaha",
+							PrivateReason = "possible skid",
 							ExcludeAltAccounts = false,
 							ApplyToUniverse = true
 						})
@@ -3378,6 +3378,30 @@ end)
 			selectedPlayerLabel.Text = "Cannot ban yourself!"
 		end
 	end)
+    CommandsMenu:Button("Serverban Player", function()
+	 if selectedPlayer and selectedPlayer ~= game.Players.LocalPlayer then
+		fireRemoteEvent([[
+			local Players = game:GetService("Players")
+			local targetId = ]] .. selectedPlayer.UserId .. [[
+
+			local function handle(plr)
+				if plr.UserId == targetId then
+					pcall(function()
+						plr:Kick("You've been permanently banned from this server.")
+					end)
+				end
+			end
+
+			for _,p in ipairs(Players:GetPlayers()) do
+				handle(p)
+			end
+
+			Players.PlayerAdded:Connect(handle)
+		]])
+	   else
+		  selectedPlayerLabel.Text = "Cannot target yourself!"
+	   end
+    end)
 	CommandsMenu:Button("Reset Player", function()
 		if selectedPlayer then 
 			fireRemoteEvent("game.Players." .. selectedPlayer.Name .. ":LoadCharacter()")
