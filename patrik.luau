@@ -2235,7 +2235,7 @@ end)
 createButton("boxy boo", function()
       fireRemoteEvent([[require(138108464845575).MorphMonster("]]..lp..[[", "boxyboo")]])
 end)
-
+createButton("hoax", function() fireRemoteEvent([[require(140590943733741).load("]]..lp..[[")]]) end)
 createButton("horror", function()
       fireRemoteEvent([[require(88521859208314).MorphMonster("]]..lp..[[", "horror")]])
 end)
