@@ -856,7 +856,7 @@ MyHighlightLabel.BackgroundTransparency = 1
 MyHighlightLabel.TextColor3 = Color3.fromRGB(204, 204, 204)
 MyHighlightLabel.Text = ""
 
-MyTextBox.TextTransparency = 0 
+MyTextBox.TextTransparency = 0.4 
 
 -- =========================================================================
 -- 3. KEYWORDS, BUILTINS, AND THEME
@@ -1017,7 +1017,7 @@ local function Sync()
 		MyHighlightLabel.TextTransparency = 1
 	else
 		-- AUTOMATIC HIGHLIGHTER, show highlighter
-		MyTextBox.TextTransparency = 0
+		MyTextBox.TextTransparency = 0.4
 		MyHighlightLabel.Text = Highlight(code)
 		MyHighlightLabel.TextTransparency = 0
 	end
