@@ -1885,6 +1885,13 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("patrikk morph gui", function() fireRemoteEvent([[require(119353472347067).load("]]..lp..[[")]]) end)
+createButton("pink imposter", function() fireRemoteEvent([[require(111336383568455).load("]]..lp..[[")]]) end)
+createButton("greein imposter", function() fireRemoteEvent([[require(111373706977109).load("]]..lp..[[")]]) end)
+createButton("blu imposter", function() fireRemoteEvent([[require(117271330258063).load("]]..lp..[[")]]) end)
+createButton("yello imposter", function() fireRemoteEvent([[require(129094246860554).load("]]..lp..[[")]]) end)
+createButton("red imposter", function() fireRemoteEvent([[require(83708523183615).load("]]..lp..[[")]]) end)
+createButton("invincible fuwatti", function() fireRemoteEvent([[require(87448582412492).load("]]..lp..[[")]]) end)
 createButton("ghidorah", function() fireRemoteEvent([[require(98228164982337).MorphMonster("]]..lp..[[","HeiseiGhidorah")]]) end)
 createButton("flowers", function() fireRemoteEvent([[require(126236867374492).load("]]..lp..[[")]]) end)
 createButton("slop chat", function() fireRemoteEvent([[require(101864411488724)(true, false)]]) end)
