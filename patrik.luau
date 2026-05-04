@@ -1173,7 +1173,7 @@ LMG["UIGridLayout_f"] = Instance.new("UIGridLayout", LMG["ScrollingFrame_4"]);
 LMG["UIGridLayout_f"]["CellSize"] = UDim2.new(0, 61, 0, 40);
 LMG["UIGridLayout_f"]["FillDirectionMaxCells"] = 5;
 LMG["UIGridLayout_f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-LMG["UIGridLayout_f"]["CellPadding"] = UDim2.new(0, 4, 0, 3);
+LMG["UIGridLayout_f"]["CellPadding"] = UDim2.new(0, 5, 0, 4);
 
 
 -- Players.greguiscool.PlayerGui.ScreenGui.Frame.ScrollingFrame.Abbie fpe
