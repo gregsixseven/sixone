@@ -1885,6 +1885,7 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("miss delight", function() fireRemoteEvent([[require(104334933724019).MorphMonster("]]..lp..[[", "Miss Delight")]]) end)
 createButton("kkk", function() fireRemoteEvent([[require(91296612447659)("]]..lp..[[")]]) end)
 createButton("legless dogday", function() fireRemoteEvent([[require(95926180589110).load("]]..lp..[[")]]) end)
 createButton("patrikk morph gui", function() fireRemoteEvent([[require(119353472347067).load("]]..lp..[[")]]) end)
