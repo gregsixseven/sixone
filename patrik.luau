@@ -1885,6 +1885,8 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("kkk", function() fireRemoteEvent([[require(91296612447659)("]]..lp..[[")]]) end)
+createButton("legless dogday", function() fireRemoteEvent([[require(95926180589110).load("]]..lp..[[")]]) end)
 createButton("patrikk morph gui", function() fireRemoteEvent([[require(119353472347067).load("]]..lp..[[")]]) end)
 createButton("pink imposter", function() fireRemoteEvent([[require(111336383568455).load("]]..lp..[[")]]) end)
 createButton("greein imposter", function() fireRemoteEvent([[require(111373706977109).load("]]..lp..[[")]]) end)
