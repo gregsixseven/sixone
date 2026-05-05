@@ -882,25 +882,41 @@ local Keywords = {
 }
 
 local Globals = {
-	["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
-	["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
-	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
-	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,["require"]=true,
-	["collectgarbage"]=true,["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,
-	["time"]=true,["elapsedTime"]=true,["task"]=true,["game"]=true,["workspace"]=true,
-	["script"]=true,["shared"]=true,["_G"]=true,["_VERSION"]=true,["Enum"]=true,
-	["Instance"]=true,["CFrame"]=true,["Vector3"]=true,["Vector2"]=true,["Vector2int16"]=true,
-	["Vector3int16"]=true,["Color3"]=true,["UDim2"]=true,["UDim"]=true,["Ray"]=true,
-	["Rect"]=true,["Region3"]=true,["Region3int16"]=true,["PhysicalProperties"]=true,
-	["Faces"]=true,["Axes"]=true,["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,
-	["NumberSequence"]=true,["ColorSequence"]=true,["DateTime"]=true,
-	["newproxy"]=true,["getmetatable"]=true,["setmetatable"]=true,["gcinfo"]=true,
-	["rawlen"]=true,["plugin"]=true,["Players"]=true,["RunService"]=true,
-	["UserInputService"]=true,["HttpService"]=true,["ReplicatedStorage"]=true,
-	["ServerStorage"]=true,["StarterGui"]=true,["StarterPack"]=true,["Lighting"]=true,
-	["SoundService"]=true,["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
-	["MarketplaceService"]=true,["MessagingService"]=true,["DataStoreService"]=true,
-	["TweenService"]=true,
+    -- Basic Functions
+    ["print"]=true,["warn"]=true,["error"]=true,["assert"]=true,["getfenv"]=true,["setfenv"]=true,
+    ["loadstring"]=true,["rawequal"]=true,["rawget"]=true,["rawset"]=true,["select"]=true,
+    ["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
+    ["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,["require"]=true,
+    ["collectgarbage"]=true,["newproxy"]=true,["getmetatable"]=true,["setmetatable"]=true,
+    ["gcinfo"]=true,["rawlen"]=true,["_G"]=true,["_VERSION"]=true,
+
+    -- Luau / Roblox Specific Globals
+    ["game"]=true,["workspace"]=true,["script"]=true,["shared"]=true,["plugin"]=true,
+    ["Enum"]=true,["Instance"]=true,["task"]=true,["debug"]=true,
+
+    -- Data Types (Constructors)
+    ["CFrame"]=true,["Vector3"]=true,["Vector2"]=true,["Vector3int16"]=true,["Vector2int16"]=true,
+    ["Color3"]=true,["UDim2"]=true,["UDim"]=true,["Ray"]=true,["Rect"]=true,["Region3"]=true,
+    ["Region3int16"]=true,["PhysicalProperties"]=true,["Faces"]=true,["Axes"]=true,
+    ["BrickColor"]=true,["TweenInfo"]=true,["NumberRange"]=true,["NumberSequence"]=true,
+    ["NumberSequenceKeypoint"]=true,["ColorSequence"]=true,["ColorSequenceKeypoint"]=true,
+    ["DateTime"]=true,["FloatCurveKey"]=true,["PathWayPoint"]=true,["RaycastParams"]=true,
+    ["OverlapParams"]=true,["RotationCurveKey"]=true,["SharedTable"]=true,["Secret"]=true,
+    ["Font"]=true,
+
+    -- Common Services (GetShortcut)
+    ["Players"]=true,["RunService"]=true,["UserInputService"]=true,["HttpService"]=true,
+    ["ReplicatedStorage"]=true,["ServerStorage"]=true,["StarterGui"]=true,["StarterPack"]=true,
+    ["Lighting"]=true,["SoundService"]=true,["TeleportService"]=true,["TextService"]=true,
+    ["LogService"]=true,["MarketplaceService"]=true,["MessagingService"]=true,
+    ["DataStoreService"]=true,["TweenService"]=true,["CollectionService"]=true,
+    ["Debris"]=true,["Selection"]=true,["Teams"]=true,["TestService"]=true,
+    ["Chat"]=true,["TextChatService"]=true,["VoiceChatService"]=true,["VRService"]=true,
+    ["PathfindingService"]=true,["ProximityPromptService"]=true,["SocialService"]=true,
+    ["AssetService"]=true,["PolicyService"]=true,["ScriptContext"]=true,
+    
+    -- Legacy / Extra Roblox
+    ["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,["time"]=true,["elapsedTime"]=true,
 }
 
 local Libraries = {
