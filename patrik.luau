@@ -1901,6 +1901,7 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("3d miss circle", function() fireRemoteEvent([[require(130356357080702).load("]]..lp..[[")]]) end)
 createButton("dbd springtrap", function() fireRemoteEvent([[require(136514432447695).load("]]..lp..[[")]]) end)
 createButton("figure", function() fireRemoteEvent([[require(131754452391715).Figure("]]..lp..[[")]]) end)
 createButton("miss delight", function() fireRemoteEvent([[require(104334933724019).MorphMonster("]]..lp..[[", "Miss Delight")]]) end)
