@@ -1903,6 +1903,7 @@ end
 local lp = game.Players.LocalPlayer.Name
 createButton("mui goku", function() fireRemoteEvent([[require(120303926769303).goku("]]..lp..[[")]]) end)
 createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
+createButton("bonsai longboy", function() fireRemoteEvent([[require(92273074640861).morph("]]..lp..[[")]]) end)
 createButton("3d miss circle", function() fireRemoteEvent([[require(130356357080702).load("]]..lp..[[")]]) end)
 createButton("dbd springtrap", function() fireRemoteEvent([[require(136514432447695).load("]]..lp..[[")]]) end)
 createButton("figure", function() fireRemoteEvent([[require(131754452391715).Figure("]]..lp..[[")]]) end)
