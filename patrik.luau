@@ -869,7 +869,7 @@ local THEME = {
 	String = "#aef195",    -- Light Green
 	Comment = "#6272a4",   -- Muted Blue-Grey
 	Number = "#ffc800",    -- Orange-Gold
-	Operator = "#ffffff"   -- White
+	Operator = "#ffef94"   -- Canary Yellow
 }
 
 local Keywords = {
