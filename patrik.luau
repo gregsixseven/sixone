@@ -177,7 +177,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 			end)
           end)
         end)
-	local timeout = 0.5
+	local timeout = 0.3
 	local start = os.clock()
 	while os.clock() - start < timeout do
 		if foundEvent or rs:FindFirstChild(modelName) then
@@ -186,6 +186,9 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 		end
 		task.wait(0)
 	end
+    if not foundEvent and rs:FindFirstChild(modelName) then
+       foundEvent = true
+    end
 
 	local globalFlagTriggered = getgenv()[testFlagName] == true
 	if globalFlagTriggered then
