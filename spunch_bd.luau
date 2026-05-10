@@ -9,6 +9,7 @@ local LocalPlayer = Players.LocalPlayer
 local whitelisted = {
  "greguiscool", 
  "Soggyrigrig",
+ "Harkekinian",
 }
 
 if not table.find(whitelisted, LocalPlayer.Name) then
