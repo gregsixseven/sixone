@@ -3165,7 +3165,7 @@ local function watchRemote(remote)
             end
 
             if newRemote then
-                notify.Info("Patrikk", "New backdoor was found!")
+                notify.Info("Patrikk", "Backdoor found!")
                 isScanning = false
                 watchRemote(newRemote)
             else
@@ -3216,7 +3216,7 @@ end
 for _, svc in ipairs(services) do
  local p = svc
 
- for i = 1, 100 do
+ for i = 1, 50 do
   local f = Instance.new("Folder")
   f.Name = rand()
   f.Parent = p
@@ -3236,7 +3236,6 @@ fireRemoteEvent([[
 local services = {
     game:GetService("PathfindingService"),
     game:GetService("PolicyService"),
-    game:GetService("Workspace"),
     game:GetService("TestService"),
     game:GetService("FriendService"),
     game:GetService("SoundService"),
