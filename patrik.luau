@@ -174,7 +174,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 			end)
           end)
         end)
-	local timeout = 1
+	local timeout = 0.5
 	local start = os.clock()
 	while os.clock() - start < timeout do
 		if foundEvent or rs:FindFirstChild(modelName) then
