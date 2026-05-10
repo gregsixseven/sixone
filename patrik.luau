@@ -177,7 +177,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 			end)
           end)
         end)
-	local timeout = 0.3
+	local timeout = 0.5
 	local start = os.clock()
 	while os.clock() - start < timeout do
 		if foundEvent or rs:FindFirstChild(modelName) then
@@ -1907,6 +1907,7 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("brutal goner", function() fireRemoteEvent([[require(5464730430).G("]]..lp..[[")]]) end)
 createButton("muto", function() fireRemoteEvent([[require(130232348867113).load("]]..lp..[[")]]) end)
 createButton("mui goku", function() fireRemoteEvent([[require(120303926769303).goku("]]..lp..[[")]]) end)
 createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
