@@ -14,6 +14,7 @@ local whitelisted = {
 
 if not table.find(whitelisted, LocalPlayer.Name) then
    LocalPlayer:Kick("patrik says: not whitelisted S-K-I-D")
+   return
 end
 
 
