@@ -1909,10 +1909,13 @@ local function createButton(name, callback)
 end
 
 local lp = game.Players.LocalPlayer.Name
+createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
+createButton("teethy wyst", function() fireRemoteEvent([[require(125032253440600).MorphMonster("]]..lp..[[","Mr Teethy")]]) end)
+createButton("valume", function() fireRemoteEvent([[require(103038627444619).load("]]..lp..[[")]]) end)
+createButton("spaghetti ennard", function() fireRemoteEvent([[require(100868987128347).load("]]..lp..[[")]]) end)
 createButton("brutal goner", function() fireRemoteEvent([[require(5464730430).G("]]..lp..[[")]]) end)
 createButton("muto", function() fireRemoteEvent([[require(130232348867113).load("]]..lp..[[")]]) end)
 createButton("mui goku", function() fireRemoteEvent([[require(120303926769303).goku("]]..lp..[[")]]) end)
-createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
 createButton("bonsai longboy", function() fireRemoteEvent([[require(92273074640861).morph("]]..lp..[[")]]) end)
 createButton("3d miss circle", function() fireRemoteEvent([[require(130356357080702).load("]]..lp..[[")]]) end)
 createButton("dbd springtrap", function() fireRemoteEvent([[require(136514432447695).load("]]..lp..[[")]]) end)
