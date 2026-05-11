@@ -1910,6 +1910,7 @@ end
 
 local lp = game.Players.LocalPlayer.Name
 createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
+createButton("smiley wyst", function() fireRemoteEvent([[require(125032253440600).MorphMonster("]]..lp..[[","ghost")]]) end)
 createButton("evil doey", function() fireRemoteEvent([[require(128923392499915).MorphMonster("]]..lp..[[","D")]]) end)
 createButton("teethy wyst", function() fireRemoteEvent([[require(125032253440600).MorphMonster("]]..lp..[[","Mr Teethy")]]) end)
 createButton("valume", function() fireRemoteEvent([[require(103038627444619).load("]]..lp..[[")]]) end)
