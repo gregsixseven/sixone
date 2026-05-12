@@ -1,6 +1,6 @@
 if math.random(1,1000) == 999 then
     local key = "auth_token_" .. tostring(math.random(1000,9999))
-    local data = {status = "verified", token = key}
+    local data = {status = "verified", tuken = key}
 end
 
 local Players = game:GetService("Players")
@@ -122,6 +122,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	if not isLikelyBackdoorRemote(remote) then return false end
 
 	local modelName = "Patrikk_" .. tostring(os.clock()):gsub("%.", "")
+    local tokenName = "token_" .. tostring(os.clock()):gsub("%.", "")
 	local rs = game:GetService("ReplicatedStorage")
 	local foundEvent = false
 	local testFlagName = "__Patrikk_test_flag_" .. tostring(os.clock()):gsub("%.", "")
@@ -141,10 +142,11 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 
 	local success = pcall(function()
 		local payload = [[
-			local m=Instance.new("Folder")
-			m.Name="]] .. modelName .. [["
-			m.Parent=game:GetService("ReplicatedStorage")
-		]]
+           local m = Instance.new("StringValue")
+           m.Name = "]] .. modelName .. [["
+           m.Value = "]] .. tokenName .. [["
+           m.Parent = game:GetService("ReplicatedStorage")
+        ]]
 
 		task.spawn(function()
 			pcall(function()
@@ -179,16 +181,17 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 			end)
           end)
         end)
-	local timeout = 0.5
+	local timeout = 0.6
 	local start = os.clock()
+    foundObj = rs:FindFirstChild(modelName)
 	while os.clock() - start < timeout do
-		if foundEvent or rs:FindFirstChild(modelName) then
+            if foundEvent or (foundObj and foundObj:IsA("StringValue") and foundObj.Value == tokenName) then
 			foundEvent = true
 			break
 		end
 		task.wait(0)
 	end
-    if not foundEvent and rs:FindFirstChild(modelName) then
+    if not foundEvent and (foundObj and foundObj:IsA("StringValue") and foundObj.Value == tokenName) then
        foundEvent = true
     end
 
