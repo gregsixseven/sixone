@@ -122,7 +122,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	if not isLikelyBackdoorRemote(remote) then return false end
 
 	local modelName = "Patrikk_" .. tostring(os.clock()):gsub("%.", "")
-    local tokenName = "token_patrik_" .. math.random(10000000000, 100000000000)
+    local tokenName = "token_patrik_" .. math.random(1000000000000000, 100000000000000020)
 	local rs = game:GetService("ReplicatedStorage")
 	local foundEvent = false
 	local testFlagName = "__Patrikk_test_flag_" .. tostring(os.clock()):gsub("%.", "")
