@@ -411,6 +411,7 @@ LMG2["ScanButton_c"]["TextWrapped"] = true;
 LMG2["ScanButton_c"]["RichText"] = true;
 LMG2["ScanButton_c"]["BorderSizePixel"] = 0;
 LMG2["ScanButton_c"]["TextSize"] = 20;
+LMG2["ScanButton_c"]["AutoButtonColor"] = false;
 LMG2["ScanButton_c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 LMG2["ScanButton_c"]["BackgroundColor3"] = Color3.fromRGB(19, 21, 24);
 LMG2["ScanButton_c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Medium, Enum.FontStyle.Italic);
@@ -428,7 +429,7 @@ LMG2["UICorner_d"] = Instance.new("UICorner", LMG2["ScanButton_c"]);
 LMG2["UIStroke_e"] = Instance.new("UIStroke", LMG2["ScanButton_c"]);
 LMG2["UIStroke_e"]["Transparency"] = 0.5;
 LMG2["UIStroke_e"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2["UIStroke_e"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG2["UIStroke_e"]["Color"] = Color3.fromRGB(97, 97, 97);
 
 
 LMG2["Frame_f"] = Instance.new("Frame", LMG2["Frame_2"]);
@@ -444,7 +445,7 @@ LMG2["UICorner_10"]["CornerRadius"] = UDim.new(0, 6);
 
 LMG2["UIStroke_11"] = Instance.new("UIStroke", LMG2["Frame_f"]);
 LMG2["UIStroke_11"]["Transparency"] = 0.5;
-LMG2["UIStroke_11"]["Color"] = Color3.fromRGB(98, 98, 98);
+LMG2["UIStroke_11"]["Color"] = Color3.fromRGB(97, 97, 97);
 
 
 LMG2["Credits_12"] = Instance.new("TextLabel", LMG2["Frame_f"]);
