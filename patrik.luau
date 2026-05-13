@@ -122,12 +122,12 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	if not isLikelyBackdoorRemote(remote) then return false end
 
     local function genString()
-       local Words = {"PAtRik","pAtRikk","OmaGAa","SkiD","sKiBiDi","SigMa","pRiVAtE","BaCkdoOr","ToKEn","kEy","whAt","RiZz","eMbegE","sAwiT","PraBowo","JoKowi","GaNJar","mEgAwaTi"}
+       local Words = {"PÀtRîk","pÀtRïkk","OmáGAâ","SkïD","sKĪBiDì","SìgMå","pRiVAtĒ","BaÇkdÖør","TøKËn","kêY","whÅt","RïZz","eMbégË","sÂwiT","PrÃBõwø","JÓKøwī","GäΠJâr","mÊgAwåTī"}
        local String = Words[math.random(1, #Words)] .. "_" .. Words[math.random(1, #Words)] .. "_" .. tostring(os.clock()):gsub("%.", "")
        return String
     end
 
-	local modelName = "Patrikk_" .. tostring(os.clock()):gsub("%.", "")
+	local modelName = genString()
     local tokenName = genString()
 	local rs = game:GetService("ReplicatedStorage")
 	local foundEvent = false
