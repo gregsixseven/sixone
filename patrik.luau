@@ -1921,6 +1921,9 @@ end
 local lp = game.Players.LocalPlayer.Name
 createButton("speakerman", function() fireRemoteEvent([[require(99197573588729).loader("]]..lp..[[")]]) end)
 createButton("logger.wtf", function() fireRemoteEvent([[require(120869500317355)("]]..lp..[[")]]) end)
+createButton("miss delight", function() fireRemoteEvent([[require(82591608288355).load("]]..lp..[[")]]) end)
+createButton("yarnaby", function() fireRemoteEvent([[require(106585385015188).yarnaby("]]..lp..[[")]]) end)
+createButton("miss thavel", function() fireRemoteEvent([[require(83425271335871).load("]]..lp..[[")]]) end)
 createButton("injured huggy", function() fireRemoteEvent([[require(123372537871941).load("]]..lp..[[")]]) end)
 createButton("thragg", function() fireRemoteEvent([[require(115658927810501):load("]]..lp..[[")]]) end)
 createButton("smiley wyst", function() fireRemoteEvent([[require(125032253440600).MorphMonster("]]..lp..[[","ghost")]]) end)
@@ -1935,7 +1938,6 @@ createButton("bonsai longboy", function() fireRemoteEvent([[require(922730746408
 createButton("3d miss circle", function() fireRemoteEvent([[require(130356357080702).load("]]..lp..[[")]]) end)
 createButton("dbd springtrap", function() fireRemoteEvent([[require(136514432447695).load("]]..lp..[[")]]) end)
 createButton("figure", function() fireRemoteEvent([[require(131754452391715).Figure("]]..lp..[[")]]) end)
-createButton("miss delight", function() fireRemoteEvent([[require(104334933724019).MorphMonster("]]..lp..[[", "Miss Delight")]]) end)
 createButton("kkk", function() fireRemoteEvent([[require(91296612447659)("]]..lp..[[")]]) end)
 createButton("legless dogday", function() fireRemoteEvent([[require(95926180589110).load("]]..lp..[[")]]) end)
 createButton("patrikk morph gui", function() fireRemoteEvent([[require(119353472347067).load("]]..lp..[[")]]) end)
