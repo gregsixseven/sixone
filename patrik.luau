@@ -122,7 +122,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	if not isLikelyBackdoorRemote(remote) then return false end
 
     local function genString()
-       local Words = {"PÀtRîk","pÀtRïkk","OmáGAâ","SkïD","sKĪBiDì","SìgMå","pRiVAtĒ","BaÇkdÖør","TøKËn","kêY","whÅt","RïZz","eMbégË","sÂwiT","PrÃBõwø","JÓKøwī","GäΠJâr","mÊgAwåTī"}
+       local Words = {"PÀtRîk","sKîd4LïFë","pÀtRïkk","ØmáGAâ","SkïD","sKĪBiDì","SìgMå","pRīVAtĒ","BaÇkdÖør","TøKËn","kêY","whÅt","bÀhlïL","RïZz","eMbégË","sÂwiT","PrÃBõwø","JÓKøwī","GäΠJâr","mÊgAwåTī","SúPêr","sHïT"}
        local String = Words[math.random(1, #Words)] .. "_" .. Words[math.random(1, #Words)] .. "_" .. tostring(os.clock()):gsub("%.", "")
        return String
     end
