@@ -1,8 +1,56 @@
-if math.random(1,1000) == 999 then
-    local key = "auth_token_" .. tostring(math.random(1000,9999))
-    local data = {status = "verified", token = key}
+local Success = pcall(function()
+	Instance.new("Part"):SkidMethod("skid tryna to deobf ts lmao")
+end)
+
+while Success do
+	task.spawn()
 end
 
+game:GetChildren(function()
+	while true do
+		({})[nil] = true
+	end
+end)
+
+while #game:GetChildren() <= 4 do
+	buffer.writei8(buffer.fromstring("skid tryna deobf ts lmao"), 1, 2)
+end
+
+local Success, Result = pcall(function()
+	return game:GetService("HttpService"):JSONDecode('[68, "skid tryna deobf ts lmao", true, 123, false, [321, null, "skid tryna deobf ts lmao"], null, ["a"]]')
+end)
+
+while not Success do
+	task()
+end
+
+while Result[6][2] ~= nil do
+	(true)()
+end
+
+local Success = pcall(function()
+	return game.HttpService
+end)
+
+while not Success do
+	local _ = (nil).Parent
+end
+
+_G.getgoldcc = "skid tryna deobf ts lmao"
+
+while getfenv().getgoldcc ~= nil do
+	game()
+end
+
+_G.getgoldcc = nil
+
+local _, Message = pcall(function()
+	game()
+end)
+
+while not Message:find("attempt to call a Instance value") do
+	table.create(9e9)
+end
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
