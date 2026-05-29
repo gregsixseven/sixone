@@ -1,5 +1,5 @@
 local Success = pcall(function()
-	Instance.new("Part"):SkidMethod("skid tryna to deobf ts lmao")
+	Instance.new("Part"):Skidding("skid tryna to deobf ts lmao")
 end)
 
 while Success do
@@ -113,7 +113,7 @@ local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true)
        local String = Words[math.random(1, #Words)] .. "_" .. Words[math.random(1, #Words)] .. "_" .. tostring(os.clock()):gsub("%.", "")
        return String
     end
-    local secureName = "!!!" .. genString()
+    local secureName = "!!!SkïD_TøKËn_gayk0XcwezpF2" -- very secure (maybe)
 	local function isLikelyBackdoorRemote(remote)
 		local name = remote.Name
 		local parent = remote.Parent
