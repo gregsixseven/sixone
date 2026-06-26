@@ -440,7 +440,7 @@ local Globals = {
 	["tonumber"]=true,["tostring"]=true,["type"]=true,["typeof"]=true,["unpack"]=true,
 	["next"]=true,["pairs"]=true,["ipairs"]=true,["pcall"]=true,["xpcall"]=true,["require"]=true,
 	["collectgarbage"]=true,["delay"]=true,["spawn"]=true,["wait"]=true,["tick"]=true,
-	["time"]=true,["elapsedTime"]=true,["task"]=true,["game"]=true,["workspace"]=true,
+	["time"]=true,["elapsedTime"]=true,["game"]=true,["workspace"]=true,
 	["script"]=true,["shared"]=true,["_G"]=true,["_VERSION"]=true,["Enum"]=true,
 	["Instance"]=true,["CFrame"]=true,["Vector3"]=true,["Vector2"]=true,["Vector2int16"]=true,
 	["Vector3int16"]=true,["Color3"]=true,["UDim2"]=true,["UDim"]=true,["Ray"]=true,
@@ -453,7 +453,7 @@ local Globals = {
 	["ServerStorage"]=true,["StarterGui"]=true,["StarterPack"]=true,["Lighting"]=true,
 	["SoundService"]=true,["TeleportService"]=true,["TextService"]=true,["LogService"]=true,
 	["MarketplaceService"]=true,["MessagingService"]=true,["DataStoreService"]=true,
-	["TweenService"]=true,
+	["TweenService"]=true,["getgenv"]=true
 }
 
 local Libraries = {
