@@ -1,3 +1,4 @@
+-- client ver ifykyk
 local Success = pcall(function()
 	Instance.new("Part"):SkidMethod("skid tryna to deobf ts lmao")
 end)
