@@ -67,6 +67,7 @@ end
 
 local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true))()
 local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 
 LMG2L = {};
 LMG2L["SpunchLOL_1"] = Instance.new("ScreenGui", game.CoreGui);
