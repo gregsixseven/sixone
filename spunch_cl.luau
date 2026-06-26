@@ -409,7 +409,7 @@ MyHighlightLabel.BackgroundTransparency = 1
 MyHighlightLabel.TextColor3 = Color3.fromRGB(204, 204, 204)
 MyHighlightLabel.Text = ""
 
-MyTextBox.TextTransparency = 0
+MyTextBox.TextTransparency = 0.4
 
 -- =========================================================================
 -- 3. KEYWORDS, BUILTINS, AND THEME
@@ -570,7 +570,7 @@ local function Sync()
 		MyHighlightLabel.TextTransparency = 1
 	else
 		-- AUTOMATIC HIGHLIGHTER: Hide real text (0.99), show highlighter
-		MyTextBox.TextTransparency = 0
+		MyTextBox.TextTransparency = 0.4
 		MyHighlightLabel.Text = Highlight(code)
 		MyHighlightLabel.TextTransparency = 0
 	end
@@ -873,17 +873,22 @@ local function C_23()
 	script.Parent.MouseButton1Click:Connect(function()	
 	      local code = script.Parent.Parent.EditorScroll.Editor.Text	
 	      if code ~= "" then
-                local success, result = pcall(function()
-	               loadstring(code)()
-                end)
-                if success then
-                         notify.Info("Spunchbub","Successfully executed code!")
-                else
-                         notify.Error("Spunchbub", result)
-                end
-           else
-                  notify.Warn("Spunchbub", "Insert an script first!")
+          local success, result = pcall(function()
+           local func, err = loadstring(code)
+           if not func then
+              error(err)
            end
+           func()
+           end)
+
+          if success then
+              notify.Info("Spunchbub", "Successfully executed code!")
+          else
+             notify.Error("Spunchbub", "Script Error: " .. tostring(result))
+          end
+       else
+           notify.Warn("Spunchbub", "Insert a script first!")
+       end
 	end)	
 end;
 task.spawn(C_23);
