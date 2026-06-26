@@ -66,6 +66,7 @@ if not table.find(whitelisted, LocalPlayer.Name) then
 end
 
 local notify = loadstring(game:HttpGet("https://pastefy.app/JNTqAzrn/raw", true))()
+local UserInputService = game:GetService("UserInputService")
 
 LMG2L = {};
 LMG2L["SpunchLOL_1"] = Instance.new("ScreenGui", game.CoreGui);
