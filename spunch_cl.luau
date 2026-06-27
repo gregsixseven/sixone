@@ -480,72 +480,73 @@ local function Highlight(code)
 	}
 	
 	local result = ""
-local i = 1
+	local i = 1
 
-while i <= #code do
-    local char = code:sub(i,i)
-    local found = false
-    
-    if char:match("%s") then
-        result ..= char
-        i += 1
-        found = true
-    else
-        for _, p in ipairs(patterns) do
-            local s, e = code:find(p.p, i)
-            if s == i then
-                local word = code:sub(s, e)
-                local color = nil
+	while i <= #code do
+		local char = code:sub(i,i)
+		local found = false
+		
+		if char:match("%s") then
+			result ..= char
+			i += 1
+			found = true
+		else
+			for _, p in ipairs(patterns) do
+				local s, e = code:find(p.p, i)
+				if s == i then
+					local word = code:sub(s, e)
+					local color = nil
+					local tokenType = p.t -- Use a local variable so we don't overwrite p.t permanently!
 
-                if p.t == "LibCall" then
-                    local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
-                    if Libraries[lib] then
-                        word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
-                            THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
-                        color = "ALREADY_FORMATTED"
-                    else
-                        p.t = "Iden" 
-                        local firstPart = word:match("^([%a_][%w_]*)")
-                        word = firstPart
-                        e = s + #firstPart - 1
-                    end
-                end
+					if tokenType == "LibCall" then
+						local lib, method = word:match("([%a_][%w_]*)%.([%a_][%w_]*)")
+						if Libraries[lib] then
+							word = string.format('<font color="%s">%s</font><font color="%s">.</font><font color="%s">%s</font>', 
+								THEME.Builtin, lib, THEME.Operator, THEME.Library, method)
+							color = "ALREADY_FORMATTED"
+						else
+							tokenType = "Iden" 
+							local firstPart = word:match("^([%a_][%w_]*)")
+							word = firstPart
+							e = s + #firstPart - 1
+						end
+					end
 
-                if p.t == "Iden" then
-                    if Keywords[word] then 
-                        color = THEME.Keyword
-                    elseif Globals[word] or Libraries[word] then 
-                        color = THEME.Builtin 
-                    end
-                elseif p.t == "Comment" then color = THEME.Comment
-                elseif p.t == "String" then color = THEME.String
-                elseif p.t == "Number" then color = THEME.Number
-                elseif p.t == "Operator" then color = THEME.Operator
-                end
+					if tokenType == "Iden" then
+						if Keywords[word] then 
+							color = THEME.Keyword
+						elseif Globals[word] or Libraries[word] then 
+							color = THEME.Builtin 
+						end
+					elseif tokenType == "Comment" then color = THEME.Comment
+					elseif tokenType == "String" then color = THEME.String
+					elseif tokenType == "Number" then color = THEME.Number
+					elseif tokenType == "Operator" then color = THEME.Operator
+					end
 
-                if color == "ALREADY_FORMATTED" then
-                    result ..= word
-                elseif color then
-                    result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
-                else
-                    result ..= Sanitize(word)
-                end
+					if color == "ALREADY_FORMATTED" then
+						result ..= word
+					elseif color then
+						result ..= string.format('<font color="%s">%s</font>', color, Sanitize(word))
+					else
+						result ..= Sanitize(word)
+					end
 
-                i = e + 1
-                found = true
-                break 
-            end -- end of if s == i
-        end -- end of for loop
-    end -- end of if char:match("%s")
+					i = e + 1
+					found = true
+					break 
+				end -- end of if s == i
+			end -- end of for loop
+		end -- end of if char:match("%s")
 
-    -- VERY IMPORTANT: Handle characters that didn't match any pattern
-    if not found then
-        result ..= Sanitize(char)
-        i += 1
-    end
-end -- end of while loop
+		-- Handle characters that didn't match any pattern
+		if not found then
+			result ..= Sanitize(char)
+			i += 1
+		end
+	end -- end of while loop
 
-return result
+	return result
 end
 
 -- =========================================================================
@@ -892,3 +893,4 @@ local function C_23()
 	end)	
 end;
 task.spawn(C_23);
+
